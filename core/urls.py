@@ -27,10 +27,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-# urlpatterns += i18n_patterns(
-#     Home Page
-#     path('', views.home_page, name='home'),
-# )
+urlpatterns += i18n_patterns(
+    # Home Page
+    path('', views.home_page, name='home'),
+
+    prefix_default_language=True
+)
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

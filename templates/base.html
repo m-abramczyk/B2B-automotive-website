@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+{% load i18n %}
+{% get_current_language as current_language %}
+{% get_available_languages as languages %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+	<title>G3{% if meta_title %} | {{ meta_title }}{% endif %}</title>	
+	<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{% trans 'Default Meta Description.' %}{% endif %}">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	{% for lang_code, lang_name in languages %}
+		<link rel="alternate" href="https://g3.net.pl/{{ lang_code }}{{ request.path_info|slice:'3:' }}" hreflang="{{ lang_code }}">
+	{% endfor %}
+	<link rel="alternate" href="https://g3.net.pl/en{{ request.path_info|slice:'3:' }}" hreflang="x-default">
+	<link rel="canonical" href="https://g3.net.pl{{ request.path_info }}">
+
+	{% load static %}
+
+	<!-- <link rel="icon" href="{% static 'fav/favicon-light.ico' %}" id="fav"> -->
+	
+	<!-- Favicon light / dark mode: inline in order to handle django static tag -->
+	<!-- <script defer>
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        	document.getElementById('fav').href = "{% static 'fav/favicon-dark.ico' %}";
+    	}
+	</script> -->
+	
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,300;1,500;1,600&display=swap">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.1" type="text/css">
+	<script src="{% static 'js/base.js' %}?v=1.1"></script> -->
+
+</head>
+<body>
+
+	{% block content %}
+	{% endblock %}
+
+</body>
+</html>
