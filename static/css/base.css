@@ -1,16 +1,85 @@
+/*//////////////////////////////////////////////////////////////////////
+root variables */
+
 :root {
 
     --g3-black: #1e1e1e;
+    --g3-dark-grey: #2d2d2d;
+    --g3-light-grey: #c8c8c8;
+    --g3-off-white: #ebebeb;
+    --g3-true-white: #fff;
+
+    --g3-green: #38f6d4;
     --g3-blue: #4fd5ff;
-    --g3-darkgrey: #2d2d2d;
-    --g3-lightgrey: #c8c8c8;
-    --g3-offwhite: #ebebeb;
+    --g3-purple: #eb53f8;
+    --g3-pink: #ff3d8f;
     --g3-red: #f63946;
-    --g3-truewhite: #fff;
+    --g3-orange: #ff5934;
+    --g3-dark-yellow: #ff9900;
+    --g3-yellow: #ebc500;
 
-    --grid-margin: 100px;
+    --fw-normal: 400;
+    --fw-medium: 500;
+
+}
+
+@media screen and (max-width: 375px) {
+    
+
+
+}
+
+@media screen and (min-width: 375px) and (max-width: 1023px) {
+
+
+
+}
+
+@media screen and (min-width: 1023px) {
+    
+    :root {
     --grid-gap: 20px;
+    --grid-margin: 100px;
 
+    --fs-16: 16px;              /* site map nav */
+    --fs-17: 17px;              /* labels text */
+    --fs-18: 18px;              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
+    --fs-20: 20px;              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
+    --fs-24: 24px;              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-30: 30px;              /* case studies thumb header */
+    --fs-36: 36px;              /* case studies list header */
+    --fs-40: 40px;              /* case studies arrow-nav */
+    --fs-48: 48px;              /* text block main header / clients header */
+    --fs-72: 72px;              /* section header */
+    --fs-128: 128px;            /* main header */
+    }
+
+}
+
+/*//////////////////////////////////////////////////////////////////////
+text styles */
+
+.white {
+    color: var(--g3-true-white);
+}
+
+.black {
+    color: var(--g3-black);
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: var(--fw-normal);
+}
+
+/* Title 1 */
+h1 {
+    font-size: var(--fs-128);
+    line-height: 1;
+    letter-spacing: -0.08em;
+    font-variant-numeric: slashed-zero;
+    font-feature-settings: 'case' on;
 }
 
 
@@ -19,52 +88,12 @@ grid */
 
 .grid {
     display: grid;
-    grid-template-columns:
-    [full-width-start]
-        var(--grid-margin)
-    [left-start left-text-start full-margin-start footer-1-start]
-        1fr
-        var(--grid-gap)
-        1fr
-    [footer-1-end]
-        var(--grid-gap)
-        1fr
-        var(--grid-gap)
-        1fr
-    [left-text-end]
-        var(--grid-gap)
-        1fr
-    [left-end]
-        var(--grid-gap)
-        1fr
-        var(--grid-gap)
-        1fr
-        var(--grid-gap)
-    [right-start right-text-start nav-1-start footer-2-start]
-        1fr
-    [nav-1-end]
-        var(--grid-gap)
-    [nav-2-start]
-        1fr
-    [nav-2-end footer-2-end]
-        var(--grid-gap)
-    [nav-3-start footer-3-start]
-        1fr
-    [nav-3-end]
-        var(--grid-gap)
-    [nav-lang-start]
-        1fr
-    [right-text-end footer-3-end]
-        var(--grid-gap)
-    [footer-4-start]
-        1fr
-    [right-end full-margin-end nav-lang-end footer-4-end]
-        var(--grid-margin)
-    [full-width-end]
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(12, 1fr);
 }
 
 
-.grid > * {
+/* .grid > * {
     grid-column: full-width;
 }
  
@@ -90,16 +119,16 @@ grid */
 
 .right-text {
     grid-column: right-text;
-}
+} */
 
 body {
     font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 1.2;
-    color: var(--g3-offwhite);
+    color: var(--g3-off-white);
     background-color: var(--g3-black);
-    margin: 0;    
+    margin: 0 var(--grid-margin);    
 }
 
 /*//////////////////////////////////////////////////////////////////////

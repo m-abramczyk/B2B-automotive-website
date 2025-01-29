@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'untitled-sans';
-    src: url('/fonts/untitled-sans-regular.woff2') format('woff2');
+    src: url('/static/css/fonts/untitled-sans-regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'untitled-sans';
-    src: url('/fonts/untitled-sans-medium.woff2') format('woff2');
+    src: url('/static/css/fonts/untitled-sans-medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
 }
