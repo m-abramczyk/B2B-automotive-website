@@ -1,6 +1,3 @@
-/*//////////////////////////////////////////////////////////////////////
-root variables */
-
 :root {
 
     --g3-black: #1e1e1e;
@@ -23,33 +20,33 @@ root variables */
 
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (width < 375px) {
 
     :root {
-    --grid-gap: 20px;
-    --grid-margin: 24px;
+    --grid-gap: clamp(14px, 3.3333px + 4.4444vw, 20px);
+    --grid-margin: clamp(16px, 1.7778px + 5.9259vw, 24px);
 
-    --fs-16: 14px;              /* site map nav */
-    --fs-17: 15px;              /* labels text */
-    --fs-18: 15px;              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
-    --fs-20: 16px;              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
-    --fs-24: 18px;              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-30: 18px;              /* case studies thumb header */
-    --fs-36: 30px;              /* case studies list header */
-    --fs-40: 40px;              /* case studies arrow-nav */
-    --fs-48: 48px;              /* text block main header / clients header */
-    --fs-72: 72px;              /* section header */
-    --fs-128: 48px;             /* main header */
+    --fs-16: clamp(12px, 8.4444px + 1.4815vw, 14px);               /* site map nav */
+    --fs-17: clamp(14px, 12.2222px + 0.7407vw, 15px);              /* labels text */
+    --fs-18: clamp(14px, 12.2222px + 0.7407vw, 15px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
+    --fs-20: clamp(15px, 13.2222px + 0.7407vw, 16px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
+    --fs-24: clamp(16px, 12.4444px + 1.4815vw, 18px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-30: clamp(16px, 12.4444px + 1.4815vw, 18px);              /* case studies thumb header */
+    --fs-36: clamp(24px, 13.3333px + 4.4444vw, 30px);              /* case studies list header */
+    --fs-40: clamp(24px, 16.8889px + 2.963vw, 28px);               /* case studies arrow-nav */
+    --fs-48: clamp(30px, 26.4444px + 1.4815vw, 32px);              /* text block main header / clients header */
+    --fs-72: clamp(32px, 24.8889px + 2.963vw, 36px);               /* section header */
+    --fs-128: clamp(36px, 14.6667px + 8.8889vw, 48px);             /* main header */
     }
 
 
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (375px <= width < 1024px) {
 
     :root {
     --grid-gap: 20px;
-    --grid-margin: 50px;
+    --grid-margin: clamp(24px, 14.755px + 2.4653vw, 40px);
 
     --fs-16: clamp(14px, 12.8444px + 0.3082vw, 16px);              /* site map nav */
     --fs-17: 15px;                                                 /* labels text */
@@ -58,7 +55,7 @@ root variables */
     --fs-24: clamp(18px, 16.8444px + 0.3082vw, 20px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
     --fs-30: clamp(18px, 16.8444px + 0.3082vw, 20px);              /* case studies thumb header */
     --fs-36: clamp(30px, 28.8444px + 0.3082vw, 32px);              /* case studies list header */
-    --fs-40: 28px;              /* case studies arrow-nav */
+    --fs-40: 28px;                                                 /* case studies arrow-nav */
     --fs-48: clamp(32px, 27.3775px + 1.2327vw, 40px);              /* text block main header / clients header */
     --fs-72: clamp(36px, 29.0663px + 1.849vw, 48px);               /* section header */
     --fs-128: clamp(48px, 29.51px + 4.9307vw, 80px);               /* main header */
@@ -66,17 +63,17 @@ root variables */
 
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1920px) {
+@media screen and (1024px <= width < 1920px) {
     
     :root {
     --grid-gap: 20px;
-    --grid-margin: 50px;
+    --grid-margin: clamp(40px, 28.5714px + 1.1161vw, 50px);
 
     --fs-16: 16px;                                                 /* site map nav */
     --fs-17: clamp(15px, 12.7143px + 0.2232vw, 17px);              /* labels text */
     --fs-18: clamp(16px, 13.7143px + 0.2232vw, 18px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
     --fs-20: clamp(17px, 13.5714px + 0.3348vw, 20px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
-    --fs-24: clamp(20px, 28.5714px + -0.4464vw, 24px);             /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-24: clamp(20px, 15.4286px + 0.4464vw, 24px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
     --fs-30: clamp(20px, 8.5714px + 1.1161vw, 30px);               /* case studies thumb header */
     --fs-36: clamp(32px, 27.4286px + 0.4464vw, 36px);              /* case studies list header */
     --fs-40: clamp(28px, 14.2857px + 1.3393vw, 40px);              /* case studies arrow-nav */
@@ -87,11 +84,11 @@ root variables */
 
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (1920px <= width) {
     
     :root {
     --grid-gap: 20px;
-    --grid-margin: 50px;
+    --grid-margin: clamp(50px, 20px + 1.5625vw, 60px);
 
     --fs-16: clamp(16px, 10px + 0.3125vw, 18px);                  /* site map nav */
     --fs-17: clamp(17px, 10.625px + 0.332vw, 19.125px);           /* labels text */
@@ -297,5 +294,59 @@ body {
     margin: 0;
 }
 
-/*//////////////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////
 svg */
+
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+@media */
+
+
+/*//////////////////////////////////////////////
+@media desktop */
+
+@media screen and (min-width: 1920px) {
+    
+}
+
+/*//////////////////////////////////////////////
+@media tablet */
+
+@media screen and (768px <= width < 1024px) {
+
+    .grid {
+        margin-inline: var(--grid-margin);
+        grid-template-columns: repeat(8, 1fr);
+    }
+    
+    .grid > * {
+        grid-column: span 8;
+    }
+
+}
+
+/*//////////////////////////////////////////////
+@media mobile and tablet */
+
+/* @media screen and (max-width: 1023px) {
+
+} */
+
+/*//////////////////////////////////////////////
+@media mobile */
+
+@media screen and (width < 768px) {
+
+    .grid {
+        margin-inline: var(--grid-margin);
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .grid > * {
+        grid-column: span 4;
+    }
+
+}
