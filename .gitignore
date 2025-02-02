@@ -18,6 +18,9 @@ media/
 staticfiles/
 *.log
 *.woff2
+static/img/
+static/svg/
+static/vid/
 
 # IDE and editor files
 .vscode/

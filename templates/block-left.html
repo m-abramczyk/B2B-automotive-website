@@ -1,21 +1,78 @@
-	{% block text-styles %}
+	{% block block-left %}
 	{% load static %}
 	{% load i18n %}
 
-	<div class="grid">
-		<h1>Header 128px true white 0123</h1>
-		<h2>Expert Header 72px off-white 0123</h2>
-		<h3>Block Header 48px off-white 0123</h3>
-		<h4>Case Study Arrow-Nav 40px true white 0123</h4>
-		<h5>Case Study List Header 36px light grey 0123</h5>
-		<h6>Case Study Thumbnail Title 30px true white 0123</h6>
-		<p class="text-24">Text Nav 24px true white 0123</p>
-		<p class="text-20-nav">Text Nav Thumbnail 20px true white 0123</p>
-		<p class="text-20">Text Paragraph 20px off-white 0123</p>
-		<p class="text-18">Text button / image caption 18px off-white 0123</p>
-		<p class="text-18-counter">Image caption counter 18px light grey 0123</p>
-		<p class="text-17">Text Label 17px black 0123</p>
-		<p class="text-16">Site Map Nav 16px true white 0123</p>
+	<div class="grid block block-left-right">
+
+		<div class="left-text">
+
+			{% include 'util-label.html' %}
+
+			<div class="spacer-30"></div>
+
+			<h3>Title of this box</h3>
+
+			<div class="spacer-100"></div>
+
+			<p class="text-20 text-block">Duis a urna ante. Proin vel leo et enim porta accumsan non vel leo. Morbi semper fringilla enim, quis rhoncus sapien egestas in. Maecenas commodo nisi vitae tempus finibus. Aliquam erat volutpat. 
+
+				Pellentesque habitant morbi  tristique senectus et netus et malesuada fames ac turpis egestas. Ut consequat, lectus sit amet elementum aliquam, tortor nisi consequat justo, ut dapibus tortor augue in leo. Vestibulum sagittis mi in mauris pellentesque eleifend.
+			</p>
+
+			<div class="spacer-60"></div>
+
+			{% include 'util-button.html' %}
+			{% include 'util-button.html' %}
+
+		</div>
+
+		<div class="right">
+
+			<div class="carousel-container">
+
+				<div class="carousel slider">
+					<!-- Slides are dynamically added here -->
+					<img src="{% static 'img/test/carousel-01.jpg' %}" alt="Image">
+				</div>
+
+			</div>
+
+			<div class="carousel-footer text-18">
+
+				<div>
+
+					<div class="carousel-counter text-18-counter">
+						<div class="slide-index-container">
+						1<!-- Slide indexes are dynamically added here -->
+						</div>
+						<p>/</p>
+						3<!-- Slide number are dynamically updated here -->
+					</div>
+
+					<p >Duis a urna ante. Proin vel leo et enim porta.</p>
+
+				</div>
+
+				<div class="carousel-nav">
+					
+					<button id="carousel-arrow-left" class="carousel-nav">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
+							<path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
+						</svg>
+					</button>
+
+					<button id="carousel-arrow-right" class="carousel-nav">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
+							<path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
+						</svg>
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
 	</div>
 	
 
