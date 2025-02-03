@@ -286,7 +286,7 @@ img {
 }
 
 /*//////////////////////////////////////////////////////////////////////
-image styles */
+svg styles */
 
 svg {
     fill: var(--g3-off-white);
@@ -312,7 +312,7 @@ grid */
     flex-direction: column;
     align-items: flex-start;
     gap: calc(var(--grid-margin) * 0.6); /* 30px */
-    padding-block-end: calc(var(--grid-margin) * 2); /* 100px */;
+    padding-block-end: calc(var(--grid-margin) * 2); /* 100px */
 }
 
 .block-text {
@@ -327,7 +327,7 @@ grid */
     align-self: center;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--grid-gap) * 0.6);  /* 12px */;
+    gap: calc(var(--grid-gap) * 0.6);  /* 12px */
 }
 
 /* block left */
@@ -484,8 +484,8 @@ carousel */
 
 .carousel-footer {
     display: flex;
-    gap: calc(var(--grid-gap) * 1.2); /* 24px */
     justify-content: space-between;
+    gap: calc(var(--grid-gap) * 1.2); /* 24px */
 }
 
 .carousel-counter {
@@ -549,11 +549,11 @@ color classes */
 /*//////////////////////////////////////////////////////////////////////
 @media small desktop */
 
-@media screen and (1024px <= width < 1350px) {
+@media screen and (1024px <= width < 1440px) {
 
     .block-header {
         gap: calc(var(--grid-margin) * 0.5); /* 20px */
-        padding-block-end: calc(var(--grid-margin) * 1.75); /* 70px */;
+        padding-block-end: calc(var(--grid-margin) * 1.75); /* 70px */
     }
     
     .block-text {
@@ -609,6 +609,22 @@ color classes */
         grid-column: span 8;
     }
 
+    .block-header {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        gap: calc(var(--grid-margin) * 0.5); /* 20px */
+        padding-block-end: var(--grid-margin); /* 40px */
+    }
+    
+    .label {
+        align-self: center;
+    }
+
+    .block-text {
+        gap: calc(--grid-margin); /* 40px */
+        padding-block-start: var(--grid-margin); /* 40px */
+    }    
+
     /* block left and right */
     .block-left > .block-header,
     .block-right > .block-header {
@@ -641,7 +657,7 @@ color classes */
         grid-column: 1 / span 8;
         grid-row: 2;
         /* max-height: 80vh; */
-        padding-top: 0;
+        padding-block-start: 0;
     }
 
     .block-full-width > .carousel-footer {
@@ -654,9 +670,13 @@ color classes */
 /*//////////////////////////////////////////////////////////////////////
 @media mobile and tablet */
 
-/* @media screen and (max-width: 1023px) {
+@media screen and (width < 1024px) {
 
-} */
+    .carousel-footer {
+        padding-block-start: calc(var(--grid-gap) * 0.6); /* 12px */
+    }
+
+}
 
 /*//////////////////////////////////////////////////////////////////////
 @media mobile */
