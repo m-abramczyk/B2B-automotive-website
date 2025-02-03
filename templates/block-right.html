@@ -5,7 +5,9 @@
 	<div class="grid block-right">
 
 		<div class="block-header">
+
 			{% include 'util-block-header.html' %}
+			
 		</div>
 
 		<div class="block-text">
@@ -19,50 +21,10 @@
 
 		</div>
 
-		<div class="block-img-small">
+		<div class="block-img">
 
-			<div class="carousel-container">
-
-				<div class="carousel slider">
-					<!-- Slides are dynamically added here -->
-					<img src="{% static 'img/test/carousel-01.jpg' %}" alt="Image">
-				</div>
-
-			</div>
-
-			<div class="carousel-footer">
-
-				<div>
-
-					<div class="carousel-counter text-18-counter">
-						<div class="slide-index-container">
-						1<!-- Slide indexes are dynamically added here -->
-						</div>
-						<p>/</p>
-						3<!-- Slide number are dynamically updated here -->
-					</div>
-
-					<p class="text-18">Duis a urna ante. Proin vel leo et enim porta.</p>
-
-				</div>
-
-				<div class="carousel-nav">
-					
-					<button id="carousel-arrow-left" class="carousel-nav">
-						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
-							<path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
-						</svg>
-					</button>
-
-					<button id="carousel-arrow-right" class="carousel-nav">
-						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
-							<path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
-						</svg>
-					</button>
-
-				</div>
-
-			</div>
+			{% include 'util-carousel-slider.html' %}
+			{% include 'util-carousel-footer.html' %}
 
 		</div>
 
