@@ -34,18 +34,21 @@
 	
 	<link rel="stylesheet" href="{% static 'css/fonts.css' %}" type="text/css">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
-	<script src="{% static 'js/base.js' %}?v=1.1"></script>
+
+	<script src="{% static 'js/base.js' %}"></script>
 
 </head>
 <body>
 
+	{% include 'util-map.html' %}
 
 	{% include 'block-left.html' %}
 	{% include 'block-right.html' %}
 	{% include 'block-full-width.html' %}
 
-
 	{% include 'text-styles.html' %}
+
+	
 
 	{% block content %}
 	{% endblock %}
