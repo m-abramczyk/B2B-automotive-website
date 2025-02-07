@@ -12,9 +12,6 @@
 	<title>G3{% if meta_title %} | {{ meta_title }}{% endif %}</title>	
 	<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{% trans 'Default Meta Description.' %}{% endif %}">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 	{% for lang_code, lang_name in languages %}
 		<link rel="alternate" href="https://g3.net.pl/{{ lang_code }}{{ request.path_info|slice:'3:' }}" hreflang="{{ lang_code }}">
 	{% endfor %}
@@ -22,6 +19,9 @@
 	<link rel="canonical" href="https://g3.net.pl{{ request.path_info }}">
 
 	{% load static %}
+
+	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
 
 	<!-- <link rel="icon" href="{% static 'fav/favicon-light.ico' %}" id="fav"> -->
 	
@@ -40,18 +40,29 @@
 </head>
 <body>
 
-	{% include 'util-map.html' %}
+	<nav></nav>
 
-	{% include 'block-left.html' %}
-	{% include 'block-right.html' %}
-	{% include 'block-full-width.html' %}
+	{% include 'util-cover-video.html' %}
+	{% include 'util-header.html' %}
 
-	{% include 'text-styles.html' %}
+	<main>
 
-	
+		<!-- {% include 'util-map.html' %} -->
 
-	{% block content %}
-	{% endblock %}
+		{% include 'block-left.html' %}
+		{% include 'block-right.html' %}
+		{% include 'block-full-width.html' %}
+
+		<!-- {% include 'text-styles.html' %} -->
+
+		
+
+		{% block content %}
+		{% endblock %}
+
+	</main>
+
+	<footer></footer>
 
 </body>
 </html>

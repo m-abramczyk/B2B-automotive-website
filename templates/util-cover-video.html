@@ -1,0 +1,20 @@
+{% block util-cover %}
+{% load static %}
+{% load i18n %}
+
+<div>
+
+        <!-- <video id="cover" autoplay playsinline muted loop>
+                <source src="{% static 'vid/hero.mp4' %}" type="video/mp4">
+        </video> -->
+
+        <img src="{% static 'img/test/hero-company-1680.jpg' %}"
+        srcset="{% static 'img/test/hero-company-1920.jpg' %} 1920w,
+                {% static 'img/test/hero-company-1680.jpg' %} 1680w,
+                {% static 'img/test/hero-company-1024.jpg' %} 1280w,
+                {% static 'img/test/hero-company-768.jpg' %} 768w"
+        id="cover">
+
+</div>
+
+{% endblock %}
