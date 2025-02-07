@@ -142,7 +142,8 @@ a {
     transition: opacity 150ms ease-in-out;
 }
 
-.underline:hover::after {
+.underline:hover::after,
+a:hover .underline::after {
     opacity: 1;
 }
 
@@ -265,7 +266,7 @@ h6 {
 }
 
 .no-wrap {
-    white-space: nowrap;    /* prevent wrapping of underline ::after elements */
+    white-space: nowrap;    /* prevent wrapping of underline::after elements */
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -284,6 +285,7 @@ body {
 main {
     position: relative;
     background: var(--g3-black);
+    overflow-x: hidden;
     z-index: 1;
 }
 
@@ -349,7 +351,7 @@ grid */
 }
 
 /*//////////////////////////////////////////////////////////////////////
-page header */
+header */
 
 header {
     position: relative;
@@ -361,33 +363,35 @@ header {
 
 #header-content {
     position: absolute;
-    bottom: calc(var(--grid-margin) * 2);  /* 100px */
-    padding-top: calc(var(--grid-margin) * 4);  /* 150px */
-    align-items: end;
+    bottom: calc(var(--grid-margin) * 2); /* 100px */
+    padding-top: calc(var(--grid-margin) * 4); /* 200px */
+    align-items: end; /* align bottom */
 }
 
 #header-content h1 {
     grid-column: 1 / span 8;
-    transform: translateY(0.11em);
+    transform: translateY(0.11em); /* move to the baseline */
 }
 
 .header-caption {
     grid-column: 11 / span 2;
     display: flex;
     flex-direction: column;
+    gap: var(--fs-24);
     align-items: end;
-    transform: translateY(0.25em);
+    transform: translateY(0.2em); /* move to the baseline */
 }
 
-.header-caption > *:last-child {
-    padding-block-start: var(--fs-24);
+.header-caption > *:first-child > * {
+    text-align: right; /* justify right */
 }
 
 .breadcrumbs {
     display: flex;
+    flex-wrap: wrap;
     gap: calc(var(--fs-16) * 0.45); /* 7px */
-    margin-inline: calc(var(--grid-margin) * 2);
-    padding-block-start: calc(var(--grid-margin) * 2.6);
+    margin-inline: calc(var(--grid-margin) * 2); /* 100px */
+    padding-top: calc(var(--grid-margin) * 2.6); /* 130px */
 }
 
 .breadcrumbs > a:first-child {
@@ -419,7 +423,7 @@ blocks left / right / full-width */
     flex-direction: column;
     align-items: flex-start;
     gap: calc(var(--grid-margin) * 0.6); /* 30px */
-    padding-block-end: calc(var(--grid-margin) * 2); /* 100px */
+    padding-bottom: calc(var(--grid-margin) * 2); /* 100px */
 }
 
 .block-text {
@@ -656,11 +660,11 @@ color classes */
 @media screen and (1024px <= width < 1440px) {
 
     /*//////////////////////////////////////////////////////////////////////
-    grid*/
+    blocks left / right / full-width */
 
     .block-header {
         gap: calc(var(--grid-margin) * 0.5); /* 20px */
-        padding-block-end: calc(var(--grid-margin) * 1.75); /* 70px */
+        padding-bottom: calc(var(--grid-margin) * 1.75); /* 70px */
     }
     
     .block-text {
@@ -709,20 +713,48 @@ color classes */
 @media screen and (768px <= width < 1024px) {
 
     /*//////////////////////////////////////////////////////////////////////
-    grid*/
+    grid */
 
     .grid {
-        padding-inline: var(--grid-margin);
+        padding-inline: var(--grid-margin); /* 40px */
         grid-template-columns: repeat(8, 1fr);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    header */
+
+    #header-content {
+        bottom: calc(var(--grid-margin) * 1.5); /* 60px */
+    }
+
+    #header-content h1 {
+        grid-column: 1 / span 7;
+    }
+    
+    .header-caption {
+        grid-column: 1 / span 8;
+        padding-top: calc(var(--grid-margin) * 1.5); /* 60px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    blocks left / right / full-width */
+
+    .block-left,
+    .block-right,
+    .block-full-width {
+        padding-block: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 40px 60px*/
     }
 
     .block-header {
         flex-direction: row-reverse;
         justify-content: space-between;
+        gap: calc(var(--grid-margin) * 0.5); /* 20px */
+        padding-bottom: var(--grid-margin); /* 40px */
     }
-    
-    .label {
-        align-self: center;
+
+    .block-text {
+        gap: var(--grid-margin); /* 40px */
+        padding-top: var(--grid-margin); /* 40px */
     }
 
     /* block left and right */
@@ -763,27 +795,8 @@ color classes */
         grid-row: 3;
     }
 
-    /*//////////////////////////////////////////////////////////////////////
-    blocks padding */
-
-    header {
-        padding-block: calc(var(--grid-margin) * 2.5) calc(var(--grid-margin) * 1.5); /* 100px 60px */
-    }
-
-    .block-left,
-    .block-right,
-    .block-full-width {
-        padding-block: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 40px 60px*/
-    }
-
-    .block-header {
-        gap: calc(var(--grid-margin) * 0.5); /* 20px */
-        padding-block-end: var(--grid-margin); /* 40px */
-    }
-
-    .block-text {
-        gap: var(--grid-margin); /* 40px */
-        padding-block-start: var(--grid-margin); /* 40px */
+    .label {
+        align-self: center;
     }
 
 }
@@ -795,14 +808,30 @@ color classes */
 @media screen and (width < 1024px) {
 
     /*//////////////////////////////////////////////////////////////////////
-    blocks padding */ 
+    header */
+
+    .header-caption {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .header-caption > *:first-child > * {
+        text-align: left; /* justify left */
+    }
+
+    .breadcrumbs {
+        margin-inline: var(--grid-margin); /* 24px / 40px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    blocks left / right / full-width */ 
 
     .block-full-width > .carousel-slider {
-        padding-block-start: 0;
+        padding-top: 0;
     }
 
     .block-full-width > .carousel-footer {
-        padding-block-start: calc(var(--grid-gap) * 0.6); /* 12px */
+        padding-top: calc(var(--grid-gap) * 0.6); /* 12px */
     }
 
 }
@@ -817,8 +846,47 @@ color classes */
     grid*/
     
     .grid {
-        padding-inline: var(--grid-margin);
+        padding-inline: var(--grid-margin); /* 24px */
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    header */
+
+    #header-content {
+        bottom: calc(var(--grid-margin) * 2.5); /* 60px */
+    }
+
+    #header-content h1 {
+        grid-column: 1 / span 4;
+    }
+    
+    .header-caption {
+        grid-column: 1 / span 4;
+        padding-top: calc(var(--grid-margin) * 1.33); /* 32px */
+    }
+
+    .breadcrumbs {
+        padding-top: calc(var(--grid-margin) * 3.33); /* 80px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    blocks left / right / full-width */ 
+
+    .block-left,
+    .block-right,
+    .block-full-width {
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px*/
+    }
+
+    .block-header {
+        gap: calc(var(--grid-margin) * 0.83); /* 20px */
+        padding-bottom: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+
+    .block-text {
+        gap: calc(var(--grid-margin) * 1.67); /* 40px */
+        padding-top: calc(var(--grid-margin) * 1.67); /* 40px */
     }
 
     /* block left and right */
@@ -857,29 +925,6 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 4;
         grid-row: 3;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////
-    blocks padding */
-
-    header {
-        padding-block: calc(var(--grid-margin) * 3.34) calc(var(--grid-margin) * 1.67); /* 80px 40px */
-    }
-
-    .block-left,
-    .block-right,
-    .block-full-width {
-        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px*/
-    }
-
-    .block-header {
-        gap: calc(var(--grid-margin) * 0.83); /* 20px */
-        padding-block-end: calc(var(--grid-margin) * 1.67); /* 40px */
-    }
-
-    .block-text {
-        gap: calc(var(--grid-margin) * 1.67); /* 40px */
-        padding-block-start: calc(var(--grid-margin) * 1.67); /* 40px */
     }
 
 }
