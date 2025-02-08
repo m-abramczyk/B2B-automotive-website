@@ -18,7 +18,8 @@
     --fw-normal: 400;
     --fw-medium: 500;
 
-    --transition-opacity: opacity 150ms ease-in-out;
+    --transition-opacity-150: opacity 150ms ease-in-out;
+    --transition-opacity-200: opacity 200ms ease-in-out;
 
 }
 
@@ -139,7 +140,7 @@ a {
     height: 1px;
     background: currentcolor;
     opacity: 0;
-    transition: opacity 150ms ease-in-out;
+    transition: var(--transition-opacity-150);
 }
 
 .underline:hover::after,
@@ -273,6 +274,7 @@ h6 {
 general styles */
 
 body {
+    position: relative;
     font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;
     font-weight: 400;
     font-size: 20px;
@@ -287,6 +289,12 @@ main {
     background: var(--g3-black);
     overflow-x: hidden;
     z-index: 1;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 button {
@@ -321,7 +329,7 @@ image styles */
     height: 75svh;
     object-fit: cover;
     opacity: 0.5;
-    /* z-index: -1; */
+    z-index: -1;
 }
 
 img:not(#cover) {
@@ -348,6 +356,33 @@ grid */
     column-gap: var(--grid-gap);
     padding-inline: calc(var(--grid-margin) * 2);
     grid-template-columns: repeat(12, 1fr);
+}
+
+/*//////////////////////////////////////////////////////////////////////
+nav */
+
+nav {
+    position: absolute;
+    width: 100%;
+    /* background: var(--g3-black); */
+    height: calc(var(--grid-margin) * 2); /* 100px */
+    align-items: center;  /* center vertically */
+    overflow-x: hidden;
+    z-index: 2;
+}
+
+.logo {
+    grid-column: 1 / span 2;
+    width: max-content; /* prevent clickable area stretching inside grid */
+}
+
+.logo > svg {height: calc(var(--grid-margin) * 1);} /* 50px */
+.logo svg > path:nth-last-child(2) {fill: var(--g3-blue);} /* bottom blue circle */
+.logo svg > path:last-child {transition: var(--transition-opacity-200);} /* top circle white */
+a:hover svg > path:last-child {opacity: 0;} /* circle animation */
+
+#lang-nav {
+    grid-column: 11 / span 2;
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -559,13 +594,13 @@ carousel */
 .carousel-arrow-right {
     width: var(--fs-18);
     padding-block: 0.2em;
-    transition: var(--transition-opacity);
+    transition: var(--transition-opacity-150);
 }
 
 .carousel-arrow-left > svg,
 .carousel-arrow-right > svg {
     opacity: 0.7;
-    transition: var(--transition-opacity);
+    transition: var(--transition-opacity-150);
     pointer-events: none;
 }
 
@@ -608,7 +643,7 @@ carousel */
     position: absolute;
     transform: translateX(-100%);
     opacity: 0;
-    transition: var(--transition-opacity);
+    transition: var(--transition-opacity-150);
 }
 
 .current-slide {    /* class added by js */
