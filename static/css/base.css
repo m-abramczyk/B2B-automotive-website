@@ -835,8 +835,8 @@ color classes */
     }
 
     .block-header {
-        flex-direction: row-reverse;
-        justify-content: space-between;
+        /* flex-direction: row-reverse;
+        justify-content: space-between; */
         gap: calc(var(--grid-margin) * 0.5); /* 20px */
         padding-bottom: var(--grid-margin); /* 40px */
     }
@@ -884,9 +884,9 @@ color classes */
         grid-row: 3;
     }
 
-    .label {
+    /* .label {
         align-self: center;
-    }
+    } */
 
 }
 
