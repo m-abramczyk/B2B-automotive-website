@@ -501,10 +501,7 @@ blocks left / right / full-width */
 }
 
 .block-left,
-.block-right {
-    padding-block: calc(var(--grid-margin) * 1.6); /* 80px */
-}
-
+.block-right,
 .block-full-width {
     padding-block: calc(var(--grid-margin) * 1.6) calc(var(--grid-margin) * 2); /* 80px 100px */
 }
@@ -825,7 +822,7 @@ color classes */
     
     .header-caption {
         grid-column: 1 / span 8;
-        padding-top: calc(var(--grid-margin) * 1.5); /* 60px */
+        padding-top: calc(var(--grid-margin) * 1); /* 40px */
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -946,7 +943,7 @@ color classes */
     header */
 
     #header-content {
-        bottom: calc(var(--grid-margin) * 2.5); /* 60px */
+        bottom: calc(var(--grid-margin) * 1.67); /* 40px */
     }
 
     #header-content h1 {
@@ -955,7 +952,7 @@ color classes */
     
     .header-caption {
         grid-column: 1 / span 4;
-        padding-top: calc(var(--grid-margin) * 1.33); /* 32px */
+        padding-top: calc(var(--grid-margin) * 1.25); /* 30px */
     }
 
     .breadcrumbs {
@@ -972,7 +969,7 @@ color classes */
     }
 
     .block-header {
-        gap: calc(var(--grid-margin) * 0.83); /* 20px */
+        gap: calc(var(--grid-margin) * 0.67); /* 16px */
         padding-bottom: calc(var(--grid-margin) * 1.67); /* 40px */
     }
 
