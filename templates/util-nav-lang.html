@@ -1,0 +1,23 @@
+{% block util-nav-lang %}
+{% load i18n %}
+
+    <div id="nav-lang" class="text-24">
+
+        <ul>
+            {% for lang_code, lang_name in languages %}
+                {% if lang_code != LANGUAGE_CODE %}
+                    <li><a href="/{{ lang_code }}{{ request.path_info|slice:'3:' }}">{{ lang_code|upper }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <button>
+            <p>{{ LANGUAGE_CODE|upper }}</p>
+            <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1.5 L9 9.5 L18 1.5 L16 0 L9 7 L2 0 L0 1.5 Z"/>
+            </svg>
+        </button>
+
+    </div>
+
+{% endblock %}
