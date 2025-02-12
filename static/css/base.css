@@ -39,16 +39,15 @@ font sizes */
     --grid-margin: clamp(16px, 1.7778px + 5.9259vw, 24px);
 
     --fs-16: clamp(12px, 8.4444px + 1.4815vw, 14px);               /* site map nav */
-    --fs-17: clamp(14px, 12.2222px + 0.7407vw, 15px);              /* labels text */
+    --fs-17: clamp(13px, 11.2222px + 0.7407vw, 14px);              /* labels text */
     --fs-18: clamp(14px, 12.2222px + 0.7407vw, 15px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
     --fs-20: clamp(15px, 13.2222px + 0.7407vw, 16px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
     --fs-24: clamp(16px, 12.4444px + 1.4815vw, 18px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-30: clamp(16px, 12.4444px + 1.4815vw, 18px);              /* case studies thumb header */
-    --fs-36: clamp(24px, 13.3333px + 4.4444vw, 30px);              /* case studies list header */
-    --fs-40: clamp(24px, 16.8889px + 2.963vw, 28px);               /* case studies arrow-nav */
+    --fs-36: clamp(18px, 10.8889px + 2.963vw, 22px);               /* case studies list header */
+    --fs-40: clamp(20px, 12.8889px + 2.963vw, 24px);               /* case studies arrow-nav */
     --fs-48: clamp(30px, 26.4444px + 1.4815vw, 32px);              /* text block main header / clients header */
     --fs-72: clamp(32px, 24.8889px + 2.963vw, 36px);               /* section header */
-    --fs-128: clamp(36px, 14.6667px + 8.8889vw, 48px);             /* main header */
+    --fs-128: clamp(36px, 0.4444px + 14.8148vw, 56px);             /* main header */
     }
 
 
@@ -60,17 +59,16 @@ font sizes */
     --grid-gap: 20px;
     --grid-margin: clamp(24px, 14.755px + 2.4653vw, 40px);
 
-    --fs-16: clamp(14px, 12.8444px + 0.3082vw, 16px);              /* site map nav */
-    --fs-17: 15px;                                                 /* labels text */
+    --fs-16: 14px;                                                 /* site map nav */
+    --fs-17: clamp(14px, 13.4222px + 0.1541vw, 15px);              /* labels text */
     --fs-18: clamp(15px, 14.4222px + 0.1541vw, 16px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
     --fs-20: clamp(16px, 15.4222px + 0.1541vw, 17px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
     --fs-24: clamp(18px, 16.8444px + 0.3082vw, 20px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-30: clamp(18px, 16.8444px + 0.3082vw, 20px);              /* case studies thumb header */
-    --fs-36: clamp(30px, 28.8444px + 0.3082vw, 32px);              /* case studies list header */
-    --fs-40: 28px;                                                 /* case studies arrow-nav */
+    --fs-36: clamp(22px, 20.8444px + 0.3082vw, 24px);              /* case studies list header */
+    --fs-40: clamp(24px, 21.6888px + 0.6163vw, 28px);              /* case studies arrow-nav */
     --fs-48: clamp(32px, 27.3775px + 1.2327vw, 40px);              /* text block main header / clients header */
     --fs-72: clamp(36px, 29.0663px + 1.849vw, 48px);               /* section header */
-    --fs-128: clamp(48px, 29.51px + 4.9307vw, 80px);               /* main header */
+    --fs-128: clamp(56px, 42.1325px + 3.698vw, 80px);              /* main header */
     }
 
 }
@@ -81,13 +79,12 @@ font sizes */
     --grid-gap: 20px;
     --grid-margin: clamp(40px, 28.5714px + 1.1161vw, 50px);
 
-    --fs-16: 16px;                                                 /* site map nav */
+    --fs-16: clamp(14px, 11.7143px + 0.2232vw, 16px);              /* site map nav */
     --fs-17: clamp(15px, 12.7143px + 0.2232vw, 17px);              /* labels text */
     --fs-18: clamp(16px, 13.7143px + 0.2232vw, 18px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
     --fs-20: clamp(17px, 13.5714px + 0.3348vw, 20px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
     --fs-24: clamp(20px, 15.4286px + 0.4464vw, 24px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-30: clamp(20px, 8.5714px + 1.1161vw, 30px);               /* case studies thumb header */
-    --fs-36: clamp(32px, 27.4286px + 0.4464vw, 36px);              /* case studies list header */
+    --fs-36: clamp(24px, 10.2857px + 1.3393vw, 36px);              /* case studies list header */
     --fs-40: clamp(28px, 14.2857px + 1.3393vw, 40px);              /* case studies arrow-nav */
     --fs-48: clamp(40px, 30.8571px + 0.8929vw, 48px);              /* text block main header / clients header */
     --fs-72: clamp(48px, 20.5714px + 2.6786vw, 72px);              /* section header */
@@ -107,7 +104,6 @@ font sizes */
     --fs-18: clamp(18px, 11.25px + 0.3516vw, 20.25px);            /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
     --fs-20: clamp(20px, 8px + 0.625vw, 24px);                    /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
     --fs-24: clamp(24px, 9.6px + 0.75vw, 28.8px);                 /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-30: clamp(30px, 7.5px + 1.1719vw, 37.5px);               /* case studies thumb header */
     --fs-36: clamp(36px, 9px + 1.4063vw, 45px);                   /* case studies list header */
     --fs-40: clamp(40px, 10px + 1.5625vw, 50px);                  /* case studies arrow-nav */
     --fs-48: clamp(48px, 12px + 1.875vw, 60px);                   /* text block main header / clients header */
@@ -117,171 +113,13 @@ font sizes */
 
 }
 
-
-/*//////////////////////////////////////////////////////////////////////
-text styles */
-
-h1, h2, h3, h4, h5, h6, p, a {
-    margin: 0px;
-    padding: 0px;
-    font-weight: var(--fw-normal);
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.underline {
-    position: relative;
-}
-
-.underline::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -0.15em;
-    width: 100%;
-    height: 1px;
-    background: currentcolor;
-    opacity: 0;
-    transition: var(--transition-opacity-150);
-}
-
-.underline:hover::after,
-a:hover .underline::after {
-    opacity: 1;
-}
-
-/* Main Header */
-h1 {
-    color: var(--g3-true-white);
-    font-size: var(--fs-128);
-    line-height: 1;
-    letter-spacing: -0.08em;
-    font-variant-numeric: slashed-zero;
-}
-
-/* Expert Header */
-h2 {
-    color: var(--g3-off-white);
-    font-size: var(--fs-72);
-    line-height: 1;
-    letter-spacing: -0.08em;
-    font-variant-numeric: slashed-zero;
-}
-
-/* Block Header */
-h3 { 
-    color: var(--g3-off-white);
-    font-size: var(--fs-48);
-    line-height: 1.167;
-    letter-spacing: -0.06em;
-}
-
-/* Case Study Arrow-Nav */
-h4 {
-    color: var(--g3-true-white);
-    font-size: var(--fs-40);
-    line-height: 1.2;
-    letter-spacing: -0.03em;
-    font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* Case Study List Header */
-h5 {
-    color: var(--g3-light-grey);
-    font-size: var(--fs-36);
-    line-height: 0.889;
-    letter-spacing: -0.03em;
-    font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* Case Study Thumbnail Title */
-h6 {
-    color: var(--g3-true-white);
-    font-size: var(--fs-30);
-    line-height: 1.067;
-    letter-spacing: -0.03em;
-    font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* Text Nav */
-.text-24 {
-    color: var(--g3-true-white);
-    font-size: var(--fs-24);
-    line-height: 1.25;
-    letter-spacing: -0.03em;
-}
-
-/* Text Nav Thumbnail */
-.text-20-nav {
-    color: var(--g3-true-white);
-    font-size: var(--fs-20);
-    line-height: 1.2;
-    letter-spacing: -0.04em;
-}
-
-/* Paragraph */
-.text-20 {
-    color: var(--g3-off-white);
-    font-size: var(--fs-20);
-    line-height: 1.2;
-    letter-spacing: -0.04em;
-}
-
-/* Button / img caption */
-.text-18 {
-    color: var(--g3-off-white);
-    font-size: var(--fs-18);
-    line-height: 1.33;
-    letter-spacing: -0.03em;
-}
-
-/* Img caption counter */
-.text-18-counter {
-    color: var(--g3-light-grey);
-    font-size: var(--fs-18);
-    line-height: 1.33;
-    letter-spacing: -0.03em;
-    font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* Label */
-.text-17 {
-    color: var(--g3-black);
-    font-size: var(--fs-17);
-    line-height: 1.176;
-    letter-spacing: -0.02em;
-}
-
-/* Site map nav  */
-.text-16 {
-    color: var(--g3-true-white);
-    font-size: var(--fs-16);
-    line-height: 1;
-    letter-spacing: -0.01em;
-}
-
-.text-block {
-    white-space: pre-line;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-
-.no-wrap {
-    white-space: nowrap;    /* prevent wrapping of underline::after elements */
-}
-
 /*//////////////////////////////////////////////////////////////////////
 general styles */
 
 body {
     position: relative;
     font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;
-    font-weight: 400;
+    font-weight: var(--fw-normal);
     font-size: 20px;
     line-height: 1.2;
     color: var(--g3-off-white);
@@ -321,6 +159,146 @@ button {
 * {
     -webkit-tap-highlight-color: transparent;   /* remove chrome button tap highlight */
     box-sizing: border-box;
+}
+
+/*//////////////////////////////////////////////////////////////////////
+text styles */
+
+h1, h2, h3, h4, h5, p, a {
+    margin: 0px;
+    padding: 0px;
+    font-weight: var(--fw-normal);
+}
+
+/* Main Header */
+h1 {
+    color: var(--g3-true-white);
+    font-size: var(--fs-128);
+    line-height: 1;
+    letter-spacing: -0.08em;
+    font-variant-numeric: slashed-zero;
+}
+
+/* Expert Header */
+h2 {
+    color: var(--g3-off-white);
+    font-size: var(--fs-72);
+    line-height: 1;
+    letter-spacing: -0.08em;
+    font-variant-numeric: slashed-zero;
+}
+
+/* Block Header */
+h3 { 
+    color: var(--g3-off-white);
+    font-size: var(--fs-48);
+    line-height: 1.167;
+    letter-spacing: -0.06em;
+    font-variant-numeric: slashed-zero;
+}
+
+/* Case Study Arrow-Nav */
+h4 {
+    color: var(--g3-true-white);
+    font-size: var(--fs-40);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+/* Case Study List Header */
+h5 {
+    color: var(--g3-light-grey);
+    font-size: var(--fs-36);
+    line-height: 1.11;
+    letter-spacing: -0.04em;
+}
+
+/* Text Nav */
+.text-24 {
+    color: var(--g3-true-white);
+    font-size: var(--fs-24);
+    line-height: 1.25;
+    letter-spacing: -0.04em;
+}
+
+/* Paragraph / Nav Thumbnail (true-white) */
+.text-20 {
+    color: var(--g3-off-white);
+    font-size: var(--fs-20);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+/* Button / img caption */
+.text-18 {
+    color: var(--g3-off-white);
+    font-size: var(--fs-18);
+    line-height: 1.33;
+    letter-spacing: -0.03em;
+}
+
+/* Label */
+.text-17 {
+    color: var(--g3-black);
+    font-size: var(--fs-17);
+    line-height: 1.176;
+    letter-spacing: -0.02em;
+}
+
+/* Site map nav  */
+.text-16 {
+    color: var(--g3-true-white);
+    font-size: var(--fs-16);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+/* Anchors */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.underline {
+    position: relative;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentcolor;
+    opacity: 0;
+    transition: var(--transition-opacity-150);
+}
+
+.underline:hover::after,
+a:hover .underline::after {
+    opacity: 1;
+}
+
+/* Utilities */
+.medium {
+    font-weight: var(--fw-medium);
+}
+
+.text-block {
+    white-space: pre-line;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.no-wrap {
+    white-space: nowrap;    /* prevent wrapping of underline::after elements */
+}
+
+.tabular {
+    font-variant-numeric: lining-nums tabular-nums;
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -367,13 +345,17 @@ grid */
 nav */
 
 nav {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: calc(var(--grid-margin) * 2); /* 100px */
     align-items: center;  /* center vertically */
     overflow-x: hidden;
     z-index: 2;
-    /* background: var(--g3-black); */
+    transition: background-color 200ms ease-in-out;
+}
+
+nav:hover {
+    background-color: var(--g3-black);
 }
 
 .logo {
@@ -600,7 +582,7 @@ utilities */
 }
 
 .button {
-    padding: calc(var(--fs-18) * 0.55) calc(var(--fs-18) * 1.11); /* 15px 20px */
+    padding: calc(var(--fs-18) * 0.55) calc(var(--fs-18) * 1.11); /* 10px 20px */
     border-radius: calc(var(--fs-18) * 2.2);
     border: 1px solid var(--g3-off-white);
     white-space: nowrap;
