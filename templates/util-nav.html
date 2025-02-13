@@ -1,46 +1,59 @@
 {% block util-nav %}
+{% load static %}
 {% load i18n %}
 
     <nav class="grid">
 
         {% include 'util-logo.html' %}
 
-        <!-- <ul id="nav-desktop" class="text-24">
+        <ul id="nav-desktop" class="text-24">
 
             <li class="dropdown" data-dropdown>
 
-                <a href="#" data-dropdown-trigger>Page Section 1</a>
+                <a href="#" data-dropdown-trigger>Services</a>
 
                 <ul class="dropdown-content">
-                    <li><a href="#">Subsection 1</a></li>
-                    <li><a href="#">Subsection 2</a></li>
-                    <li><a href="#">Subsection 3</a></li>
+
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/test/carousel-01.jpg' %}" alt="Page Section Thumbnail">
+                            <h6 class="text-20 true-white">Subsection 1</h6>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/test/carousel-02.jpg' %}" alt="Page Section Thumbnail">
+                            <h6 class="text-20 true-white">Subsection 2</h6>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/test/carousel-03.jpg' %}" alt="Page Section Thumbnail">
+                            <h6 class="text-20 true-white">Subsection 3</h6>
+                        </a>
+                    </li>
+
                 </ul>
 
             </li>
 
-        </ul> -->
+            <li class="dropdown" data-dropdown>
 
-        {% include 'util-nav-lang.html' %}
+                <a href="#" data-dropdown-trigger>Company</a>
 
-        <!-- <div id="lang-nav" class="text-24">
+                <!-- <ul class="dropdown-content grid">
+                    <li><a href="#">Subsection 1</a></li>
+                    <li><a href="#">Subsection 2</a></li>
+                    <li><a href="#">Subsection 3</a></li>
+                </ul> -->
 
-            <ul>
-                {% for lang_code, lang_name in languages %}
-                    {% if lang_code != LANGUAGE_CODE %}
-                        <li><a href="/{{ lang_code }}{{ request.path_info|slice:'3:' }}">{{ lang_code|upper }}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+            </li>
 
-            <button>
-                <p>{{ LANGUAGE_CODE|upper }}</p>
-                <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 1.5 L9 9.5 L18 1.5 L16 0 L9 7 L2 0 L0 1.5 Z"/>
-                </svg>
-            </button>
+            <li><a href="#" data-dropdown-trigger>Contact</a></li>
 
-        </div> -->
+        </ul>
+
+        {% include 'util-nav-lang-desktop.html' %}
             
     </nav>
 

@@ -164,7 +164,7 @@ button {
 /*//////////////////////////////////////////////////////////////////////
 text styles */
 
-h1, h2, h3, h4, h5, p, a {
+h1, h2, h3, h4, h5, h6, p, a {
     margin: 0px;
     padding: 0px;
     font-weight: var(--fw-normal);
@@ -261,6 +261,7 @@ a {
 
 .underline {
     position: relative;
+    display: inline-block;
 }
 
 .underline::after {
@@ -342,14 +343,13 @@ grid */
 }
 
 /*//////////////////////////////////////////////////////////////////////
-nav */
+nav*/
 
 nav {
     position: fixed;
     width: 100%;
     height: calc(var(--grid-margin) * 2); /* 100px */
     align-items: center;  /* center vertically */
-    overflow-x: hidden;
     z-index: 2;
     transition: background-color 200ms ease-in-out;
 }
@@ -358,9 +358,13 @@ nav:hover {
     background-color: var(--g3-black);
 }
 
+/*//////////////////////////////////////////////////////////////////////
+logo */
+
 .logo {
     grid-column: 1 / span 2;
     width: max-content; /* prevent clickable area stretching inside grid */
+    z-index: 1;
 }
 
 .logo > svg {height: calc(var(--grid-margin) * 1);} /* 50px */
@@ -369,21 +373,71 @@ nav:hover {
 a:hover svg > path:last-child {opacity: 0;} /* circle animation */
 
 /*//////////////////////////////////////////////////////////////////////
-language selection nav */
+nav desktop */
 
-#nav-lang {
+#nav-desktop {
+    grid-column: 8 / span 3;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    gap: calc(var(--fs-24) * 2); /* 48px */
+    z-index: 0;
+}
+
+#nav-desktop ul.dropdown-content {
+    background-color: var(--g3-black);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+    padding-top: calc(var(--grid-margin) * 2 + var(--fs-24) * 2); /* 100px + 48px */
+    padding-bottom: calc(var(--fs-24) * 3); /* 72px */
+    padding-inline: calc(var(--grid-margin) * 2); /* 100px */
+    
+    display: flex;
+    gap: var(--grid-gap);
+    justify-content: end;
+    flex-wrap: wrap;
+    z-index: -1;
+}
+
+#nav-desktop .dropdown-content li {
+    width: calc((100% - var(--grid-gap) * 5) / 6); /* two grid columns */
+}
+
+#nav-desktop .dropdown-content img {
+    aspect-ratio: 1.5 / 1;
+    width: 100%;
+    margin-bottom: calc(var(--fs-20) * 0.3);
+    opacity: 0.75;
+    transition: var(--transition-opacity-150);
+}
+
+#nav-desktop a:hover img {
+    opacity: 1;
+}
+
+#nav-desktop .dropdown-content h6 {
+    display: inline-block;
+    /* width: max-content; */
+}
+
+/*//////////////////////////////////////////////////////////////////////
+nav desktop language selection */
+
+#nav-lang-desktop {
     grid-column: 11 / span 2;
     position: absolute;
     right: 0;
-    /* display: flex; */
 }
 
-#nav-lang button {
+#nav-lang-desktop button {
     display: flex;
     gap: calc(var(--fs-24) * 0.42); /* 10px */
 }
 
-#nav-lang ul {
+#nav-lang-desktop ul {
     position: absolute;
     display: flex;
     gap: var(--fs-24); /* 24px */
@@ -395,8 +449,8 @@ language selection nav */
     -webkit-user-select: none;      /* prevent safari selecting when invisible */
 }
 
-#nav-lang:hover ul,
-#nav-lang:focus-within ul {
+#nav-lang-desktop:hover ul,
+#nav-lang-desktop:focus-within ul {
     transform: translateX(-100%);
     opacity: 1;
     pointer-events: auto;
@@ -405,22 +459,22 @@ language selection nav */
 
 }
 
-#nav-lang a {
+#nav-lang-desktop a {
     opacity: 0.7;
     transition: var(--transition-opacity-100);
 }
 
-#nav-lang a:hover {
+#nav-lang-desktop a:hover {
     opacity: 1;
 }
 
-#nav-lang svg {
+#nav-lang-desktop svg {
     width: calc(var(--fs-24) * 0.75); /* 18px */
     transition: var(--transition-transform-200);
 }
 
-#nav-lang:hover svg,
-#nav-lang button:focus svg {
+#nav-lang-desktop:hover svg,
+#nav-lang-desktop button:focus svg {
     transform: rotate(-180deg);
 }
 
