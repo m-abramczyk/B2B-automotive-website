@@ -73,22 +73,42 @@ font sizes */
 
 }
 
-@media screen and (1024px <= width < 1920px) {
+@media screen and (1024px <= width < 1280px) {
     
     :root {
     --grid-gap: 20px;
-    --grid-margin: clamp(40px, 28.5714px + 1.1161vw, 50px);
+    --grid-margin: 40px;
 
-    --fs-16: clamp(14px, 11.7143px + 0.2232vw, 16px);              /* site map nav */
-    --fs-17: clamp(15px, 12.7143px + 0.2232vw, 17px);              /* labels text */
-    --fs-18: clamp(16px, 13.7143px + 0.2232vw, 18px);              /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
-    --fs-20: clamp(17px, 13.5714px + 0.3348vw, 20px);              /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
-    --fs-24: clamp(20px, 15.4286px + 0.4464vw, 24px);              /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
-    --fs-36: clamp(24px, 10.2857px + 1.3393vw, 36px);              /* case studies list header */
-    --fs-40: clamp(28px, 14.2857px + 1.3393vw, 40px);              /* case studies arrow-nav */
-    --fs-48: clamp(40px, 30.8571px + 0.8929vw, 48px);              /* text block main header / clients header */
-    --fs-72: clamp(48px, 20.5714px + 2.6786vw, 72px);              /* section header */
-    --fs-128: clamp(80px, 25.1429px + 5.3571vw, 128px);            /* main header */
+    --fs-16: 14px;                   /* site map nav */
+    --fs-17: 15px;                   /* labels text */
+    --fs-18: 16px;                   /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
+    --fs-20: 17px;                   /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
+    --fs-24: 20px;                   /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-36: 24px;                   /* case studies list header */
+    --fs-40: 28px;                   /* case studies arrow-nav */
+    --fs-48: 40px;                   /* text block main header / clients header */
+    --fs-72: 48px;                   /* section header */
+    --fs-128: 80px;                  /* main header */
+    }
+
+}
+
+@media screen and (1280px <= width < 1920px) {
+    
+    :root {
+    --grid-gap: 20px;
+    --grid-margin: clamp(40px, 20px + 1.5625vw, 50px);
+
+    --fs-16: clamp(14px, 10px + 0.3125vw, 16px);                   /* site map nav */
+    --fs-17: clamp(15px, 11px + 0.3125vw, 17px);                   /* labels text */
+    --fs-18: clamp(16px, 12px + 0.3125vw, 18px);                   /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
+    --fs-20: clamp(17px, 11px + 0.4688vw, 20px);                   /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
+    --fs-24: clamp(20px, 12px + 0.625vw, 24px);                    /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-36: clamp(24px, 0px + 1.875vw, 36px);                     /* case studies list header */
+    --fs-40: clamp(28px, 4px + 1.875vw, 40px);                     /* case studies arrow-nav */
+    --fs-48: clamp(40px, 24px + 1.25vw, 48px);                     /* text block main header / clients header */
+    --fs-72: clamp(48px, 0px + 3.75vw, 72px);                      /* section header */
+    --fs-128: clamp(80px, -16px + 7.5vw, 128px);                   /* main header */
     }
 
 }
@@ -351,15 +371,18 @@ nav {
     height: calc(var(--grid-margin) * 2); /* 100px */
     align-items: center;  /* center vertically */
     z-index: 2;
-    transition: background-color 200ms ease-in-out;
 }
 
-nav:hover {
-    background-color: var(--g3-black);
+#nav-background {
+    background: var(--g3-black);
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: var(--transition-transform-150);
+    z-index: -1;
 }
-
-/*//////////////////////////////////////////////////////////////////////
-logo */
 
 .logo {
     grid-column: 1 / span 2;
@@ -378,14 +401,11 @@ nav desktop */
 #nav-desktop {
     grid-column: 8 / span 3;
     display: flex;
-    /* justify-content: space-between; */
-    align-items: flex-start;
     gap: calc(var(--fs-24) * 2); /* 48px */
     z-index: 0;
 }
 
-#nav-desktop ul.dropdown-content {
-    background-color: var(--g3-black);
+#nav-desktop .dropdown-content {
     position: absolute;
     left: 0;
     top: 0;
@@ -400,27 +420,47 @@ nav desktop */
     justify-content: end;
     flex-wrap: wrap;
     z-index: -1;
-}
 
-#nav-desktop .dropdown-content li {
-    width: calc((100% - var(--grid-gap) * 5) / 6); /* two grid columns */
-}
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;              /* prevent selecting when invisible */
+    -webkit-user-select: none;      /* prevent safari selecting when invisible */
 
-#nav-desktop .dropdown-content img {
-    aspect-ratio: 1.5 / 1;
-    width: 100%;
-    margin-bottom: calc(var(--fs-20) * 0.3);
-    opacity: 0.75;
     transition: var(--transition-opacity-150);
 }
 
-#nav-desktop a:hover img {
+#nav-desktop .dropdown.active .dropdown-content {
+    opacity: 1;
+    pointer-events: auto;
+    user-select: auto;          /* toggle off preventing selecting when invisible */
+    -webkit-user-select: auto;  /* toggle off preventing safari selecting when invisible */
+}
+
+#nav-desktop .dropdown li {
+    width: calc((100% - var(--grid-gap) * 5) / 6); /* two grid columns */
+}
+
+#nav-desktop .dropdown .thumbnail-wrapper {
+    overflow: hidden;
+}
+
+#nav-desktop .dropdown img {
+    aspect-ratio: 1.5 / 1;
+    width: 100%;
+}
+
+#nav-desktop .dropdown-content a {
+    opacity: 0.7;
+    transition: var(--transition-opacity-150);
+}
+
+#nav-desktop .dropdown-content a:hover {
     opacity: 1;
 }
 
 #nav-desktop .dropdown-content h6 {
+    margin-top: calc(var(--fs-20) * 0.3);
     display: inline-block;
-    /* width: max-content; */
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -782,7 +822,19 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media small desktop */
 
-@media screen and (1024px <= width < 1440px) {
+@media screen and (1280px <= width < 1560px) {
+
+    /*//////////////////////////////////////////////////////////////////////
+    nav desktop */
+
+    #nav-desktop {
+        grid-column: 7 / span 4;
+    }
+
+    #nav-desktop .dropdown-content {
+        padding-top: calc(var(--grid-margin) * 2 + var(--fs-24) * 2.4); /* 100px + 48px */
+        padding-bottom: calc(var(--fs-24) * 3.6); /* 72px */
+    }
 
     /*//////////////////////////////////////////////////////////////////////
     blocks left / right / full-width */
@@ -835,7 +887,7 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media tablet */
 
-@media screen and (768px <= width < 1024px) {
+@media screen and (768px <= width < 1280px) {
 
     /*//////////////////////////////////////////////////////////////////////
     grid */
@@ -930,7 +982,15 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media mobile and tablet */
 
-@media screen and (width < 1024px) {
+@media screen and (width < 1280px) {
+
+    /*//////////////////////////////////////////////////////////////////////
+    nav desktop */
+
+    #nav-desktop,
+    #nav-lang-desktop {
+        display: none;
+    }
 
     /*//////////////////////////////////////////////////////////////////////
     header */
