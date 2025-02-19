@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         handleScroll();
         handleNavBackground();
+        closeNavMobileResize();
     });
 
     ///////////////////////////////////////////////////////////////////
@@ -106,9 +107,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    ///////////////////////////////////////////////////////////////////
+    // Nav mobile toggle
+
+    const navMobileToggle = document.getElementById('hamb');
+    const animationToggle = document.querySelector("#hamb > svg");
+    const navMobile = document.getElementById('nav-mobile');
+    const content = document.querySelector('body');
+    let currentScroll;
+    let isAnimating = false;
+
+    const navMobileLinks = navMobile.querySelectorAll('button, a');
+    navMobileLinks.forEach(link => {
+        link.setAttribute('tabindex', '-1');
+    });
+
+    navMobileToggle.addEventListener('click', () => {
+
+        if (isAnimating) {return;}
+        else {isAnimating = true;}
+
+        animateHamb();
+
+        if (!navMobile.classList.contains('nav-active')) {
+            startNavMobile();
+        } else {
+            closeNavMobile();
+        }
+    });
+
+    function startNavMobile() {
+
+        currentScroll = window.scrollY;
+        navMobile.classList.add('nav-active');
+        animationToggle.classList.add('nav-active');
+        updateTranslationValue();
+
+        setTimeout(() => {
+            content.classList.add('nav-active');
+            navMobileLinks.forEach(link => {
+                link.setAttribute('tabindex', '0');
+            });        
+        }, 300); // Timeout same as #nav-mobile transition
+
+        // navBottomObserver.observe(navBottom);
+        // touchStartup();
+    }
+
+    function animateHamb() {
+        animationToggle.classList.add('animation');
+        setTimeout(() => {
+            animationToggle.classList.remove('animation');
+            isAnimating = false; // new clicks only after animation finished
+        }, 300); // Timeout same as #nav-mobile transition
+    }
+
+    function closeNavMobile() {
+        // navBottomObserver.unobserve(navBottom);
+        // touchShutdown();
+
+        animationToggle.classList.remove('nav-active');
+        navMobile.classList.remove('nav-active');
+        content.classList.remove('nav-active');
+        window.scrollTo(0, currentScroll);
+
+        navMobileLinks.forEach(link => {
+            link.setAttribute('tabindex', '-1');
+        });
+
+        updateTranslationValue();
+    }
+
+    // Close nav if resizing to desktop
+    function closeNavMobileResize() {
+        if (window.innerWidth > 1280 && navMobile.classList.contains('nav-active')) {closeNavMobile();}
+    }
+
 
     ///////////////////////////////////////////////////////////////////
-    // Handle Nav Background
+    // Nav Background
 
     const navBackground = document.querySelector('#nav-background');
 
@@ -142,10 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
             translationValue = dropdownContent.getBoundingClientRect().bottom;
         }
 
+        if (navMobile.classList.contains('nav-active')) {
+            navBackground.style.transform = `translateY(${translationValue}px)`;
+            return;
+        }
+
         if (!pageTop || nav.matches(':hover')) {
-            navBackground.style.transform = `translateY(${translationValue}px)`;                
+            navBackground.style.transform = `translateY(${translationValue}px)`;
         } else {
-            navBackground.style.transform = 'translateY(0)';
+            navBackground.style.transform = `translateY(0)`;
         }
 
     }
