@@ -1,5 +1,6 @@
 {% block util-nav-mobile %}
 {% load i18n %}
+{% get_language_info_list for languages as language_list %}
 
     <div id="nav-mobile" class="text-20" tabindex="-1">
 
@@ -44,9 +45,19 @@
                 <p>Language:</p>
 
                 <ul>
-                    <li><p>English</p></li>
-                    <li><a href="#">Polski</a></li>
-                    <li><a href="#">Deutsch</a></li>
+
+                    {% for lang in language_list %}
+                        {% if lang.code == LANGUAGE_CODE %}
+                            <li><p>{{ lang.name_local|capfirst }}</p></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% for lang in language_list %}
+                        {% if lang.code != LANGUAGE_CODE %}
+                            <li><a href="/{{ lang.code }}{{ request.path_info|slice:'3:' }}">{{ lang.name_local|capfirst }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
                 </ul>
 
             </li>
