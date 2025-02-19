@@ -40,7 +40,17 @@
 </head>
 <body>
 
-	{% include 'util-nav.html' %}
+    <nav class="grid">
+
+        <div id="nav-background"></div>
+
+        {% include 'util-logo.html' %}
+        {% include 'util-nav-desktop.html' %}
+        {% include 'util-nav-lang-desktop.html' %}
+        {% include 'util-nav-hamb.html' %}
+        {% include 'util-nav-mobile.html' %}
+            
+    </nav>
 
 	{% include 'util-cover-video.html' %}
 	{% include 'util-header.html' %}

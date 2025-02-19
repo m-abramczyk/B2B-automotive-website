@@ -1,0 +1,41 @@
+{% block util-nav-desktop %}
+{% load i18n %}
+
+    <ul id="nav-desktop" class="text-24">
+
+        <li class="dropdown" data-dropdown>
+
+            <a href="#" data-dropdown-trigger>Dienstleistungen</a>
+
+            <ul class="dropdown-content">
+
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+
+            </ul>
+
+        </li>
+
+        <li class="dropdown" data-dropdown>
+
+            <a href="#" data-dropdown-trigger>Firma</a>
+
+            <ul class="dropdown-content">
+
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+                {% include 'util-nav-tile.html' %}
+
+            </ul>
+
+        </li>
+
+        <li><a href="#" data-dropdown-close-trigger>Kontakt</a></li>
+
+    </ul>
+
+{% endblock %}

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = nav.querySelectorAll('[data-dropdown]');
     const dropdownTriggers = nav.querySelectorAll('[data-dropdown-trigger]');
     const dropdownCloseTriggers = nav.querySelectorAll('[data-dropdown-close-trigger]');
-    const dropdownContent = nav.querySelectorAll('.dropdown-content > li');
+    const blurredContent = document.querySelectorAll('body > *:not(nav)');
     
     // Disable tabindex
     const dropdownContentLinks = nav.querySelectorAll("#nav-desktop .dropdown-content a");
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const currentDropdown = trigger.closest('[data-dropdown]');
         currentDropdown.classList.add('active');
+        blurContentOn();
 
         // Enable tabindex
         currentDropdown.querySelectorAll('#nav-desktop .dropdown-content a').forEach(link => {
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropdowns.forEach(dropdown => {
             dropdown.classList.remove('active');
+            blurContentOff();
 
             // Reset Tabindex
             dropdown.querySelectorAll('#nav-desktop .dropdown-content a').forEach(link => link.setAttribute('tabindex', '-1'));
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentScroll;
     let isAnimating = false;
 
-    const navMobileLinks = navMobile.querySelectorAll('button, a');
+    const navMobileLinks = navMobile.querySelectorAll('a');
     navMobileLinks.forEach(link => {
         link.setAttribute('tabindex', '-1');
     });
@@ -142,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navMobile.classList.add('nav-active');
         animationToggle.classList.add('nav-active');
         updateTranslationValue();
+        blurContentOn();
 
         setTimeout(() => {
             content.classList.add('nav-active');
@@ -149,9 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.setAttribute('tabindex', '0');
             });        
         }, 300); // Timeout same as #nav-mobile transition
-
-        // navBottomObserver.observe(navBottom);
-        // touchStartup();
     }
 
     function animateHamb() {
@@ -163,13 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeNavMobile() {
-        // navBottomObserver.unobserve(navBottom);
-        // touchShutdown();
 
         animationToggle.classList.remove('nav-active');
         navMobile.classList.remove('nav-active');
         content.classList.remove('nav-active');
         window.scrollTo(0, currentScroll);
+        blurContentOff();
 
         navMobileLinks.forEach(link => {
             link.setAttribute('tabindex', '-1');
@@ -182,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeNavMobileResize() {
         if (window.innerWidth > 1280 && navMobile.classList.contains('nav-active')) {closeNavMobile();}
     }
+
+    function blurContentOn() {blurredContent.forEach(object => object.classList.add('dropdown-active'));}
+    function blurContentOff() {blurredContent.forEach(object => object.classList.remove('dropdown-active'));}
 
 
     ///////////////////////////////////////////////////////////////////
