@@ -355,7 +355,12 @@ nav {
     width: 100%;
     height: calc(var(--grid-margin) * 2); /* 100px */
     align-items: center;  /* center vertically */
+    transition: var(--transition-transform-300);
     z-index: 2;
+}
+
+nav.hidden {
+    transform: translateY(-100%);
 }
 
 #nav-background {

@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
-        requestAnimationFrame(handleScroll);
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
     });
 
     window.addEventListener('load', () => {
@@ -16,17 +19,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     ///////////////////////////////////////////////////////////////////
-    // Parallax Header Content
+    // Parallax Header
+    // Nav Scroll Behavior
 
     const header = document.querySelector('header');
     const headerContent = document.querySelector('#header-content');
     let windowHeight = window.innerHeight;
+
+    let lastScrollY = window.scrollY;
+    let lastTimestamp = performance.now();
+    let ticking = false;
+    const SCROLL_THRESHOLD = 1.75;
+    const NAV_HIDE_CLASS = "hidden";
     
     function handleScroll() {
 
         const scroll = window.scrollY;
         const isVisible = scroll < windowHeight;
 
+        // Nav Scroll Behavior
+        const deltaY = scroll - lastScrollY;
+        const timestamp = performance.now();
+        const timeDiff = timestamp - lastTimestamp;
+        const activeDropdown = document.querySelector('#nav-desktop .dropdown.active');
+        
+        lastTimestamp = timestamp;
+
+        if (pageTop) {
+            nav.classList.remove(NAV_HIDE_CLASS);
+        } else if (!activeDropdown) {
+            if (Math.abs(deltaY) / timeDiff > SCROLL_THRESHOLD) {
+                if (deltaY > 0) {
+                    nav.classList.add(NAV_HIDE_CLASS);
+                } else {
+                    nav.classList.remove(NAV_HIDE_CLASS);
+                }
+            }
+        }
+
+        lastScrollY = scroll;
+        ticking = false;
+
+        // Parallax Header
         if (!headerContent) {return;}
         if (!isVisible) {return;}
 
@@ -43,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // reset position if scrolled back up to prevent uncaught residual pixels translation
             headerContent.style.transform = `translateY(0)`;
         }
-
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -182,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.innerWidth > 1280 && navMobile.classList.contains('nav-active')) {closeNavMobile();}
     }
 
+    // Blur Content utilities
     function blurContentOn() {blurredContent.forEach(object => object.classList.add('dropdown-active'));}
     function blurContentOff() {blurredContent.forEach(object => object.classList.remove('dropdown-active'));}
 
