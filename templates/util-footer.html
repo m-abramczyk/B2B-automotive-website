@@ -1,0 +1,95 @@
+{% block util-footer %}
+{% load i18n %}
+
+    <div>
+        {% include 'util-logo.html' %}
+
+        <p class="text-18 text-block">G3 sp. z o.o.
+            info@g3.net.pl
+            +48 606 606 123
+            
+            Al. Jerozolimskie 178
+            PL 02-486 Warsaw</p>
+    </div>
+
+    <ul class="footer-dropdown" data-footer-dropdown>
+
+        <li class="text-20">
+            <a href="#">Dienstleistungen</a>
+            <button data-footer-dropdown-button>
+                <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
+                </svg>
+            </button>
+        </li>
+
+        <ul class="footer-dropdown-content">
+            <li><a href="#">A-Class surfacing</a></li>
+            <li><a href="#">Polygon modelling</a></li>
+            <li><a href="#">Design & CGI</a></li>
+            <li><a href="#">Expert support</a></li>
+            <li><a href="#">Project coordination</a></li>
+        </ul>
+
+    </ul>
+    <ul class="footer-dropdown" data-footer-dropdown>
+
+        <li class="text-20">
+            <a href="#">Firma</a>
+            <button data-footer-dropdown-button>
+                <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
+                </svg>
+            </button>
+        </li>
+
+        <ul class="footer-dropdown-content">
+            <li><a href="#">Case studies</a></li>
+            <li><a href="#">Our team</a></li>
+            <li><a href="#">Data security</a></li>
+            <li><a href="#">Universiy co-operation</a></li>
+        </ul>
+
+    </ul>
+    <ul>            
+        <ul class="footer-dropdown" data-footer-dropdown>
+
+            <li class="text-20">
+                <a href="#">Kontakt</a>
+                <button data-footer-dropdown-button>
+                    <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
+                    </svg>
+                </button>
+            </li>
+
+            <ul class="footer-dropdown-content">
+                <li><a href="#">Linkedin ></a></li>
+                <li><a href="#">Privacy policy</a></li>
+            </ul>
+
+        </ul>
+        <ul class="footer-lang">
+
+            <li>Language:</li>
+
+            <ul>
+                
+                {% for lang in language_list %}
+                    {% if lang.code == LANGUAGE_CODE %}
+                        <li><p>{{ lang.name_local|capfirst }}</p></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% for lang in language_list %}
+                    {% if lang.code != LANGUAGE_CODE %}
+                        <li><a href="/{{ lang.code }}{{ request.path_info|slice:'3:' }}">{{ lang.name_local|capfirst }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+            
+        </ul>
+    </ul>	
+
+{% endblock %}

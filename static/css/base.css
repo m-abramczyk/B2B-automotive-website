@@ -6,6 +6,10 @@
     --g3-off-white: #ebebeb;
     --g3-true-white: #fff;
 
+    /* --g3-light-grey: orange;
+    --g3-off-white: blue;
+    --g3-true-white: red; */
+
     --g3-green: #38f6d4;
     --g3-blue: #4fd5ff;
     --g3-purple: #eb53f8;
@@ -153,7 +157,7 @@ body {
     position: relative;
     font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;
     font-weight: var(--fw-normal);
-    font-size: 20px;
+    font-size: var(--fs-20);
     line-height: 1.2;
     color: var(--g3-off-white);
     background-color: var(--g3-black);
@@ -232,7 +236,6 @@ h3 {
 
 /* Case Study Arrow-Nav */
 h4 {
-    color: var(--g3-true-white);
     font-size: var(--fs-40);
     line-height: 1.2;
     letter-spacing: -0.04em;
@@ -240,7 +243,6 @@ h4 {
 
 /* Case Study List Header */
 h5 {
-    color: var(--g3-light-grey);
     font-size: var(--fs-36);
     line-height: 1.11;
     letter-spacing: -0.04em;
@@ -248,7 +250,6 @@ h5 {
 
 /* Text Nav */
 .text-24 {
-    color: var(--g3-true-white);
     font-size: var(--fs-24);
     line-height: 1.25;
     letter-spacing: -0.04em;
@@ -256,7 +257,6 @@ h5 {
 
 /* Paragraph / Nav Thumbnail (true-white) */
 .text-20 {
-    color: var(--g3-off-white);
     font-size: var(--fs-20);
     line-height: 1.2;
     letter-spacing: -0.04em;
@@ -264,7 +264,6 @@ h5 {
 
 /* Button / img caption */
 .text-18 {
-    color: var(--g3-off-white);
     font-size: var(--fs-18);
     line-height: 1.33;
     letter-spacing: -0.03em;
@@ -272,7 +271,6 @@ h5 {
 
 /* Label */
 .text-17 {
-    color: var(--g3-black);
     font-size: var(--fs-17);
     line-height: 1.176;
     letter-spacing: -0.02em;
@@ -280,7 +278,6 @@ h5 {
 
 /* Site map nav  */
 .text-16 {
-    color: var(--g3-true-white);
     font-size: var(--fs-16);
     line-height: 1.176;
     letter-spacing: -0.02em;
@@ -300,7 +297,7 @@ h5 {
 }
 
 .no-wrap {
-    white-space: nowrap;    /* prevent wrapping of underline::after elements */
+    white-space: nowrap;
 }
 
 .tabular {
@@ -489,6 +486,7 @@ nav desktop language selection */
 }
 
 #nav-lang-desktop svg {
+    fill: var(--g3-true-white);
     width: calc(var(--fs-24) * 0.75); /* 18px */
     transition: var(--transition-transform-200);
 }
@@ -557,7 +555,7 @@ nav mobile */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--grid-gap);
-    border-top: 1px solid var(--g3-off-white);
+    border-top: 1px solid var(--g3-true-white);
     padding-top: var(--nav-padding);
 }
 
@@ -683,6 +681,80 @@ header {
 }
 
 /*//////////////////////////////////////////////////////////////////////
+footer */
+
+footer {
+    padding-block: var(--grid-margin) calc(var(--grid-margin) * 2); /* 50px 100px */
+}
+
+footer > * {
+    grid-column: span 2;
+}
+
+footer > :first-child {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-margin);
+    justify-content: space-between;
+}
+
+footer > :last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-dropdown > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* center vertically */
+}
+
+.footer-dropdown > li > button {
+    display: none;
+    width: calc(var(--fs-24) * 2); /* 36px on mobile */
+    height: calc(var(--fs-24) * 1.2); /* 18px on mobile */
+}
+
+.footer-dropdown svg {
+    fill: var(--g3-true-white);
+    width: calc(var(--fs-24) * 1); /* 18px on mobile */
+    margin-left: auto;
+    pointer-events: none;
+    transition: var(--transition-transform-200);
+}
+
+/* top margin added on first child instead of dropdown content 
+instead of other padding methods to prevent double margin when dropdown collapsed
+(due to the way dropdown scrollHeight is calculated by js */
+.footer-dropdown-content > :first-child {
+    margin-top: var(--grid-margin);
+}
+
+.footer-dropdown-content,
+.footer-lang {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--fs-18) * 0.667); /* 12px */
+}
+
+.footer-lang {
+    margin-top: calc(var(--fs-18) * 1.333); /* 24px */
+}
+
+.footer-lang > ul {
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--nav-padding) * 0.5);
+}
+
+/*//////////////////////////////////////////////////////////////////////
 blocks left / right / full-width */
 
 .block-left,
@@ -758,7 +830,7 @@ blocks left / right / full-width */
 .block-full-width > .carousel-slider {
     grid-column: 1 / span 12;
     grid-row: 3;
-    max-height: 80vh;
+    max-height: calc(100vh - var(--grid-margin) * 3);
     padding-top: calc(var(--grid-margin) * 0.8); /* 40px */
 }
 
@@ -902,6 +974,7 @@ a {
 
 #nav-desktop > li > a:hover,
 #nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
+.footer-lang p,                             /* footer current language */
 .breadcrumbs a:hover,
 .header-caption a:hover {                   /* read more */
     box-shadow: inset 0 -0.05em currentcolor;
@@ -911,6 +984,7 @@ a {
 
 #nav-lang-desktop a,                        /* lang selection desktop */
 #nav-mobile > ul > li:last-child a,         /* lang selection mobile */
+.footer-lang a,                             /* lang selection footer */
 .carousel-arrow-left > svg,                 /* carousel arrows */
 .carousel-arrow-right > svg {               /* carousel arrows */
     opacity: 0.7;
@@ -919,6 +993,7 @@ a {
 
 #nav-lang-desktop a:hover,                  /* lang selection desktop */
 #nav-mobile > ul > li:last-child a:hover,   /* lang selection mobile */
+.footer-lang a:hover,                       /* lang selection footer */
 .carousel-arrow-left:hover > svg,           /* carousel arrows */
 .carousel-arrow-right:hover > svg {         /* carousel arrows */
     opacity: 1;
@@ -982,6 +1057,15 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    footer */
+
+    /* All footer columns set equal */
+    footer > *,
+    footer > :first-child {
+        grid-column: span 3;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     blocks left / right / full-width */
 
     .block-header {
@@ -1033,20 +1117,20 @@ color classes */
 @media tablet */
 
 @media screen and (768px <= width < 1280px) {
-
-    /*//////////////////////////////////////////////////////////////////////
-    nav */
-
-    #hamb {
-        grid-column: 8;
-    }
-
+    
     /*//////////////////////////////////////////////////////////////////////
     grid */
 
     .grid {
         padding-inline: var(--grid-margin); /* 40px */
         grid-template-columns: repeat(8, 1fr);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    nav */
+
+    #hamb {
+        grid-column: 8;
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -1063,6 +1147,21 @@ color classes */
     .header-caption {
         grid-column: 1 / span 8;
         padding-top: calc(var(--grid-margin) * 1); /* 40px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    footer */
+
+    /* Logo and address */
+    footer > :first-child {
+        grid-row: span 4;
+        gap: calc(var(--grid-margin) * 1.2); /* 48px */
+        justify-content: flex-start;
+    }
+
+    /* Margin between dropdown sections */
+    .footer-dropdown {
+        margin-bottom: var(--grid-margin);
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -1165,6 +1264,62 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    footer */
+
+    /* All footer elements span 4 columns on both mobile and tablet */
+    footer > *,
+    footer > :first-child {
+        grid-column: span 4;
+    }
+
+    /* Dropdowns top border and padding below border */
+    .footer-dropdown {
+        border-top: 1px solid var(--g3-true-white);
+        padding-top: calc(var(--grid-gap) * 0.5);
+    }
+
+    /* Show arrow button on mobile and tablet */
+    .footer-dropdown > li > button {
+        display: flex;
+    }
+
+    /* Active dropdown arrow rotation */
+    .footer-dropdown.active svg {
+        transform: rotate(-180deg);
+    }
+    
+    /* Collapsed dropdown */
+    .footer-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 300ms ease-out, opacity 200ms ease-out;
+    }
+    
+    /* Expanded dropdown */
+    .footer-dropdown.active > .footer-dropdown-content {
+        max-height: 200px; /* placeholder value, actual value calculated in js and added as style */
+        opacity: 1;
+    }
+
+    /* larger headers for mobile and tablet footer */
+    .footer-dropdown > li > a {
+        font-size: var(--fs-24);
+    }
+
+    /* Lang selection inline */
+    footer > :last-child {
+        justify-content: flex-start;
+    }
+
+    /* Lang selection inline */
+    .footer-lang {
+        flex-direction: row;
+        gap: var(--nav-padding);
+        margin-top: 0; /* padding replaced by dropdown element bottom margin */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     blocks left / right / full-width */ 
 
     .block-full-width > .carousel-slider {
@@ -1184,11 +1339,21 @@ color classes */
 @media screen and (width < 768px) {
 
     /*//////////////////////////////////////////////////////////////////////
+    grid*/
+    
+    .grid {
+        padding-inline: var(--grid-margin); /* 24px */
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     nav */
 
     nav {
         height: calc(var(--grid-margin) * 2.5); /* 60px */
     }
+
+    .logo > svg {height: calc(var(--grid-margin) * 1.25);} /* 30px */
 
     #hamb {
         grid-column: 4;
@@ -1215,14 +1380,6 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
-    grid*/
-    
-    .grid {
-        padding-inline: var(--grid-margin); /* 24px */
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////
     header */
 
     #header-content {
@@ -1240,6 +1397,39 @@ color classes */
 
     .breadcrumbs {
         padding-top: calc(var(--grid-margin) * 3.33); /* 80px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    footer */
+
+    /* Unique padding for mobile */
+    footer {
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2.5); /* 30px 60px */
+    }
+
+    /* Logo and address inline and has bottom margin */
+    footer > :first-child {
+        flex-direction: row;
+        gap: var(--grid-margin);
+        margin-bottom: calc(var(--grid-margin) * 2.5); /* 60px */
+    }
+
+    /* logo and address equal widths */
+    footer > :first-child > * {
+        flex: 1;
+        width: max-content;         /* prevent links stretching inside flex container */
+        height: max-content;
+    }
+
+    /* Recalculation of margin to keep ~40px */
+    .footer-dropdown {
+        margin-bottom: calc(var(--grid-margin) * 1.667); /* 40px */
+    }
+
+    /* top margin added on first child instead of dropdown content 
+    Recalculation of margin to keep ~30px */
+    .footer-dropdown-content > :first-child {
+        margin-top: calc(var(--grid-margin) * 1.25); /* 30px */
     }
 
     /*//////////////////////////////////////////////////////////////////////

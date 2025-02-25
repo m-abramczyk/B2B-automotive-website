@@ -3,6 +3,7 @@
 {% load i18n %}
 {% get_current_language as current_language %}
 {% get_available_languages as languages %}
+{% get_language_info_list for languages as language_list %}
 
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -40,7 +41,7 @@
 </head>
 <body>
 
-    <nav class="grid">
+    <nav class="grid true-white">
 
         <div id="nav-background"></div>
 
@@ -57,20 +58,22 @@
 
 	<main>
 
-		<!-- {% include 'util-map.html' %} -->
+		<!-- {% include 'block-map.html' %} -->
 
 		{% include 'block-left.html' %}
 		{% include 'block-right.html' %}
 		{% include 'block-full-width.html' %}
 
-        <!-- {% include 'text-styles.html' %}		 -->		
+        <!-- {% include 'text-styles.html' %} -->
 
 		{% block content %}
 		{% endblock %}
 
 	</main>
 
-	<footer></footer>
+	<footer class="grid text-18 true-white">
+        {% include 'util-footer.html' %}
+    </footer>
 
 </body>
 </html>

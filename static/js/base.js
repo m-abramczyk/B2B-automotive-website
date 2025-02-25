@@ -10,12 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         handleScroll();
         handleNavBackground();
+        setDropdownTabindex();
     });
 
     window.addEventListener('resize', () => {
         handleScroll();
         handleNavBackground();
         closeNavMobileResize();
+        closeAllDropdowns();
+        setDropdownTabindex();        
     });
 
     ///////////////////////////////////////////////////////////////////
@@ -270,5 +273,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nav.addEventListener('mouseenter', updateTranslationValue);
     nav.addEventListener('mouseleave', updateTranslationValue);
+
+
+    ///////////////////////////////////////////////////////////////////
+    // Footer Dropdown Content
+
+    const dropdownButton = document.querySelectorAll("[data-footer-dropdown-button]");
+    dropdownButton.forEach(button => {    
+        button.addEventListener('click', e => {
+
+            let currentDropdown;
+
+            currentDropdown = e.target.closest('[data-footer-dropdown]');
+            const dropdownContent = currentDropdown.querySelector('.footer-dropdown-content');
+
+            if (currentDropdown.classList.contains('active')) {
+                // Set dropdown height to 0 before collapsing
+                dropdownContent.style.maxHeight = "0";
+            } else {
+                // Set dropdown height on opening
+                dropdownContent.style.maxHeight = dropdownContent.scrollHeight + "px";
+            }
+
+            currentDropdown.classList.toggle('active');
+
+            // Toggle tabindex
+            currentDropdown.querySelectorAll('.footer-dropdown-content a').forEach(link => {
+                link.setAttribute('tabindex', link.getAttribute('tabindex') === '-1' ? '0' : '-1');
+            });
+
+        });
+    });
+
+    // Set tabindex -1 (mobile) or 0 (desktop) on load / rsize
+    const footerDropdownLinks = document.querySelectorAll(".footer-dropdown-content a");
+    function setDropdownTabindex() {
+                
+        footerDropdownLinks.forEach(link => {
+            if (window.innerWidth < 1280) {
+                link.setAttribute('tabindex', '-1');
+            } else {
+                link.setAttribute('tabindex', '0');
+            }
+        });
+    }
+
+    // Close all footer dropdowns if resizing between mobile and desktop
+    function closeAllDropdowns() {
+
+        if (window.innerWidth > 1280) {
+            document.querySelectorAll("[data-footer-dropdown].active").forEach(dropdown => {
+                dropdown.classList.remove('active');
+                dropdown.querySelector('.footer-dropdown-content').style.maxHeight = "0";
+            });
+        }
+    }
 
 });
