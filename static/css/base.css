@@ -716,6 +716,11 @@ footer > :last-child {
     align-items: center;  /* center vertically */
 }
 
+.footer-dropdown > li > a {      /* footer dropdown header */
+    overflow: hidden;            /* Hides overflow */
+    text-overflow: ellipsis;     /* Adds "..." when text is cut off */
+}
+
 .footer-dropdown > li > button {
     display: none;
     width: calc(var(--fs-24) * 2); /* 36px on mobile */
@@ -745,12 +750,14 @@ instead of other padding methods to prevent double margin when dropdown collapse
 }
 
 .footer-lang {
+    flex-wrap: wrap;
     margin-top: calc(var(--fs-18) * 1.333); /* 24px */
 }
 
 .footer-lang > ul {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: calc(var(--nav-padding) * 0.5);
 }
 
