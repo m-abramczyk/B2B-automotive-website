@@ -976,12 +976,14 @@ a {
     color: inherit;
     text-decoration: none;
     box-shadow: inset 0 -0.05em transparent;
-    transition: box-shadow var(--transition-timing-150);
+    transition: box-shadow var(--transition-timing-100);
 }
 
 #nav-desktop > li > a:hover,
+#nav-desktop .dropdown-content a:hover,
 #nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
 .footer-lang p,                             /* footer current language */
+.footer-dropdown a:hover,                   /* footer links */
 .breadcrumbs a:hover,
 .header-caption a:hover {                   /* read more */
     box-shadow: inset 0 -0.05em currentcolor;
@@ -1004,6 +1006,16 @@ a {
 .carousel-arrow-left:hover > svg,           /* carousel arrows */
 .carousel-arrow-right:hover > svg {         /* carousel arrows */
     opacity: 1;
+}
+
+/* image link hover */
+
+a img {
+    transition: var(--transition-opacity-150);
+}
+
+a:hover img {
+    opacity: 0.85;
 }
 
 
@@ -1064,7 +1076,7 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
-    footer */
+    footer */   
 
     /* All footer columns set equal */
     footer > *,
