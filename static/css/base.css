@@ -531,7 +531,7 @@ nav mobile */
     padding-block: calc(var(--grid-margin) * 4.5) calc(var(--grid-margin) * 1.5); /* 180px 60px */
 
     transform: translateY(-100%);
-    transition: var(--transition-transform-300);
+    transition: var(--transition-transform-300); /* Transition same as in js */
     pointer-events: none;
     user-select: none;                  /* prevent selecting when invisible */
     -webkit-user-select: none;          /* prevent safari selecting when invisible */

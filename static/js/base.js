@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', () => {
         handleScroll();
-        handleNavBackground();
+        updateTranslationValue();
         closeNavMobileResize();
         closeAllDropdowns();
         setDropdownTabindex();        
@@ -179,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentScroll = window.scrollY;
         navMobile.classList.add('nav-active');
         animationToggle.classList.add('nav-active');
-        handleNavBackground();
+
+        updateTranslationValue();
         blurContentOn();
 
         setTimeout(() => {
@@ -204,13 +205,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navMobile.classList.remove('nav-active');
         content.classList.remove('nav-active');
         window.scrollTo(0, currentScroll);
+
+        updateTranslationValue();
         blurContentOff();
 
         navMobileLinks.forEach(link => {
             link.setAttribute('tabindex', '-1');
         });
-
-        handleNavBackground();
     }
 
     // Close nav if resizing to desktop
@@ -242,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTranslationValue();
             
         }, {rootMargin: `20% 0px 0px 0px`,});
-
         navBackgroundObserver.observe(pageTopObserver);
     }
 
@@ -251,22 +251,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const navHeight = nav.offsetHeight;
         const activeDropdown = document.querySelector('#nav-desktop .dropdown.active');
 
-        let translationValue = navHeight;
-
-        if (activeDropdown) {
-            const dropdownContent = activeDropdown.querySelector('.dropdown-content');
-            translationValue = dropdownContent.getBoundingClientRect().bottom;
-        }
-
-        if (navMobile.classList.contains('nav-active')) {
-            navBackground.style.transform = `translateY(${translationValue}px)`;
-            return;
-        }
-
-        if (!pageTop || nav.matches(':hover')) {
-            navBackground.style.transform = `translateY(${translationValue}px)`;
-        } else {
+        if (pageTop && !activeDropdown && (!nav.matches(':hover') || window.innerWidth < 1280) && !navMobile.classList.contains('nav-active')) {
+            
             navBackground.style.transform = `translateY(0)`;
+
+        } else {
+
+            if (activeDropdown) {
+                const dropdownContent = activeDropdown.querySelector('.dropdown-content');
+                translationValue = dropdownContent.getBoundingClientRect().bottom;
+            } else {translationValue = navHeight;}
+
+            navBackground.style.transform = `translateY(${translationValue}px)`;
         }
 
     }
