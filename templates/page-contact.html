@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+	{% load static %}
+	{% load i18n %}
+
+	{% include 'util-header-contact.html' %}
+
+	<main>
+
+        {% include 'block-map.html' %}
+
+		{% include 'block-right.html' %}
+		{% include 'block-full-width.html' %}
+        {% include 'block-left.html' %}
+
+	</main>
+
+	{% endblock %}

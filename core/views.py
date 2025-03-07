@@ -10,3 +10,11 @@ def home_page(request):
     }
 
     return render(request, 'index.html', context)
+
+def contact_page(request):
+
+    context = {
+
+    }
+
+    return render(request, 'page-contact.html', context)

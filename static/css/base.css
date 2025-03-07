@@ -242,7 +242,7 @@ h4 {
 }
 
 /* Case Study List Header */
-h5 {
+.text-36 {
     font-size: var(--fs-36);
     line-height: 1.11;
     letter-spacing: -0.04em;
@@ -647,12 +647,33 @@ header {
     bottom: calc(var(--grid-margin) * 2); /* 100px */
     padding-top: calc(var(--grid-margin) * 4); /* 200px */
     align-items: end; /* align bottom */
+    width: 100%;
     z-index: -1;
 }
 
 #header-content h1 {
     grid-column: 1 / span 8;
     transform: translateY(0.11em); /* move to the baseline */
+}
+
+#header-content.contact h1 {
+    grid-column: 1 / span 7;
+}
+
+.header-contact-info {
+    grid-column: 8 / span 5;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-margin) * 0.75); /* 40px / 30px */
+}
+
+.header-contact-info > *:nth-child(2) {
+    display: flex;
+    gap: var(--grid-gap);
+}
+
+.header-contact-info > *:nth-child(2) > * {
+    width: calc(40% - var(--grid-gap) * 0.6);
 }
 
 .header-caption {
@@ -878,9 +899,18 @@ utilities */
     transition: all var(--transition-timing-150);
 }
 
+.header-contact-info .button {
+    border: 1px solid var(--g3-black);
+}
+
 .button:hover {
     color: var(--g3-black);
     background: var(--g3-off-white);
+}
+
+.header-contact-info .button:hover {
+    color: var(--g3-blue);
+    background: var(--g3-black);
 }
 
 .button-container {
@@ -1076,6 +1106,21 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    header */ 
+
+    #header-content.contact h1 {
+        grid-column: 1 / span 6;
+    }
+    
+    .header-contact-info {
+        grid-column: 7 / span 6;
+    }
+    
+    .header-contact-info > *:nth-child(2) > * {
+        width: calc((100% - var(--grid-gap) * 2) * 1/3);
+    } 
+
+    /*//////////////////////////////////////////////////////////////////////
     footer */   
 
     /* All footer columns set equal */
@@ -1166,6 +1211,19 @@ color classes */
     .header-caption {
         grid-column: 1 / span 8;
         padding-top: calc(var(--grid-margin) * 1); /* 40px */
+    }
+
+    #header-content.contact h1 {
+        grid-column: 1 / span 7;
+    }
+
+    .header-contact-info {
+        grid-column: 1 / span 8;
+        margin-top: calc(var(--grid-margin) * 1.5); /* 60px */
+    }
+
+    .header-contact-info > *:nth-child(2) > * {
+        width: max-content;
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -1418,6 +1476,21 @@ color classes */
         padding-top: calc(var(--grid-margin) * 3.33); /* 80px */
     }
 
+    #header-content.contact h1 {
+        grid-column: 1 / span 4;
+    }
+
+    .header-contact-info {
+        grid-column: 1 / span 4;
+        gap: calc(var(--grid-margin) * 1.25); /* 30px */
+        margin-top: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+
+    .header-contact-info > *:nth-child(2) > * {
+        width: auto;
+        max-width: max-content;
+    }
+
     /*//////////////////////////////////////////////////////////////////////
     footer */
 
@@ -1426,7 +1499,7 @@ color classes */
         padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2.5); /* 30px 60px */
     }
 
-    /* Logo and address inline and has bottom margin */
+    /* Logo and address is inline and has bottom margin */
     footer > :first-child {
         flex-direction: row;
         gap: var(--grid-margin);

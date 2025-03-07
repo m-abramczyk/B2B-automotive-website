@@ -1,0 +1,40 @@
+{% block util-header-contact %}
+{% load i18n %}
+
+<header class="black bg-blue">
+
+    {% include 'util-header-breadcrumbs.html' %}
+
+    <div id="header-content" class="grid contact">
+        
+        <h1 class="black text-block">Contact
+            and visit G3:</h1>
+
+        <div class="header-contact-info">
+
+            <div class="text-36">
+                <a href="tel:+48 606 606 123">+48 606 606 123</a><br>
+                <a href="mailto:info@g3.net.pl">info@g3.net.pl</a>
+            </div>
+
+            <div class="text-18">
+                <p class="text-block">G3 Sp. z o.o.
+                    Al. Jerozolimskie 178
+                    PL 02-486 Warsaw</p>
+                <p class="text-block">VAT ID: PL1234567890
+                    REGON: 444444454
+                    KRS: 5555555555</p>
+            </div>
+
+            <div class="button-container">
+                <a href="#" class="button text-18">Follow us on Linkedin +</a>
+                <a href="#" class="button text-18">Drop us a line +</a>
+            </div>
+
+        </div>
+
+    </div>
+		
+</header>
+
+{% endblock %}
