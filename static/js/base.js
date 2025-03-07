@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentScroll = window.scrollY;
         navMobile.classList.add('nav-active');
         animationToggle.classList.add('nav-active');
-        updateTranslationValue();
+        handleNavBackground();
         blurContentOn();
 
         setTimeout(() => {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.setAttribute('tabindex', '-1');
         });
 
-        updateTranslationValue();
+        handleNavBackground();
     }
 
     // Close nav if resizing to desktop

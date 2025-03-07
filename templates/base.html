@@ -53,23 +53,8 @@
             
     </nav>
 
-	{% include 'util-cover-video.html' %}
-	{% include 'util-header.html' %}
-
-	<main>
-
-		{% include 'block-left.html' %}
-		{% include 'block-right.html' %}
-		{% include 'block-full-width.html' %}
-
-        <!-- {% include 'block-map.html' %} -->
-
-        <!-- {% include 'text-styles.html' %} -->
-
-		{% block content %}
-		{% endblock %}
-
-	</main>
+    {% block content %}
+    {% endblock %}
 
 	<footer class="grid text-18 true-white">
         {% include 'util-footer.html' %}

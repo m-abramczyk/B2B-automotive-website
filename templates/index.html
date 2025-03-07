@@ -4,4 +4,17 @@
 	{% load static %}
 	{% load i18n %}
 
+    {% include 'util-cover.html' %}
+	{% include 'util-header.html' %}
+
+	<main>
+
+		{% include 'block-left.html' %}
+		{% include 'block-right.html' %}
+		{% include 'block-full-width.html' %}
+
+        <!-- {% include 'block-map.html' %} -->
+
+	</main>
+
 	{% endblock %}
