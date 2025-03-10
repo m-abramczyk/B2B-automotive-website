@@ -787,7 +787,8 @@ blocks left / right / full-width */
 
 .block-left,
 .block-right,
-.block-full-width {
+.block-full-width,
+.block-clients {
     border-bottom: 1px solid var(--g3-off-white);
     background: var(--g3-black);
 }
@@ -795,7 +796,8 @@ blocks left / right / full-width */
 .block-left,
 .block-right,
 .block-full-width,
-.block-expert {
+.block-expert,
+.block-clients {
     padding-block: calc(var(--grid-margin) * 1.6) calc(var(--grid-margin) * 2); /* 80px 100px */
 }
 
@@ -896,6 +898,35 @@ blocks left / right / full-width */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.block-expert h5 {
+    padding-bottom: calc(var(--fs-24) / 3);
+}
+
+/* block clients */
+.block-clients {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-margin) * 2); /* 100px */
+    align-items: center;
+}
+
+.block-clients > h3 {
+    text-align: center;    
+}
+
+.block-clients > *:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+    place-content: center;
+    flex-wrap: wrap;
+    gap: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 50px / 75px */
+}
+
+.block-clients img {
+    height: calc(var(--grid-margin) * 2.5); /* 125px */
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1221,6 +1252,11 @@ color classes */
     .block-expert > *:last-child { /* expert data + image */
         grid-column: 7 / span 6; 
     }
+
+    /* block clients */
+    .block-clients {
+        gap: calc(var(--grid-margin) * 2.5); /* 100px */
+    }
     
 }
 
@@ -1295,7 +1331,8 @@ color classes */
     .block-left,
     .block-right,
     .block-full-width,
-    .block-expert {
+    .block-expert.arrow-hidden,
+    .block-clients {
         padding-block: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 40px 60px*/
     }
 
@@ -1372,6 +1409,10 @@ color classes */
         width: calc(2/3 * 100% + 2/3 * var(--grid-gap));
     }
 
+    /* block clients */
+    .block-clients {
+        gap: calc(var(--grid-margin) * 2.5); /* 100px */
+    }
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1607,7 +1648,8 @@ color classes */
     .block-left,
     .block-right,
     .block-full-width,
-    .block-expert {
+    .block-expert,
+    .block-clients {
         padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px*/
     }
 
@@ -1684,6 +1726,15 @@ color classes */
     
     .block-expert > *:last-child > *:first-child { /* expert data */
         gap: var(--grid-margin); /* 24px */
+    }
+
+    /* block clients */
+    .block-clients {
+        gap: calc(var(--grid-margin) * 3.33); /* 80px */
+    }
+
+    .block-clients > *:nth-child(2) {
+        gap: calc(var(--grid-margin) * 1.67); /* 40px */
     }
 
 }

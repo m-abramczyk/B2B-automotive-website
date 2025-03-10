@@ -1,0 +1,29 @@
+	{% block block-clients %}
+    {% load static %}
+	{% load i18n %}
+
+	<div class="grid block-clients">
+            
+        <h3>
+            We have developed projects for:
+        </h3>        
+
+		<div>
+
+            <img src="{% static 'img/test/01-lynk.svg' %}" alt="">
+            <img src="{% static 'img/test/02-mercedes.svg' %}" alt="">
+            <img src="{% static 'img/test/03-bmw.svg' %}" alt="">
+            <img src="{% static 'img/test/04-lamborghini.svg' %}" alt="">
+            <img src="{% static 'img/test/05-porsche.svg' %}" alt="">
+            <img src="{% static 'img/test/06-volkswagen.svg' %}" alt="">
+            <img src="{% static 'img/test/07-skoda.svg' %}" alt="">
+            <img src="{% static 'img/test/08-audi.svg' %}" alt="">
+
+		</div>
+
+        <a href="#" class="button text-18">Learn more about the company +</a>
+
+	</div>
+	
+
+	{% endblock %}
