@@ -794,7 +794,8 @@ blocks left / right / full-width */
 
 .block-left,
 .block-right,
-.block-full-width {
+.block-full-width,
+.block-expert {
     padding-block: calc(var(--grid-margin) * 1.6) calc(var(--grid-margin) * 2); /* 80px 100px */
 }
 
@@ -867,6 +868,36 @@ blocks left / right / full-width */
     grid-row: 2;
 }
 
+/* block expert */
+.block-expert {
+    border-bottom: 1px solid var(--g3-off-white);
+    background: var(--g3-dark-grey);
+}
+
+.block-expert > h2 {
+    grid-column: 1 / span 7;
+}
+
+.block-expert > .button {
+    grid-column: 1 / span 7;
+    grid-row: 2;
+    align-self: end; /* align bottom */
+}
+
+.block-expert > *:last-child { /* expert data + image */
+    grid-column: 9 / span 4;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gap);    
+}
+
+.block-expert > *:last-child > *:first-child { /* expert data */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 /*//////////////////////////////////////////////////////////////////////
 utilities */
 
@@ -888,6 +919,8 @@ utilities */
     padding: calc(var(--fs-17) * 0.29) calc(var(--fs-17) * 0.88); /* 5px 15px */
     border-radius: calc(var(--fs-17) * 2.2);
     background: var(--g3-light-grey);
+    width: max-content;
+    height: max-content;
 }
 
 .button {
@@ -897,6 +930,8 @@ utilities */
     white-space: nowrap;
     text-decoration: none;
     transition: all var(--transition-timing-150);
+    width: max-content;
+    height: max-content;
 }
 
 .header-contact-info .button {
@@ -1091,7 +1126,7 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media small desktop */
 
-@media screen and (1280px <= width < 1540px) {
+@media screen and (1280px <= width < 1500px) {
 
     /*//////////////////////////////////////////////////////////////////////
     nav */
@@ -1173,6 +1208,19 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 5;
     }
+
+    /* block expert */
+    .block-expert > h2 {
+        grid-column: 1 / span 6;
+    }
+    
+    .block-expert > .button {
+        grid-column: 1 / span 6;
+    }
+    
+    .block-expert > *:last-child { /* expert data + image */
+        grid-column: 7 / span 6; 
+    }
     
 }
 
@@ -1180,7 +1228,7 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media tablet */
 
-@media screen and (768px <= width < 1280px) {
+@media screen and (600px <= width < 1280px) {
     
     /*//////////////////////////////////////////////////////////////////////
     grid */
@@ -1246,13 +1294,12 @@ color classes */
 
     .block-left,
     .block-right,
-    .block-full-width {
+    .block-full-width,
+    .block-expert {
         padding-block: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 40px 60px*/
     }
 
     .block-header {
-        /* flex-direction: row-reverse;
-        justify-content: space-between; */
         gap: calc(var(--grid-margin) * 0.5); /* 20px */
         padding-bottom: var(--grid-margin); /* 40px */
     }
@@ -1298,6 +1345,31 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 8;
         grid-row: 3;
+    }
+
+    /* block expert */
+    .block-expert > h2 {
+        grid-column: 1 / span 4;
+    }
+    
+    .block-expert > .button {
+        grid-column: 1 / span 4;
+    }
+
+    .block-expert > *:last-child { /* expert data + image */
+        grid-column: 5 / span 3;
+        grid-row: 1 / span 2;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: var(--grid-margin);    
+    }
+    
+    .block-expert > *:last-child > *:first-child { /* expert data */
+        gap: calc(var(--grid-margin) * 0.6); /* 24px */
+    }
+
+    .block-expert img {
+        width: calc(2/3 * 100% + 2/3 * var(--grid-gap));
     }
 
 }
@@ -1413,7 +1485,7 @@ color classes */
 ////////////////////////////////////////////////////////////////////////
 @media mobile */
 
-@media screen and (width < 768px) {
+@media screen and (width < 600px) {
 
     /*//////////////////////////////////////////////////////////////////////
     grid*/
@@ -1484,11 +1556,16 @@ color classes */
         grid-column: 1 / span 4;
         gap: calc(var(--grid-margin) * 1.25); /* 30px */
         margin-top: calc(var(--grid-margin) * 1.67); /* 40px */
+        transform: translateY(0.3em); /* move to the baseline */
     }
 
     .header-contact-info > *:nth-child(2) > * {
         width: auto;
         max-width: max-content;
+    }
+
+    .header-contact-info > .button-container {
+        display: none; /* hide header buttons on mobile (too little room) */
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -1529,7 +1606,8 @@ color classes */
 
     .block-left,
     .block-right,
-    .block-full-width {
+    .block-full-width,
+    .block-expert {
         padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px*/
     }
 
@@ -1579,6 +1657,33 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 4;
         grid-row: 3;
+    }
+
+    /* block expert */
+    .block-expert {
+        row-gap: calc(var(--grid-margin) * 2); /* 50px */
+    }
+
+    .block-expert > h2 {
+        grid-column: 1 / span 4;
+        grid-row: 1;
+    }
+    
+    .block-expert > .button {
+        grid-column: 1 / span 4;
+        grid-row: 3;
+    }
+
+    .block-expert > *:last-child { /* expert data + image */
+        grid-column: 1 / span 3;
+        grid-row: 2 / span 1;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: calc(var(--grid-margin) * 1.5);    
+    }
+    
+    .block-expert > *:last-child > *:first-child { /* expert data */
+        gap: var(--grid-margin); /* 24px */
     }
 
 }
