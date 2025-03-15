@@ -64,6 +64,11 @@ class Page(models.Model):
         default=False,
         help_text=('Select a single section 2 parent page'),
     )
+    is_case_studies_index = models.BooleanField(
+        ('Case Studies Index'),
+        default=False,
+        help_text=('Select a single Case Studies Index page'),
+    )
 
     # Hierarchical relationship
     parent = models.ForeignKey(
@@ -133,13 +138,20 @@ class Page(models.Model):
     def __str__(self):
         return (self.menu_title)
 
-    # Ensure only one object is home page or section parent
+    # Ensure only one object is section parent or case studies index
     def clean(self):
         if self.is_section_1_parent and Page.objects.exclude(pk=self.pk).filter(is_section_1_parent=True).exists():
             raise ValidationError("Only one page can be the parent for Section 1.")
 
         if self.is_section_2_parent and Page.objects.exclude(pk=self.pk).filter(is_section_2_parent=True).exists():
             raise ValidationError("Only one page can be the parent for Section 2.")
+        
+        if self.is_case_studies_index and Page.objects.exclude(pk=self.pk).filter(is_case_studies_index=True).exists():
+            raise ValidationError("Only one page can be the Case Studies Index.")
+        
+        # Prevent section parents from having a parent
+        if (self.is_section_1_parent or self.is_section_2_parent) and self.parent:
+            raise ValidationError("Section parent pages cannot have a parent.")
         
     def get_absolute_url(self):
         if self.parent:

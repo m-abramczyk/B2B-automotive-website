@@ -50,7 +50,7 @@ class PageAdmin(admin.ModelAdmin):
             'fields': ('is_published',),
         }),
         ('Navigation', {
-            'fields': ('is_section_1_parent', 'is_section_2_parent', 'parent', 'order'),
+            'fields': ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order'),
         }),
         ('Thumbnail', {
             'fields': ('thumbnail',),
@@ -67,8 +67,8 @@ class PageAdmin(admin.ModelAdmin):
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    list_display = ('menu_title', 'is_section_1_parent', 'is_section_2_parent', 'parent', 'order', 'is_published')
-    list_editable = ('is_section_1_parent', 'is_section_2_parent', 'parent', 'order', 'is_published')
+    list_display = ('menu_title', 'is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order', 'is_published')
+    list_editable = ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order', 'is_published')
     prepopulated_fields= {
         'slug': ('menu_title',),
         }
@@ -79,9 +79,7 @@ class PageAdmin(admin.ModelAdmin):
     # Restrict the parent choices to Section 1 and Section 2 parents
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'parent':
-            kwargs["queryset"] = Page.objects.filter(
-                is_section_1_parent=True
-            ) | Page.objects.filter(is_section_2_parent=True)
+            kwargs["queryset"] = Page.objects.filter(is_section_1_parent=True) | Page.objects.filter(is_section_2_parent=True)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
