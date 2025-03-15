@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+	{% load static %}
+	{% load i18n %}
+
+	<main>
+
+        <div class="page-not-found">
+            <h1>404</h1>
+            <h4>
+                {% if page_not_found.text %}
+                    {{ page_not_found.text}}<br>
+                {% endif %}
+                {% if page_not_found.link_text %}
+                    <a href="{% url 'home' %}">{{ page_not_found.link_text}} ></a>
+                {% endif %}
+            </h4>
+        </div>
+
+	</main>
+
+	{% endblock %}

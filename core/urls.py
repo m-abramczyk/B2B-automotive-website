@@ -21,18 +21,17 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path, include
 
-from . import views
+
+handler404 = 'pages.views.page_not_found'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('_nested_admin/', include('nested_admin.urls')),
 ]
 
 urlpatterns += i18n_patterns(
-    # Home Page
-    path('', views.home_page, name='home'),
-
-    # Contact
-    path('contact/', views.contact_page, name='contact'),
+    # Pages
+    path('', include('pages.urls')),
 
     prefix_default_language=True
 )

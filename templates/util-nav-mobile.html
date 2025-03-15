@@ -5,41 +5,43 @@
     <div id="nav-mobile" class="text-20" tabindex="-1">
 
         <ul>
-            <li>
+            {% if section_1_parent %}
+                <li>
 
-                <a href="#">Dienstleistungen</a>
+                    <a href="{{ section_1_parent.get_absolute_url }}">{{ section_1_parent.menu_title }}</a>
 
-                <ul>
-                    <li><a href="#">A-Class surfacing</a></li>
-                    <li><a href="#">Polygon modelling</a></li>
-                    <li><a href="#">Concept design / CGI / Visualisation</a></li>
-                    <li><a href="#">Expert support</a></li>
-                    <li><a href="#">Project planning & coordination</a></li>
-                </ul>
+                    <ul>
+                        {% for child in section_1_children %}
+                            <li><a href="{{ child.get_absolute_url }}">{{ child.menu_title }}</a></li>
+                        {% endfor %}
+                    </ul>
 
-            </li>
-            <li>
+                </li>
+            {% endif %}
+            {% if section_2_parent %}
+                <li>
 
-                <a href="#">Firma</a>
+                    <a href="{{ section_2_parent.get_absolute_url }}">{{ section_2_parent.menu_title }}</a>
 
-                <ul>
-                    <li><a href="#">Case studies</a></li>
-                    <li><a href="#">Our team</a></li>
-                    <li><a href="#">Data security</a></li>
-                    <li><a href="#">Universiy co-operation</a></li>
-                </ul>
+                    <ul>
+                        <li><a href="#">Case studies</a></li>
+                        {% for child in section_2_children %}
+                            <li><a href="{{ child.get_absolute_url }}">{{ child.menu_title }}</a></li>
+                        {% endfor %}
+                    </ul>
 
-            </li>
-            <li>
+                </li>
+            {% endif %}
+                <li>
 
-                <a href="{% url 'contact' %}">Contact</a>
+                    <a href="{% url 'contact' %}">{{ contact_page.menu_title }}</a>
 
-                <ul>
-                    <li><a href="#">Linkedin ></a></li>
-                    <li><a href="#">Privacy policy</a></li>
-                </ul>
+                    <ul>
+                        <li><a href="#">Linkedin ></a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
 
-            </li>
+                </li>
             <li>
 
                 <p>Language:</p>

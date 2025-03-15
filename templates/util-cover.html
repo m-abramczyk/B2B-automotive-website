@@ -4,16 +4,22 @@
 
 <div>
 
+    {% if cover.cover_video %}
+
         <video id="cover" autoplay playsinline muted loop>
-                <source src="{% static 'vid/hero.mp4' %}" type="video/mp4">
+                <source src="{{ cover.cover_video.url }}" type="video/mp4">
         </video>
 
-        <!-- <img src="{% static 'img/test/hero-company-1680.jpg' %}"
-        srcset="{% static 'img/test/hero-company-1920.jpg' %} 1920w,
-                {% static 'img/test/hero-company-1680.jpg' %} 1680w,
-                {% static 'img/test/hero-company-1024.jpg' %} 1280w,
-                {% static 'img/test/hero-company-768.jpg' %} 768w"
-        id="cover"> -->
+    {% elif cover.cover_desktop and cover.cover_laptop and cover.cover_tablet and cover.cover_mobile %}
+
+        <img src="{{ cover.cover_laptop.url }}"
+        srcset="{{ cover.cover_desktop.url }} 1920w,
+                {{ cover.cover_laptop.url }} 1680w,
+                {{ cover.cover_tablet.url }} 1280w,
+                {{ cover.cover_mobile.url }} 768w"
+        id="cover">
+
+    {% endif %}
 
 </div>
 

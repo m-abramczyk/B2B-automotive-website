@@ -3,9 +3,13 @@
 {% load i18n %}
 
     <li>
-        <a href="#" class="text-decoration">
-            <img src="{% static 'img/test/test-02.jpg' %}" alt="Page Section Thumbnail">
-            <h6 class="text-20">Subsection</h6>
+        <a href="{{ page.get_absolute_url }}">
+            {% if page.thumbnail %}
+                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+            {% else %}
+                <img src="{% static 'img/placeholder.jpg' %}" alt="{{ page.menu_title }} thumbnail">
+            {% endif %}
+            <h6 class="text-20">{{ page.menu_title }}</h6>
         </a>
     </li>
 

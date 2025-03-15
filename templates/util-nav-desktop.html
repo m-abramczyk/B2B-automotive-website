@@ -3,38 +3,42 @@
 
     <ul id="nav-desktop" class="text-24">
 
-        <li class="dropdown" data-dropdown>
+        {% if section_1_parent %}
+            <li class="dropdown" data-dropdown>
 
-            <a href="#" data-dropdown-trigger>Dienstleistungen</a>
+                <a href="{{ section_1_parent.get_absolute_url }}" data-dropdown-trigger>
+                    {{ section_1_parent.menu_title }}
+                </a>
 
-            <ul class="dropdown-content">
+                <ul class="dropdown-content">
 
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
+                    {% for child in section_1_children %}
+                        {% include 'util-nav-tile.html' with page=child %}
+                    {% endfor %}
 
-            </ul>
+                </ul>
 
-        </li>
+            </li>
+        {% endif %}
+        {% if section_2_parent %}
+            <li class="dropdown" data-dropdown>
 
-        <li class="dropdown" data-dropdown>
+                <a href="{{ section_2_parent.get_absolute_url }}" data-dropdown-trigger>
+                    {{ section_2_parent.menu_title }}
+                </a>
 
-            <a href="#" data-dropdown-trigger>Firma</a>
+                    <ul class="dropdown-content">
 
-            <ul class="dropdown-content">
+                        {% for child in section_2_children %}
+                            {% include 'util-nav-tile.html' with page=child %}
+                        {% endfor %}
 
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
-                {% include 'util-nav-tile.html' %}
+                    </ul>
 
-            </ul>
+            </li>
+        {% endif %}
 
-        </li>
-
-        <li><a href="{% url 'contact' %}" data-dropdown-close-trigger>Kontakt</a></li>
+        <li><a href="{% url 'contact' %}" data-dropdown-close-trigger>{{ contact_page.menu_title }}</a></li>
 
     </ul>
 

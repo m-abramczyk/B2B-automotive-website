@@ -4,17 +4,17 @@ from django.shortcuts import render
 
 #////////////////////////////////////////////////////
 # Home Page
-def home_page(request):
+# def home_page(request):
 
-    context = {
-    }
+#     context = {
+#     }
 
-    return render(request, 'index.html', context)
+#     return render(request, 'index.html', context)
 
-def contact_page(request):
+# def contact_page(request):
 
-    context = {
+#     context = {
 
-    }
+#     }
 
-    return render(request, 'page-contact.html', context)
+#     return render(request, 'page-contact.html', context)

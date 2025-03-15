@@ -4,15 +4,16 @@
 	{% load static %}
 	{% load i18n %}
 
-	{% include 'util-header-contact.html' %}
+    {% include 'util-cover.html' %}
+	{% include 'util-header.html' %}
 
 	<main>
 
-        {% include 'block-map.html' %}
-
+		{% include 'block-left.html' %}
+        {% include 'block-clients.html' %}
 		{% include 'block-right.html' %}
 		{% include 'block-full-width.html' %}
-        {% include 'block-left.html' %}
+
         {% include 'block-expert.html' %}
 
 	</main>
