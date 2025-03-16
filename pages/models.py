@@ -1,5 +1,6 @@
 import os
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 from django.db import models
 
 from covers.models import Cover
@@ -229,6 +230,9 @@ class Contact(models.Model):
     def __str__(self):
         return 'Contact'
     
+    def get_absolute_url(self):
+        return reverse('contact')
+    
 
 #//////////////////////////////////////////////////////////////
 # Contact External Links Inline
@@ -320,6 +324,9 @@ class PrivacyPolicy(models.Model):
 
     def __str__(self):
         return (self.menu_title)
+    
+    def get_absolute_url(self):
+        return reverse('privacy_policy')
 
 
 #//////////////////////////////////////////////////////////////

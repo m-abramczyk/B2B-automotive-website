@@ -72,7 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'pages.context_processors.navigation_context',
-                # 'pages.context_processors.build_breadcrumbs',
+                'pages.context_processors.build_breadcrumbs',
             ],
         },
     },
