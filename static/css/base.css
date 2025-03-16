@@ -1064,6 +1064,25 @@ carousel */
 }
 
 /*//////////////////////////////////////////////////////////////////////
+Privacy Policy */
+
+.privacy-policy {
+    margin-block: calc(var(--grid-margin) * 2);
+}
+
+.privacy-policy > * {
+    grid-column: 1 / span 4;
+}
+
+.privacy-policy > h3 {
+    padding-bottom: calc(var(--grid-margin) * 2);
+}
+
+.privacy-policy > .button-container {
+    padding-top: calc(var(--grid-margin) * 1.2);
+}
+
+/*//////////////////////////////////////////////////////////////////////
 404 */
 
 .page-not-found {
@@ -1276,7 +1295,17 @@ color classes */
     .block-clients {
         gap: calc(var(--grid-margin) * 2.5); /* 100px */
     }
-    
+
+    /*//////////////////////////////////////////////////////////////////////
+    Privacy Policy */
+
+    .privacy-policy > * {
+        grid-column: 1 / span 6;
+    }
+
+    .privacy-policy > .button-container {
+        padding-top: calc(var(--grid-margin) * 1.5);
+    }
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1432,6 +1461,22 @@ color classes */
     .block-clients {
         gap: calc(var(--grid-margin) * 2.5); /* 100px */
     }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Privacy Policy */
+
+    .privacy-policy > * {
+        grid-column: 1 / span 6;
+    }
+
+    .privacy-policy > h3 {
+        padding-bottom: calc(var(--grid-margin) * 1.5);
+    }
+
+    .privacy-policy > .button-container {
+        padding-top: var(--grid-margin);
+    }
+
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1754,6 +1799,17 @@ color classes */
 
     .block-clients > *:nth-child(2) {
         gap: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Privacy Policy */
+
+    .privacy-policy > * {
+        grid-column: 1 / span 4;
+    }
+
+    .privacy-policy > .button-container {
+        padding-top: calc(var(--grid-margin) * 1.667);
     }
 
 }
