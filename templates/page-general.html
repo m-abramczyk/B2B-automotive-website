@@ -12,6 +12,10 @@
 
             <h2>Case Studies Index</h2>
 
+            {% for case_study in case_studies %}
+                <a href="{{ case_study.get_absolute_url }}">{{ case_study.menu_title }}</a>
+            {% endfor %}
+
         {% else %}
 
             {% include 'block-left.html' %}

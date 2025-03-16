@@ -2,10 +2,17 @@
 {% load i18n %}
 
     <div class="breadcrumbs text-16">
-        <a href="#" class="no-wrap">Home</a>
-        ><a href="#" class="no-wrap">Company</a>
-        ><a href="#" class="no-wrap">Case Studies</a>
-        ><p href="#" class="no-wrap">Zeekr X</p>
+
+        {% if breadcrumbs %}
+
+            <a href="{% url 'home' %}" class="no-wrap">Home</a>
+            {% for breadcrumb in breadcrumbs %}
+                ><a href="{{ breadcrumb.url }}" class="no-wrap">{{ breadcrumb.title }}</a>
+            {% endfor %}
+            <!-- ><p href="#" class="no-wrap">Zeekr X</p> -->
+
+        {% endif %}
+
     </div>
 
 {% endblock %}

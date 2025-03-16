@@ -1,6 +1,5 @@
 import os
 from django.core.exceptions import ValidationError
-
 from django.db import models
 
 from covers.models import Cover

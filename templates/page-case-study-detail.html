@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+	{% load static %}
+	{% load i18n %}
+
+    {% include 'util-cover.html' %}
+	{% include 'util-header.html' %}
+
+	<main>
+
+        <h2>{{ case_study.menu_title }}</h2>
+
+	</main>
+
+	{% endblock %}

@@ -30,7 +30,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    # Pages
+    path('', include('case_studies.urls')),
     path('', include('pages.urls')),
 
     prefix_default_language=True

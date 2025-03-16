@@ -1,7 +1,7 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
 
+from case_studies.models import CaseStudy
 from .models import HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 
 
@@ -34,15 +34,16 @@ def general_page(request, slug):
         page = get_object_or_404(Page, slug=part, parent=parent)
         parent = page
 
-    # if page.is_case_studies_index:
-    #     case_studies = CaseStudy.objects.filter(published=True).order_by('-year')
-    # else:
-    #     case_studies = []
+    case_studies = []
+    if page.is_case_studies_index:
+        case_studies = CaseStudy.objects.filter(is_published=True)
+
     cover = page.cover.first() if page else None
 
     context = {
         'page_data': page,
         'cover': cover,
+        'case_studies': case_studies,
     }
 
     return render(request, 'page-general.html', context)
