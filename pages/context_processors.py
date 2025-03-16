@@ -1,4 +1,4 @@
-from .models import Page, Contact
+from .models import Page, Contact, PrivacyPolicy
 
 def navigation_context(request):
     # Fetch section parents
@@ -11,6 +11,10 @@ def navigation_context(request):
 
     # Fetch contact page data
     contact_page = Contact.objects.first()
+    contact_page_links = contact_page.externallink_set.order_by('order')
+
+    # Fetch Privacy Policy data
+    privacy_policy = PrivacyPolicy.objects.filter(is_published=True).first()
 
     return {
         'section_1_parent': section_1_parent,
@@ -18,4 +22,6 @@ def navigation_context(request):
         'section_1_children': section_1_children,
         'section_2_children': section_2_children,
         'contact_page': contact_page,
+        'contact_page_links': contact_page_links,
+        'privacy_policy': privacy_policy,
     }

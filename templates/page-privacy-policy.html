@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+	{% load static %}
+	{% load i18n %}
+
+	{% include 'util-header-breadcrumbs.html' %}
+
+	<main>
+
+        <div class="privacy-policy">
+            <h3>{{ privacy_policy.title }}</h3>
+            <p class="text-20">{{ privacy_policy.text }}</p>
+            {% for button in privacy_policy_buttons %}
+                {{ button.button_text }}
+            {% endfor %}
+        </div>
+
+
+	</main>
+
+	{% endblock %}

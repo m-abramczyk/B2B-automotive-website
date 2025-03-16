@@ -8,11 +8,18 @@
 	{% include 'util-header.html' %}
 
 	<main>
+        {% if page_data.is_case_studies_index %}
 
-		{% include 'block-left.html' %}
-        {% include 'block-clients.html' %}
-		{% include 'block-right.html' %}
-		{% include 'block-full-width.html' %}
+            <h2>Case Studies Index</h2>
+
+        {% else %}
+
+            {% include 'block-left.html' %}
+            {% include 'block-clients.html' %}
+            {% include 'block-right.html' %}
+            {% include 'block-full-width.html' %}
+            
+        {% endif %}
 
         {% include 'block-expert.html' %}
 

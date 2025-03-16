@@ -52,7 +52,7 @@ class Page(models.Model):
     is_published = models.BooleanField(
         ('Published'),
         default=False,
-        help_text=('Check to publish. Unpublished page doesnt appear in the navigation and search results, but can still be previewed under its URL ([slug] or [parent_slug/slug])'),
+        help_text=('Check to publish. Unpublished page doesnt appear in the navigation, but can still be previewed under its URL ([slug] or [parent_slug/slug])'),
     )
     is_section_1_parent = models.BooleanField(
         ('Section 1 Parent'),
@@ -185,6 +185,30 @@ class Contact(models.Model):
         help_text=('Page title as displayed in page header, max 60 characters'),
     )
 
+    # Contact Data
+    phone_number = models.CharField(
+        max_length=50,
+        blank=True,
+        help_text=('Phone number in proper format'),
+    )
+    email = models.CharField(
+        max_length=50,
+        blank=True,
+        help_text=('Email address in proper format'),
+    )
+    address = models.TextField(
+        blank=True,
+        help_text=('Address as displayed in header. Format text with break-lines'),
+    )
+    fiscal_data = models.TextField(
+        blank=True,
+        help_text=('VAT ID / REGON / KRS as displayed in header. Format text with break-lines'),
+    )
+    address_footer = models.TextField(
+        blank=True,
+        help_text=('Address as displayed in footer. Format text with break-lines'),
+    )
+
     # Meta data
     meta_title = models.CharField(
         max_length=60,
@@ -206,18 +230,57 @@ class Contact(models.Model):
     def __str__(self):
         return 'Contact'
     
+
+#//////////////////////////////////////////////////////////////
+# Contact External Links Inline
+
+class ExternalLink(models.Model):
+    page = models.ForeignKey(
+        Contact,
+        on_delete=models.CASCADE,
+        verbose_name = ('Social Link')
+    )
+    link_text = models.CharField(
+        ('Link text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Link text'),
+    )
+    link_url = models.CharField(
+        ('Link URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('Link URL'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+        help_text=('First link is displayed in the header as a button'),
+    )
+
+    class Meta:
+        verbose_name = ('External Link')
+        verbose_name_plural = ('External Links')
+        ordering = ('order',)
+
+    def __str__(self):
+        return self.link_text or "Link"
+    
 #//////////////////////////////////////////////////////////////
 # Privacy Policy
 
 class PrivacyPolicy(models.Model):
 
-    # URL and Titles
-    slug = models.SlugField(
-        ('URL Settings'),
-        max_length=50,
-        unique=True,
-        help_text=('URL is created automatically based on menu title. Dont touch unless title is long and not suitable for url'),
+    is_published = models.BooleanField(
+        ('Published'),
+        default=False,
+        help_text=('Check to publish. Unpublished page doesnt appear in the navigation, but can still be previewed under its URL ([slug] or [parent_slug/slug])'),
     )
+
+    # URL and Titles
     menu_title = models.CharField(
         max_length=60,
         help_text=('Page title as displayed in page menu, max 60 characters'),
@@ -267,7 +330,7 @@ class PrivacyPolicyButton(models.Model):
     page = models.ForeignKey(
         PrivacyPolicy,
         on_delete=models.CASCADE,
-        verbose_name = ('Performance')
+        verbose_name = ('Privacy Policy Button')
     )
     button_text = models.CharField(
         ('Button text'),

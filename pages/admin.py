@@ -1,6 +1,8 @@
+# import nested_admin
+# from nested_admin import NestedTabularInline, NestedModelAdmin, SortableHiddenMixin
 from django.contrib import admin
 
-from .models import HomePage, Page, Contact, PrivacyPolicy, PrivacyPolicyButton, PageNotFound
+from .models import HomePage, Page, Contact, ExternalLink, PrivacyPolicy, PrivacyPolicyButton, PageNotFound
 
 
 # /////////////////////////////////////////////////////////////
@@ -84,21 +86,38 @@ class PageAdmin(admin.ModelAdmin):
 
 
 # /////////////////////////////////////////////////////////////
+# Contact External Link Inline
+
+class ExternalLinkInline(admin.TabularInline):
+    fieldsets = (
+        (None, {
+            'fields': ('link_text', 'link_url', 'order'),
+        }),
+    )
+    model = ExternalLink
+    extra = 1
+    max_num = 3
+
+
+# /////////////////////////////////////////////////////////////
 # Contact
 
 class ContactAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {
+        ('Title', {
             'fields': ('menu_title', 'footer_title', 'title'),
+        }),
+        ('Contact Data', {
+            'fields': ('phone_number', 'email', 'address', 'fiscal_data', 'address_footer'),
         }),
         ('Meta Data', {
             'classes': ('collapse',),
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    # inlines = [
-    #     CoverHomePageInline,
-    # ]
+    inlines = [
+        ExternalLinkInline,
+    ]
 
     def has_add_permission(self, request):
         return False
@@ -125,12 +144,11 @@ class PrivacyPolicyButtonInline(admin.TabularInline):
 
 class PrivacyPolicyAdmin(admin.ModelAdmin):
     fieldsets = (
+        (None, {
+            'fields': ('is_published',),
+        }),
         ('Title', {
             'fields': ('menu_title', 'footer_title', 'title'),
-        }),
-        ('URL', {
-            'classes': ('collapse',),
-            'fields': ('slug',),
         }),
         ('None', {
             'fields': ('text',),
@@ -140,10 +158,8 @@ class PrivacyPolicyAdmin(admin.ModelAdmin):
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    list_display = ('menu_title',)
-    prepopulated_fields= {
-        'slug': ('menu_title',),
-        }
+    list_display = ('menu_title', 'is_published')
+    list_editable = ('is_published',)
     inlines = [
         PrivacyPolicyButtonInline,
     ]

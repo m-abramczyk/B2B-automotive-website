@@ -2,60 +2,19 @@
 {% load i18n %}
 
     <div>
-        {% include 'util-logo.html' %}
 
-        <p class="text-18 text-block">G3 sp. z o.o.
-            info@g3.net.pl
-            +48 606 606 123
-            
-            Al. Jerozolimskie 178
-            PL 02-486 Warsaw</p>
+        {% include 'util-logo.html' %}
+        {% if contact_page.address_footer %}<p class="text-18 text-block">{{ contact_page.address_footer }}</p>{% endif %}
+
     </div>
 
-    <ul class="footer-dropdown" data-footer-dropdown>
-
-        <li class="text-20">
-            <a href="#">Dienstleistungen</a>
-            <button data-footer-dropdown-button>
-                <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
-                </svg>
-            </button>
-        </li>
-
-        <ul class="footer-dropdown-content">
-            <li><a href="#">A-Class surfacing</a></li>
-            <li><a href="#">Polygon modelling</a></li>
-            <li><a href="#">Design & CGI</a></li>
-            <li><a href="#">Expert support</a></li>
-            <li><a href="#">Project coordination</a></li>
-        </ul>
-
-    </ul>
-    <ul class="footer-dropdown" data-footer-dropdown>
-
-        <li class="text-20">
-            <a href="#">Firma</a>
-            <button data-footer-dropdown-button>
-                <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
-                </svg>
-            </button>
-        </li>
-
-        <ul class="footer-dropdown-content">
-            <li><a href="#">Case studies</a></li>
-            <li><a href="#">Our team</a></li>
-            <li><a href="#">Data security</a></li>
-            <li><a href="#">Universiy co-operation</a></li>
-        </ul>
-
-    </ul>
-    <ul>            
+    {% if section_1_parent %}
         <ul class="footer-dropdown" data-footer-dropdown>
 
             <li class="text-20">
-                <a href="{% url 'contact' %}">Kontakt</a>
+                <a href="{{ section_1_parent.get_absolute_url }}">
+                    {% if section_1_parent.footer_title %}{{ section_1_parent.footer_title }}{% else %}{{ section_1_parent.menu_title }}{% endif %}
+                </a>
                 <button data-footer-dropdown-button>
                     <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
@@ -64,8 +23,67 @@
             </li>
 
             <ul class="footer-dropdown-content">
-                <li><a href="#">Linkedin ></a></li>
-                <li><a href="#">Privacy policy</a></li>
+                {% for child in section_1_children %}
+                    <li><a href="{{ child.get_absolute_url }}">
+                        {% if child.footer_title %}{{ child.footer_title }}{% else %}{{ child.menu_title }}{% endif %}
+                    </a></li>
+                {% endfor %}
+            </ul>
+
+        </ul>
+    {% endif %}
+
+    {% if section_2_parent %}
+        <ul class="footer-dropdown" data-footer-dropdown>
+
+            <li class="text-20">
+                <a href="{{ section_2_parent.get_absolute_url }}">
+                    {% if section_2_parent.footer_title %}{{ section_2_parent.footer_title }}{% else %}{{ section_2_parent.menu_title }}{% endif %}
+                </a>
+                <button data-footer-dropdown-button>
+                    <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
+                    </svg>
+                </button>
+            </li>
+
+            <ul class="footer-dropdown-content">
+                {% for child in section_2_children %}
+                    <li><a href="{{ child.get_absolute_url }}">
+                        {% if child.footer_title %}{{ child.footer_title }}{% else %}{{ child.menu_title }}{% endif %}
+                    </a></li>
+                {% endfor %}
+            </ul>
+
+        </ul>
+    {% endif %}
+
+    <ul>            
+        <ul class="footer-dropdown" data-footer-dropdown>
+
+            <li class="text-20">
+                <a href="{% url 'contact' %}">
+                    {% if contact_page.footer_title %}{{ contact_page.footer_title }}{% else %}{{ contact_page.menu_title }}{% endif %}
+                </a>
+                <button data-footer-dropdown-button>
+                    <svg viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1.5 L9 9.5 L18 1.5 L16.6 0.1 L9 7 L1.4 0.1 L0 1.5 Z"/>
+                    </svg>
+                </button>
+            </li>
+
+            <ul class="footer-dropdown-content">
+
+                {% for link in contact_page_links %}
+                    <li><a href="{{ link.link_url }}" target="_blank">{{ link.link_text }} ></a></li>
+                {% endfor %}
+
+                {% if privacy_policy %}
+                    <li><a href="{% url 'privacy_policy' %}">
+                        {% if privacy_policy.footer_title %}{{ privacy_policy.footer_title }}{% else %}{{ privacy_policy.menu_title }}{% endif %}
+                    </a></li>
+                {% endif %}
+
             </ul>
 
         </ul>

@@ -24,7 +24,6 @@
                     <a href="{{ section_2_parent.get_absolute_url }}">{{ section_2_parent.menu_title }}</a>
 
                     <ul>
-                        <li><a href="#">Case studies</a></li>
                         {% for child in section_2_children %}
                             <li><a href="{{ child.get_absolute_url }}">{{ child.menu_title }}</a></li>
                         {% endfor %}
@@ -37,8 +36,14 @@
                     <a href="{% url 'contact' %}">{{ contact_page.menu_title }}</a>
 
                     <ul>
-                        <li><a href="#">Linkedin ></a></li>
-                        <li><a href="#">Privacy policy</a></li>
+
+                        {% for link in contact_page_links %}
+                            <li><a href="{{ link.link_url }}" target="_blank">{{ link.link_text }} ></a></li>
+                        {% endfor %}
+
+                        {% if privacy_policy %}
+                            <li><a href="{% url 'privacy_policy' %}">{{ privacy_policy.menu_title }}</a></li>
+                        {% endif %}
                     </ul>
 
                 </li>

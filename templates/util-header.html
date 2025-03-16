@@ -11,6 +11,10 @@
             <h1 class="text-block">{{ page_data.title }}</h1>
         {% endif %}
 
+        {% if page_data.is_case_studies_index %}
+            {% include 'util-header-caption.html' %}
+        {% endif %}
+
     </div>
 		
 </header>

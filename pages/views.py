@@ -1,7 +1,8 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 
-from .models import HomePage, Page, PageNotFound
+from .models import HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 
 
 #////////////////////////////////////////////////////
@@ -31,8 +32,12 @@ def general_page(request, slug):
 
     for part in slug_parts:
         page = get_object_or_404(Page, slug=part, parent=parent)
-        parent = page  # Update parent for the next iteration
+        parent = page
 
+    # if page.is_case_studies_index:
+    #     case_studies = CaseStudy.objects.filter(published=True).order_by('-year')
+    # else:
+    #     case_studies = []
     cover = page.cover.first() if page else None
 
     context = {
@@ -42,16 +47,39 @@ def general_page(request, slug):
 
     return render(request, 'page-general.html', context)
 
+
 #////////////////////////////////////////////////////
 # Contact Page
 
 def contact_page(request):
 
-    context = {
+    contact_page = Contact.objects.first()
+    contact_page_links = contact_page.externallink_set.order_by('order')
+    contact_page_link_header = contact_page_links.first()
 
+    context = {
+        'contact_page': contact_page,
+        'contact_page_links': contact_page_links,
+        'contact_page_link_header': contact_page_link_header,
     }
 
     return render(request, 'page-contact.html', context)
+
+
+#////////////////////////////////////////////////////
+# Priacy Policy Page
+
+def privacy_policy(request):
+    
+    privacy_policy = PrivacyPolicy.objects.first()
+    privacy_policy_buttons = privacy_policy.privacypolicybutton_set.order_by('order')
+
+    context = {
+        'privacy_policy': privacy_policy,
+        'privacy_policy_buttons': privacy_policy_buttons,
+    }
+
+    return render(request, 'page-privacy-policy.html', context)
 
 
 #////////////////////////////////////////////////////
