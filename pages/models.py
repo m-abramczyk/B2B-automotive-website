@@ -114,6 +114,48 @@ class Page(models.Model):
         null=True,
         help_text=('1:1 ratio, 300px x 300px'),
     )
+    thumbnail_caption = models.CharField(
+        max_length=120,
+        default='Thumbnail caption for this page',
+        blank=True,
+        null=True,
+        help_text=('Thumbnail caption as displayed in section pages list'),
+    )
+
+    # Section children list
+    has_section_pages_list = models.BooleanField(
+        ('Display section pages'),
+        default=False,
+        help_text=('Check to display thumbnails of section pages as the first block below the header (only applicable for section parents)'),
+    )
+    button_1_text = models.CharField(
+        ('Button 1 text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Button text (only applicable for section parents)'),
+    )
+    button_1_url = models.CharField(
+        ('Button 1 URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('button URL (only applicable for section parents)'),
+    )
+    button_2_text = models.CharField(
+        ('Button 1 text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Button text (only applicable for section parents)'),
+    )
+    button_2_url = models.CharField(
+        ('Button 1 URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('button URL (only applicable for section parents)'),
+    )
 
     # Meta data
     meta_title = models.CharField(

@@ -1,4 +1,5 @@
 {% block util-nav-desktop %}
+{% load static %}
 {% load i18n %}
 
     <ul id="nav-desktop" class="text-24">
@@ -6,14 +7,17 @@
         {% if section_1_parent %}
             <li class="dropdown" data-dropdown>
 
-                <a href="{{ section_1_parent.get_absolute_url }}" data-dropdown-trigger>
-                    {{ section_1_parent.menu_title }}
-                </a>
+                <a href="{{ section_1_parent.get_absolute_url }}" data-dropdown-trigger>{{ section_1_parent.menu_title }}</a>
 
                 <ul class="dropdown-content">
 
-                    {% for child in section_1_children %}
-                        {% include 'util-nav-tile.html' with page=child %}
+                    {% for page in section_1_children %}
+                        <li>
+                            <a href="{{ page.get_absolute_url }}">
+                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                <h6 class="text-20">{{ page.menu_title }}</h6>
+                            </a>
+                        </li>
                     {% endfor %}
 
                 </ul>
@@ -23,17 +27,20 @@
         {% if section_2_parent %}
             <li class="dropdown" data-dropdown>
 
-                <a href="{{ section_2_parent.get_absolute_url }}" data-dropdown-trigger>
-                    {{ section_2_parent.menu_title }}
-                </a>
+                <a href="{{ section_2_parent.get_absolute_url }}" data-dropdown-trigger>{{ section_2_parent.menu_title }}</a>
 
-                    <ul class="dropdown-content">
+                <ul class="dropdown-content">
 
-                        {% for child in section_2_children %}
-                            {% include 'util-nav-tile.html' with page=child %}
-                        {% endfor %}
+                    {% for page in section_2_children %}
+                        <li>
+                            <a href="{{ page.get_absolute_url }}">
+                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                <h6 class="text-20">{{ page.menu_title }}</h6>
+                            </a>
+                        </li>
+                    {% endfor %}
 
-                    </ul>
+                </ul>
 
             </li>
         {% endif %}

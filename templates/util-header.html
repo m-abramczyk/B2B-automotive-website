@@ -1,22 +1,30 @@
 {% block util-header %}
 {% load i18n %}
 
-<header class="true-white">
+    <header class="true-white">
 
-    {% include 'util-header-breadcrumbs.html' %}
+        {% include 'util-header-breadcrumbs.html' %}
 
-    <div id="header-content" class="grid">
-        
-        {% if page_data.title %}
-            <h1 class="text-block">{{ page_data.title }}</h1>
-        {% endif %}
+        <div id="header-content" class="grid">
+            
+            {% if page_data.title %}
+                <h1 class="text-block">{{ page_data.title }}</h1>
+            {% endif %}
 
-        {% if page_data.is_case_studies_index %}
-            {% include 'util-header-caption.html' %}
-        {% endif %}
+            {% if page_data.is_case_studies_index %}
+                <div class="header-caption text-24">
+                    <div>
+                        <p class="medium">Caption</p>
+                        <div class="no-wrap"><a href="#">Read more</a> ></div>
+                    </div>
+                    <div class="tabular no-wrap">
+                        < 2 / 4 >
+                    </div>
+                </div>
+            {% endif %}
 
-    </div>
-		
-</header>
+        </div>
+            
+    </header>
 
 {% endblock %}

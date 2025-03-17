@@ -10,22 +10,21 @@
 	<main>
         {% if page_data.is_case_studies_index %}
 
-            <h2>Case Studies Index</h2>
-
             {% for case_study in case_studies %}
                 <a href="{{ case_study.get_absolute_url }}">{{ case_study.menu_title }}</a>
             {% endfor %}
 
         {% else %}
 
-            {% include 'block-left.html' %}
-            {% include 'block-clients.html' %}
-            {% include 'block-right.html' %}
-            {% include 'block-full-width.html' %}
+            <!-- Section pages thumbnails list -->
+            {% if page_data.has_section_pages_list %}
+                {% include 'block-section-pages-list.html' %}
+            {% endif %}
+
             
         {% endif %}
 
-        {% include 'block-expert.html' %}
+        <!-- {% include 'block-expert.html' %} -->
 
 	</main>
 

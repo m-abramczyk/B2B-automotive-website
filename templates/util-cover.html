@@ -1,26 +1,25 @@
 {% block util-cover %}
-{% load static %}
 {% load i18n %}
 
-<div>
+    <div>
 
-    {% if cover.cover_video %}
+        {% if cover.cover_video %}
 
-        <video id="cover" autoplay playsinline muted loop>
-                <source src="{{ cover.cover_video.url }}" type="video/mp4">
-        </video>
+            <video id="cover" autoplay playsinline muted loop>
+                    <source src="{{ cover.cover_video.url }}" type="video/mp4">
+            </video>
 
-    {% elif cover.cover_desktop and cover.cover_laptop and cover.cover_tablet and cover.cover_mobile %}
+        {% elif cover.cover_desktop and cover.cover_laptop and cover.cover_tablet and cover.cover_mobile %}
 
-        <img src="{{ cover.cover_laptop.url }}"
-        srcset="{{ cover.cover_desktop.url }} 1920w,
-                {{ cover.cover_laptop.url }} 1680w,
-                {{ cover.cover_tablet.url }} 1280w,
-                {{ cover.cover_mobile.url }} 768w"
-        id="cover">
+            <img src="{{ cover.cover_laptop.url }}"
+            srcset="{{ cover.cover_desktop.url }} 1920w,
+                    {{ cover.cover_laptop.url }} 1680w,
+                    {{ cover.cover_tablet.url }} 1280w,
+                    {{ cover.cover_mobile.url }} 768w"
+            id="cover">
 
-    {% endif %}
+        {% endif %}
 
-</div>
+    </div>
 
 {% endblock %}

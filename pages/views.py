@@ -34,16 +34,18 @@ def general_page(request, slug):
         page = get_object_or_404(Page, slug=part, parent=parent)
         parent = page
 
-    case_studies = []
     if page.is_case_studies_index:
         case_studies = CaseStudy.objects.filter(is_published=True)
-
-    cover = page.cover.first() if page else None
+        cover = []
+    else:
+        case_studies = []
+        cover = page.cover.first() if page else None
 
     context = {
         'page_data': page,
-        'cover': cover,
         'case_studies': case_studies,
+        'cover': cover,
+        
     }
 
     return render(request, 'page-general.html', context)

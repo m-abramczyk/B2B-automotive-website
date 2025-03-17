@@ -1,0 +1,46 @@
+{% block block-section-pages-list %}
+{% load i18n %}
+
+    <div class="grid block block-section-pages-list">
+        <div>
+            <div class="section-pages-list-container">
+
+                {% if page_data.is_section_1_parent %}
+
+                    {% for page in section_1_children %}
+                        <a href="{{ page.get_absolute_url }}">
+                            <div>
+                                <h6 class="text-20 true-white">{{ page.menu_title }}</h6>
+                            </div>
+                            <!-- <div> -->
+                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            <!-- </div> -->
+                        </a>
+                    {% endfor %}
+
+                {% elif page_data.is_section_2_parent %}
+
+                    {% for page in section_2_children %}
+                        <a href="{{ page.get_absolute_url }}">
+                            <div>
+                                <h6 class="text-20 true-white">{{ page.menu_title }}</h6>
+                            </div>
+                            <div>
+                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+                {% endif %}	
+
+            </div>
+            <div class="button-container">
+                <a href="#" class="button text-18">Read more button 1 +</a>
+                <a href="#" class="button text-18">Read more button 2 +</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

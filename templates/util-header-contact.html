@@ -1,35 +1,35 @@
 {% block util-header-contact %}
 {% load i18n %}
 
-<header class="black bg-blue">
+    <header class="black bg-blue">
 
-    {% include 'util-header-breadcrumbs.html' %}
+        {% include 'util-header-breadcrumbs.html' %}
 
-    <div id="header-content" class="grid contact">
-        
-        <h1 class="black text-block">{{ contact_page.title }}</h1>
+        <div id="header-content" class="grid contact">
+            
+            <h1 class="black text-block">{{ contact_page.title }}</h1>
 
-        <div class="header-contact-info">
+            <div class="header-contact-info">
 
-            <div class="text-36">
-                {% if contact_page.phone_number %}<a href="tel:{{ contact_page.phone_number }}">{{ contact_page.phone_number }}</a><br>{% endif %}
-                {% if contact_page.email %}<a href="mailto:{{ contact_page.email }}">{{ contact_page.email }}</a>{% endif %}
-            </div>
+                <div class="text-36">
+                    {% if contact_page.phone_number %}<a href="tel:{{ contact_page.phone_number }}">{{ contact_page.phone_number }}</a><br>{% endif %}
+                    {% if contact_page.email %}<a href="mailto:{{ contact_page.email }}">{{ contact_page.email }}</a>{% endif %}
+                </div>
 
-            <div class="text-18">
-                {% if contact_page.address %}<p class="text-block">{{ contact_page.address }}</p>{% endif %}
-                {% if contact_page.fiscal_data %}<p class="text-block">{{ contact_page.fiscal_data }}</p>{% endif %}
-            </div>
+                <div class="text-18">
+                    {% if contact_page.address %}<p class="text-block">{{ contact_page.address }}</p>{% endif %}
+                    {% if contact_page.fiscal_data %}<p class="text-block">{{ contact_page.fiscal_data }}</p>{% endif %}
+                </div>
 
-            <div class="button-container">
-                {% if contact_page_link_header %}<a href="{{ contact_page_link_header.link_url }}" class="button text-18" target="_blank">Follow us on {{ contact_page_link_header.link_text }} +</a>{% endif %}
-                <a href="#" class="button text-18">Drop us a line +</a>
+                <div class="button-container">
+                    {% if contact_page_link_header %}<a href="{{ contact_page_link_header.link_url }}" class="button text-18" target="_blank">Follow us on {{ contact_page_link_header.link_text }} +</a>{% endif %}
+                    <a href="#" class="button text-18">Drop us a line +</a>
+                </div>
+
             </div>
 
         </div>
-
-    </div>
-		
-</header>
+            
+    </header>
 
 {% endblock %}

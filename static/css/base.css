@@ -427,10 +427,6 @@ nav desktop */
     width: calc((100% - var(--grid-gap) * 5) / 6); /* two grid columns */
 }
 
-#nav-desktop .dropdown .thumbnail-wrapper {
-    overflow: hidden;
-}
-
 #nav-desktop .dropdown img {
     aspect-ratio: 1.5 / 1;  
     width: 100%;
@@ -575,7 +571,7 @@ nav mobile */
 #nav-mobile > ul > li:last-child > ul {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: calc(var(--nav-padding) * 1);
+    gap: var(--nav-padding);
 }
 
 #nav-mobile > ul > li > a {
@@ -785,19 +781,10 @@ instead of other padding methods to prevent double margin when dropdown collapse
 /*//////////////////////////////////////////////////////////////////////
 blocks left / right / full-width */
 
-.block-left,
-.block-right,
-.block-full-width,
-.block-clients {
+/* Catch-all class for content blocks defining padding and border */
+.block {
     border-bottom: 1px solid var(--g3-off-white);
     background: var(--g3-black);
-}
-
-.block-left,
-.block-right,
-.block-full-width,
-.block-expert,
-.block-clients {
     padding-block: calc(var(--grid-margin) * 1.6) calc(var(--grid-margin) * 2); /* 80px 100px */
 }
 
@@ -870,9 +857,44 @@ blocks left / right / full-width */
     grid-row: 2;
 }
 
+/* block section pages list */
+.block-section-pages-list > *:first-child {
+    grid-column: 1 / span 12;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-margin) * 2); /* 100px */
+}
+
+.section-pages-list-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: calc(var(--grid-margin) * 1.5) var(--grid-gap);
+}
+
+.section-pages-list-container > a {
+    border-top: 1px solid var(--g3-off-white);
+    padding-top: calc(var(--fs-18) * 0.5);
+    display: grid;
+    grid-template-rows: calc(var(--grid-margin) * 2.5) auto 1fr;
+    align-items: start;
+}
+
+.section-pages-list-container h6 {
+    display: inline;
+}
+
+.section-pages-list-container p {
+    margin-top: var(--fs-18);
+    place-self: start;
+}
+
+.section-pages-list-container img {
+    aspect-ratio: 1 / 1;  
+    width: 100%;
+}
+
 /* block expert */
 .block-expert {
-    border-bottom: 1px solid var(--g3-off-white);
     background: var(--g3-dark-grey);
 }
 
@@ -1116,6 +1138,7 @@ a {
 #nav-desktop > li > a:hover,
 #nav-desktop .dropdown-content a:hover h6,
 #nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
+.section-pages-list-container a:hover h6,   /* section pages list tile */
 .footer-lang p,                             /* footer current language */
 .footer-dropdown a:hover,                   /* footer links */
 .breadcrumbs a:hover,
@@ -1278,6 +1301,16 @@ color classes */
         grid-column: 1 / span 5;
     }
 
+    /* block section pages list */
+    .block-section-pages-list > *:first-child {
+        grid-column: 1 / span 9;
+        gap: calc(var(--grid-margin) * 2.5); /* 100px */
+    }
+
+    .section-pages-list-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     /* block expert */
     .block-expert > h2 {
         grid-column: 1 / span 6;
@@ -1376,11 +1409,7 @@ color classes */
     /*//////////////////////////////////////////////////////////////////////
     blocks left / right / full-width */
 
-    .block-left,
-    .block-right,
-    .block-full-width,
-    .block-expert.arrow-hidden,
-    .block-clients {
+    .block {
         padding-block: var(--grid-margin) calc(var(--grid-margin) * 1.5); /* 40px 60px*/
     }
 
@@ -1430,6 +1459,16 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 8;
         grid-row: 3;
+    }
+
+    /* block section pages list */
+    .block-section-pages-list > *:first-child {
+        grid-column: 1 / span 6;
+        gap: calc(var(--grid-margin) * 2.5); /* 100px */
+    }
+
+    .section-pages-list-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     /* block expert */
@@ -1709,11 +1748,7 @@ color classes */
     /*//////////////////////////////////////////////////////////////////////
     blocks left / right / full-width */ 
 
-    .block-left,
-    .block-right,
-    .block-full-width,
-    .block-expert,
-    .block-clients {
+    .block {
         padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px*/
     }
 
@@ -1763,6 +1798,17 @@ color classes */
     .block-full-width > .carousel-footer {
         grid-column: 1 / span 4;
         grid-row: 3;
+    }
+    
+    /* block section pages list */
+    .block-section-pages-list > *:first-child {
+        grid-column: 1 / span 3;
+        gap: calc(var(--grid-margin) * 4); /* 100px */
+    }
+
+    .section-pages-list-container {
+        grid-template-columns: 1fr;
+        gap: calc(var(--grid-margin) * 2) var(--grid-gap);
     }
 
     /* block expert */

@@ -26,7 +26,8 @@ class CoverPageInline(admin.TabularInline):
 
 class HomePageAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {
+        ('Title', {
+            'classes': ('collapse',),
             'fields': ('title',),
         }),
         ('Meta Data', {
@@ -52,17 +53,24 @@ class PageAdmin(admin.ModelAdmin):
             'fields': ('is_published',),
         }),
         ('Navigation', {
+            'classes': ('collapse',),
             'fields': ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order'),
         }),
         ('Thumbnail', {
-            'fields': ('thumbnail',),
+            'classes': ('collapse',),
+            'fields': ('thumbnail', 'thumbnail_caption'),
         }),
         ('Title', {
+            'classes': ('collapse',),
             'fields': ('menu_title', 'footer_title', 'title'),
         }),
         ('URL', {
             'classes': ('collapse',),
             'fields': ('slug',),
+        }),
+        ('Section Pages List', {
+            'classes': ('collapse',),
+            'fields': ('has_section_pages_list', 'button_1_text', 'button_1_url', 'button_2_text', 'button_2_url'),
         }),
         ('Meta Data', {
             'classes': ('collapse',),
@@ -105,9 +113,11 @@ class ExternalLinkInline(admin.TabularInline):
 class ContactAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Title', {
+            'classes': ('collapse',),
             'fields': ('menu_title', 'footer_title', 'title'),
         }),
         ('Contact Data', {
+            'classes': ('collapse',),
             'fields': ('phone_number', 'email', 'address', 'fiscal_data', 'address_footer'),
         }),
         ('Meta Data', {
@@ -148,9 +158,11 @@ class PrivacyPolicyAdmin(admin.ModelAdmin):
             'fields': ('is_published',),
         }),
         ('Title', {
+            'classes': ('collapse',),
             'fields': ('menu_title', 'footer_title', 'title'),
         }),
-        ('None', {
+        ('Text', {
+            'classes': ('collapse',),
             'fields': ('text',),
         }),
         ('Meta Data', {
