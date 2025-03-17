@@ -10,6 +10,10 @@
 
         {% include 'block-map.html' %}
 
+        {% if expert %}
+            {% include 'block-expert.html' %}
+        {% endif %}
+
 	</main>
 
 	{% endblock %}

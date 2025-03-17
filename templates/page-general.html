@@ -24,7 +24,9 @@
             
         {% endif %}
 
-        <!-- {% include 'block-expert.html' %} -->
+        {% if expert %}
+            {% include 'block-expert.html' %}
+        {% endif %}
 
 	</main>
 

@@ -11,6 +11,10 @@
 
         <h3>{{ case_study.menu_title }}</h3>
 
+        {% if expert %}
+            {% include 'block-expert.html' %}
+        {% endif %}
+
 	</main>
 
 	{% endblock %}

@@ -15,12 +15,13 @@ def case_study_detail(request, parent_slug, slug):
             raise Http404("Invalid parent page for the case study.")
 
     case_study = get_object_or_404(CaseStudy, slug=slug, is_published=True)
-
     # cover = page.cover.first() if page else None
+    expert = case_study.expert
 
     context = {
         'case_study': case_study,
         # 'cover': cover,
+        'expert': expert,
     }
 
     return render(request, 'page-case-study-detail.html', context)

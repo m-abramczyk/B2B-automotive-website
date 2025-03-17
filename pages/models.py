@@ -1,9 +1,10 @@
-import os
+# import os
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.db import models
 
 from covers.models import Cover
+from experts.models import Expert
 
 
 def upload_to(instance, filename):
@@ -21,6 +22,15 @@ class HomePage(models.Model):
         max_length=60,
         help_text=('Page title as displayed in page header, max 60 characters'),
     )
+
+    expert = models.ForeignKey(
+        Expert,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose an expert to display at the bottom of the page (no selection = no expert)'),
+    )
+
     meta_title = models.CharField(
         max_length=60,
         blank=True,
@@ -76,7 +86,7 @@ class Page(models.Model):
         null=True,
         blank=True,
         related_name='children',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         help_text=('Chose parent page (chose if page belongs to section 1 or 2)'),
     )
     order = models.PositiveIntegerField(
@@ -120,6 +130,15 @@ class Page(models.Model):
         blank=True,
         null=True,
         help_text=('Thumbnail caption as displayed in section pages list'),
+    )
+
+    # Expert
+    expert = models.ForeignKey(
+        Expert,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose an expert to display at the bottom of the page (no selection = no expert)'),
     )
 
     # Section children list
@@ -249,6 +268,15 @@ class Contact(models.Model):
     address_footer = models.TextField(
         blank=True,
         help_text=('Address as displayed in footer. Format text with break-lines'),
+    )
+
+    # Expert
+    expert = models.ForeignKey(
+        Expert,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose an expert to display at the bottom of the page (no selection = no expert)'),
     )
 
     # Meta data
@@ -392,7 +420,7 @@ class PrivacyPolicyButton(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('button URL'),
+        help_text=('Button URL. For internal URL skip the language code. Start and end with a trailing slash "/"'),
     )
     order = models.PositiveIntegerField(
         default=0,

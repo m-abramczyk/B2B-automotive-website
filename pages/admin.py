@@ -30,6 +30,10 @@ class HomePageAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('title',),
         }),
+        ('Expert', {
+            'classes': ('collapse',),
+            'fields': ('expert',),
+        }),
         ('Meta Data', {
             'classes': ('collapse',),
             'fields': ('meta_title', 'meta_description'),
@@ -67,6 +71,10 @@ class PageAdmin(admin.ModelAdmin):
         ('URL', {
             'classes': ('collapse',),
             'fields': ('slug',),
+        }),
+        ('Expert', {
+            'classes': ('collapse',),
+            'fields': ('expert',),
         }),
         ('Section Pages List (For section parent pages)', {
             'classes': ('collapse',),
@@ -119,6 +127,10 @@ class ContactAdmin(admin.ModelAdmin):
         ('Contact Data', {
             'classes': ('collapse',),
             'fields': ('phone_number', 'email', 'address', 'fiscal_data', 'address_footer'),
+        }),
+        ('Expert', {
+            'classes': ('collapse',),
+            'fields': ('expert',),
         }),
         ('Meta Data', {
             'classes': ('collapse',),

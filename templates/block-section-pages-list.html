@@ -12,10 +12,8 @@
                             <div>
                                 <h6 class="text-20 true-white">{{ page.menu_title }}</h6>
                             </div>
-                            <!-- <div> -->
-                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
-                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
-                            <!-- </div> -->
+                            <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                            <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
                         </a>
                     {% endfor %}
 
@@ -26,10 +24,8 @@
                             <div>
                                 <h6 class="text-20 true-white">{{ page.menu_title }}</h6>
                             </div>
-                            <div>
-                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
-                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
-                            </div>
+                            <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                            <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
                         </a>
                     {% endfor %}
 
@@ -43,7 +39,7 @@
                     {% if page_data.button_1_text %}<a href="{{ page_data.button_1_url }}" class="button text-18">{{ page_data.button_1_text }} +</a>{% endif %}
                     {% if page_data.button_2_text %}<a href="{{ page_data.button_2_url }}" class="button text-18">{{ page_data.button_2_text }} +</a>{% endif %}
                 </div>
-                
+
             {% endif %}
 
         </div>

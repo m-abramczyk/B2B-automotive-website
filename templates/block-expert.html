@@ -4,31 +4,31 @@
 
 	<div class="grid block block-expert">
             
-        <h2 class="text-block">Have questions?
-            Contact our expert
-        </h2>
+        <h2 class="text-block">{{ expert.header }}</h2>
 
-        <a href="#" class="button text-18">Contact us +</a>
+        {% if expert.button_text %}
+            <a href="{{ expert.button_url }}" class="button text-18">{{ expert.button_text }} +</a>
+        {% endif %}
 
 		<div>
             <div>
-
-                {% include 'util-label.html' %}
+                {% if expert.label %}
+                    {% include 'util-label.html' %}
+                {% endif %}
 
                 <div>
-                    <h5 class="text-24 true-white">Aleksander Turski</h5>
-                    <p class="text-18 light-grey text-block">Managing Director
-                        Client Relations</p>
+                    <h5 class="text-24 true-white">{{ expert.name }}</h5>
+                    <p class="text-18 light-grey text-block">{{ expert.role }}</p>
                 </div>
 
                 <div class="text-20 true-white">
-                    <a href="tel:+48 603 603 603">+48 603 603 603</a><br>
-                    <a href="mailto:a.turski@g3.net.pl">a.turski@g3.net.pl</a>
+                    <a href="tel:{{ expert.phone_number }}">{{ expert.phone_number }}</a><br>
+                    <a href="mailto:{{ expert.email }}">{{ expert.email }}</a>
                 </div>
 
             </div>
 
-            <img src="{% static 'img/test/team-a-turski.jpg' %}" alt="">
+            <img src="{{ expert.thumbnail.url }}" alt="{{ expert.name }}">
 
 		</div>
 	</div>

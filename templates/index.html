@@ -13,7 +13,10 @@
         {% include 'block-right.html' %}
         {% include 'block-full-width.html' %}
         {% include 'block-clients.html' %}
-        {% include 'block-expert.html' %}
+
+        {% if expert %}
+            {% include 'block-expert.html' %}
+        {% endif %}
 
 	</main>
 

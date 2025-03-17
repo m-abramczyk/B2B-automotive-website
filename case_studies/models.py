@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.db import models
 
+from experts.models import Expert
+
 
 def upload_to(instance, filename):
     return f'case-studies/{instance.slug}/{filename}'
@@ -42,6 +44,15 @@ class CaseStudy(models.Model):
         blank=True,
         null=True,
         help_text=('1:1 ratio, 300px x 300px'),
+    )
+
+    # Expert
+    expert = models.ForeignKey(
+        Expert,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose an expert to display at the bottom of the page (no selection = no expert)'),
     )
 
     # Meta data

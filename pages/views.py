@@ -12,10 +12,12 @@ def home_page(request):
 
     page_data = HomePage.objects.first()
     cover = page_data.cover.first()
+    expert = page_data.expert
 
     context = {
         'page_data': page_data,
         'cover': cover,
+        'expert': expert,
     }
 
     return render(request, 'index.html', context)
@@ -41,11 +43,13 @@ def general_page(request, slug):
         case_studies = []
         cover = page.cover.first() if page else None
 
+    expert = page.expert
+
     context = {
         'page_data': page,
         'case_studies': case_studies,
         'cover': cover,
-        
+        'expert': expert,
     }
 
     return render(request, 'page-general.html', context)
@@ -59,11 +63,13 @@ def contact_page(request):
     contact_page = Contact.objects.first()
     contact_page_links = contact_page.externallink_set.order_by('order')
     contact_page_link_header = contact_page_links.first()
+    expert = contact_page.expert
 
     context = {
         'contact_page': contact_page,
         'contact_page_links': contact_page_links,
         'contact_page_link_header': contact_page_link_header,
+        'expert': expert,
     }
 
     return render(request, 'page-contact.html', context)

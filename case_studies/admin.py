@@ -21,6 +21,10 @@ class CaseStudyAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('slug',),
         }),
+        ('Expert', {
+            'classes': ('collapse',),
+            'fields': ('expert',),
+        }),
         ('Meta Data', {
             'classes': ('collapse',),
             'fields': ('meta_title', 'meta_description'),
