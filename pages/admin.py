@@ -68,7 +68,7 @@ class PageAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('slug',),
         }),
-        ('Section Pages List', {
+        ('Section Pages List (For section parent pages)', {
             'classes': ('collapse',),
             'fields': ('has_section_pages_list', 'button_1_text', 'button_1_url', 'button_2_text', 'button_2_url'),
         }),

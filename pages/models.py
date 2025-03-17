@@ -133,28 +133,28 @@ class Page(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Button text (only applicable for section parents)'),
+        help_text=('Button text'),
     )
     button_1_url = models.CharField(
         ('Button 1 URL'),
         max_length=255,
         null=True,
         blank=True,
-        help_text=('button URL (only applicable for section parents)'),
+        help_text=('Button URL. For internal URL skip the language code. Start and end with a trailing slash "/"'),
     )
     button_2_text = models.CharField(
         ('Button 1 text'),
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Button text (only applicable for section parents)'),
+        help_text=('Button text'),
     )
     button_2_url = models.CharField(
         ('Button 1 URL'),
         max_length=255,
         null=True,
         blank=True,
-        help_text=('button URL (only applicable for section parents)'),
+        help_text=('Button URL. For internal URL skip the language code. Start and end with a trailing slash "/"'),
     )
 
     # Meta data

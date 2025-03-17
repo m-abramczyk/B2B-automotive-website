@@ -1811,6 +1811,14 @@ color classes */
         gap: calc(var(--grid-margin) * 2) var(--grid-gap);
     }
 
+    .section-pages-list-container > a {
+        grid-template-rows: auto auto 1fr;
+    }
+
+    .section-pages-list-container img {
+        margin-top: calc(var(--fs-18) * 1.5);
+    }
+    
     /* block expert */
     .block-expert {
         row-gap: calc(var(--grid-margin) * 2); /* 50px */
