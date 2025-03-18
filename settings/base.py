@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'pages',
     'case_studies',
     'covers',
-    'experts',    
+    'experts',
+    'labels',
 ]
 
 MIDDLEWARE = [

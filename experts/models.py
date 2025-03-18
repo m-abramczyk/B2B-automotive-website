@@ -1,4 +1,5 @@
 from django.db import models
+from labels.models import Label
 
 
 def upload_to(instance, filename):
@@ -37,6 +38,15 @@ class Expert(models.Model):
         blank=True,
         null=True,
         help_text=('Email address in proper format'),
+    )
+
+    # Label
+    label = models.ForeignKey(
+        Label, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        help_text=('Choose or create a new label. Labels are reusable accross the page')
     )
 
     # Call to action

@@ -1,6 +1,6 @@
 {% block util-label %}
 {% load i18n %}
 
-    <span class="label text-17 medium uppercase black bg-green">label</span>
+    <span class="label text-17 medium uppercase black bg-{{ label.color }}">{{ label.label_text }}</span>
 
 {% endblock %}

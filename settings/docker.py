@@ -4,11 +4,9 @@ from .base import *
 
 SECRET_KEY = open(Path(os.getenv('WEBAPP_CONF_DIR')) / 'secret-key').read().strip()
 
-DEBUG = False
-# DEBUG = True
+DEBUG = True
 
-# ALLOWED_HOSTS = ['.g3.net.pl']
-ALLOWED_HOSTS = ['185.242.135.71']
+ALLOWED_HOSTS = ['.g3.net.pl']
 
 DATA_DIR = Path(os.getenv('WEBAPP_SRV_DIR'))
 
