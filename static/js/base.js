@@ -325,4 +325,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    ///////////////////////////////////////////////////////////////////
+    // Carousel
+
+    const slider = document.querySelector('.carousel-slider');
+    const slides = document.querySelectorAll('.carousel-slider > img');
+
+    const arrowLeftButton = document.querySelector('.carousel-arrow-left');
+    const arrowRightButton = document.querySelector('.carousel-arrow-right');
+    
+    if (slider) {
+
+        // arrow scrolling
+        let scrollWidth  = slider.offsetWidth;
+
+        function scrollLeft() { slider.scrollLeft -= scrollWidth; }
+        function scrollRight() { slider.scrollLeft += scrollWidth; }
+
+        arrowLeftButton.addEventListener('click', () => {
+            scrollLeft();
+        });
+
+        arrowRightButton.addEventListener('click', () => {
+            scrollRight();
+        });
+
+        // observe current slide index (slide counter and hiding arrows)
+        let currentSlideIndex = 0;
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+                    currentSlideIndex = Array.from(slides).indexOf(entry.target);
+                    updateSlideCounter();
+                    hideUnusedArrow()
+                }
+            });
+        }, { threshold: 0.95 });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // slide counter
+        const counterContainer = document.querySelector('.carousel-counter');
+        const slideIndexContainer = document.querySelector('.slide-index-container');
+        const slideCaptionContainer = document.querySelector('.slide-caption-container');
+
+        slides.forEach((slide, index) => {
+            // Create slide index element
+            const slideIndexElement = document.createElement('p');
+            slideIndexElement.textContent = index + 1;
+            slideIndexElement.classList.add('slide-index');
+            slideIndexContainer.appendChild(slideIndexElement);
+            
+            // Create caption element
+            const captionElement = document.createElement('p');
+            captionElement.textContent = slide.dataset.imageCaption || ''; // Use data attribute for caption
+            captionElement.classList.add('slide-caption');
+            slideCaptionContainer.appendChild(captionElement);
+        });
+
+        const slideNumberElement = document.createElement('p');
+        slideNumberElement.textContent = slides.length;
+        slideNumberElement.classList.add('slide-number');
+        counterContainer.appendChild(slideNumberElement);
+
+        function updateSlideCounter() {
+
+            const slideIndexElements = document.querySelectorAll('.slide-index');
+            const slideCaptionElements = document.querySelectorAll('.slide-caption');
+
+            slideIndexElements.forEach(element => { element.classList.remove('current-slide'); });        
+            slideIndexElements[currentSlideIndex].classList.add('current-slide');
+
+            slideCaptionElements.forEach(element => { element.classList.remove('current-caption'); });        
+            slideCaptionElements[currentSlideIndex].classList.add('current-caption');
+        }
+    
+        updateSlideCounter();
+
+        // Gray-out unused arrows
+        function hideUnusedArrow() {
+            
+            if (currentSlideIndex === 0) { arrowLeftButton.classList.add('arrow-hidden'); }
+            else { arrowLeftButton.classList.remove('arrow-hidden'); }
+            
+            if (currentSlideIndex === slides.length - 1) { arrowRightButton.classList.add('arrow-hidden'); }
+            else { arrowRightButton.classList.remove('arrow-hidden'); }
+        }
+
+    }
+
 });

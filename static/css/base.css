@@ -1013,8 +1013,8 @@ carousel */
 
 .carousel-slider {
     display: flex;
-    gap: 0;
-    height: 100%; 
+    gap: 4px;
+    height: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -1028,7 +1028,8 @@ carousel */
 
 .carousel-slider > img {
     aspect-ratio: 1.5 / 1;
-    width: 100%;
+    height: 100%;
+    min-width: 100%;
     scroll-snap-align: center;
 }
 
@@ -1036,7 +1037,7 @@ carousel */
 .carousel-arrow-right {
     width: var(--fs-18);
     padding-block: 0.2em;
-    transition: var(--transition-opacity-150);
+    transition: var(--transition-opacity-100);
 }
 
 .carousel-arrow-left > svg,
@@ -1074,15 +1075,14 @@ carousel */
     width: fit-content;
 }
 
-.slide-index {
-    position: absolute;
-    transform: translateX(-100%);
-    opacity: 0;
-    transition: var(--transition-opacity-150);
+.slide-index,
+.slide-caption {
+    display: none;
 }
 
-.current-slide {    /* class added by js */
-    opacity: 1;
+.current-slide,
+.current-caption {    /* class added by js */
+    display: block;
 }
 
 /*//////////////////////////////////////////////////////////////////////
