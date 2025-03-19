@@ -1,6 +1,7 @@
 {% block block-expert %}
 {% load static %}
 {% load i18n %}
+{% load label_tags %}
 
 	<div class="grid block block-expert">
             
@@ -12,9 +13,9 @@
 
 		<div>
             <div>
-                {% if expert.label %}
+                {% with expert|get_label as label %}
                     {% include 'util-label.html' %}
-                {% endif %}
+                {% endwith %}
 
                 <div>
                     <h5 class="text-24 true-white">{{ expert.name }}</h5>
