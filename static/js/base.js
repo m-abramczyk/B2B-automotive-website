@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
         handleNavBackground();
         setDropdownTabindex();
+        updateCarousel()
     });
 
     window.addEventListener('resize', () => {
@@ -18,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTranslationValue();
         closeNavMobileResize();
         closeAllDropdowns();
-        setDropdownTabindex();        
+        setDropdownTabindex();
+        updateCarousel()
     });
 
     ///////////////////////////////////////////////////////////////////
@@ -329,49 +331,40 @@ document.addEventListener('DOMContentLoaded', () => {
     ///////////////////////////////////////////////////////////////////
     // Carousel
 
-    const slider = document.querySelector('.carousel-slider');
-    const slides = document.querySelectorAll('.carousel-slider > img');
-
-    const arrowLeftButton = document.querySelector('.carousel-arrow-left');
-    const arrowRightButton = document.querySelector('.carousel-arrow-right');
+    document.querySelectorAll('.carousel-slider').forEach((slider) => {
+        const slides = slider.querySelectorAll('img');
+        const blockContainer = slider.closest('.block'); // Scope within the nearest block
     
-    if (slider) {
-
-        // arrow scrolling
-        let scrollWidth  = slider.offsetWidth;
-
+        if (!blockContainer) return; // Safety check
+    
+        const arrowLeftButton = blockContainer.querySelector('.carousel-arrow-left');
+        const arrowRightButton = blockContainer.querySelector('.carousel-arrow-right');
+        const slideIndexContainer = blockContainer.querySelector('.slide-index-container');
+        const slideCaptionContainer = blockContainer.querySelector('.slide-caption-container');
+        const counterContainer = blockContainer.querySelector('.carousel-counter');
+    
+        let scrollWidth = slider.offsetWidth;
+        let currentSlideIndex = 0;
+    
         function scrollLeft() { slider.scrollLeft -= scrollWidth; }
         function scrollRight() { slider.scrollLeft += scrollWidth; }
-
-        arrowLeftButton.addEventListener('click', () => {
-            scrollLeft();
-        });
-
-        arrowRightButton.addEventListener('click', () => {
-            scrollRight();
-        });
-
-        // observe current slide index (slide counter and hiding arrows)
-        let currentSlideIndex = 0;
-
+    
+        arrowLeftButton.addEventListener('click', scrollLeft);
+        arrowRightButton.addEventListener('click', scrollRight);
+    
+        // Observe slide changes
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-
                 if (entry.isIntersecting) {
                     currentSlideIndex = Array.from(slides).indexOf(entry.target);
                     updateSlideCounter();
-                    hideUnusedArrow()
+                    hideUnusedArrow();
                 }
             });
-        }, { threshold: 0.95 });
-
+        }, { threshold: 0.1 });
+    
         slides.forEach(slide => observer.observe(slide));
-
-        // slide counter
-        const counterContainer = document.querySelector('.carousel-counter');
-        const slideIndexContainer = document.querySelector('.slide-index-container');
-        const slideCaptionContainer = document.querySelector('.slide-caption-container');
-
+    
         slides.forEach((slide, index) => {
             // Create slide index element
             const slideIndexElement = document.createElement('p');
@@ -390,11 +383,11 @@ document.addEventListener('DOMContentLoaded', () => {
         slideNumberElement.textContent = slides.length;
         slideNumberElement.classList.add('slide-number');
         counterContainer.appendChild(slideNumberElement);
-
+    
         function updateSlideCounter() {
 
-            const slideIndexElements = document.querySelectorAll('.slide-index');
-            const slideCaptionElements = document.querySelectorAll('.slide-caption');
+            const slideIndexElements = slideIndexContainer.querySelectorAll('.slide-index');
+            const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
 
             slideIndexElements.forEach(element => { element.classList.remove('current-slide'); });        
             slideIndexElements[currentSlideIndex].classList.add('current-slide');
@@ -403,8 +396,6 @@ document.addEventListener('DOMContentLoaded', () => {
             slideCaptionElements[currentSlideIndex].classList.add('current-caption');
         }
     
-        updateSlideCounter();
-
         // Gray-out unused arrows
         function hideUnusedArrow() {
             
@@ -414,7 +405,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentSlideIndex === slides.length - 1) { arrowRightButton.classList.add('arrow-hidden'); }
             else { arrowRightButton.classList.remove('arrow-hidden'); }
         }
+    
+        updateSlideCounter();
 
-    }
+        // Called on load and resize
+        function updateCarousel() {
+            scrollWidth = slider.offsetWidth;
+            updateSlideCounter();
+            hideUnusedArrow();
+        }
+
+        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
+
+    });
 
 });

@@ -848,7 +848,7 @@ blocks left / right / full-width */
 .block-full-width > .carousel-slider {
     grid-column: 1 / span 12;
     grid-row: 3;
-    max-height: calc(100vh - var(--grid-margin) * 3);
+    /* max-height: calc(100vh - var(--grid-margin) * 5); */
     padding-top: calc(var(--grid-margin) * 0.8); /* 40px */
 }
 

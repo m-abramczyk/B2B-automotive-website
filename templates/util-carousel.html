@@ -1,0 +1,47 @@
+{% block util-carousel %}
+{% load static %}
+{% load i18n %}
+
+    <div class="carousel-slider">
+        <!-- Slides are dynamically added here -->
+        <img src="{% static 'img/test/carousel-01.jpg' %}" data-image-caption="Caption of image 1. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
+        <img src="{% static 'img/test/carousel-02.jpg' %}" data-image-caption="Caption of image 2. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
+        <img src="{% static 'img/test/carousel-03.jpg' %}" data-image-caption="Caption of image 3. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
+        <img src="{% static 'img/test/team-a-turski.jpg' %}" data-image-caption="Caption of image 4. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
+    </div>
+
+    <div class="carousel-footer">
+        <div>
+
+            <div class="carousel-counter text-18 tabular light-grey">
+                <div class="slide-index-container">
+                <!-- Slide indexes are dynamically added here -->
+                </div>
+                <p>/</p>
+                <!-- Slide number are dynamically updated here -->
+            </div>
+
+            <div class="slide-caption-container text-18">
+            <!-- Slide caption is dynamically updated here -->
+            </div>
+
+        </div>
+
+        <div class="carousel-nav">
+            
+            <button class="carousel-nav carousel-arrow-left">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
+                    <path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
+                </svg>
+            </button>
+
+            <button class="carousel-nav carousel-arrow-right">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 22" >
+                    <path d="M18.0002 12.66L0.200195 21.34V18.14L15.0402 10.98L0.200195 3.82003V0.660034L18.0002 9.34003V12.66Z"/>
+                </svg>
+            </button>
+
+        </div>
+    </div>
+
+{% endblock %}
