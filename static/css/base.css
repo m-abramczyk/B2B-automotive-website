@@ -177,6 +177,11 @@ ul {
     list-style: none;
 }
 
+ol {
+    padding: 0;
+    margin: 0;
+}
+
 button {
     background: none;
     border: none;
@@ -1175,6 +1180,17 @@ a:hover img {
     opacity: 0.85;
 }
 
+/*//////////////////////////////////////////////////////////////////////
+TinyMCE styles */
+
+.tinymce > ul {
+    padding: 1em;
+    list-style: disc;
+}
+
+.tinymce > ol {
+    padding: 1em;
+}
 
 /*//////////////////////////////////////////////////////////////////////
 color classes */

@@ -266,9 +266,9 @@ class Contact(models.Model):
         blank=True,
         help_text=('VAT ID / REGON / KRS as displayed in header. Format text with break-lines'),
     )
-    address_footer = models.TextField(
+    address_footer = HTMLField(
         blank=True,
-        help_text=('Address as displayed in footer. Format text with break-lines'),
+        help_text=('Address as displayed in footer. Format text with break-lines. For email link use mailto:email@g3.net.pl'),
     )
 
     # Expert

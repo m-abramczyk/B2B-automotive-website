@@ -149,12 +149,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # TinyMCE
 
-TINYMCE_JS_URL = STATIC_URL + 'js/tinymce/tinymce.min.js'
-
 TINYMCE_DEFAULT_CONFIG = {
-    'toolbar': 'undo redo | bold | link',
+    "height": 300,
+    "width": 625,
+    'toolbar': 'undo redo | bold | link | bullist numlist',
+    'plugins': 'link, lists',
+    'branding': False,
     'menubar': False,
-    'plugins': 'link',
+    'skin': 'tinymce-5-dark',
+    'content_css': STATIC_URL + 'css/tinymce.css'
 }
 
 # Default primary key field type

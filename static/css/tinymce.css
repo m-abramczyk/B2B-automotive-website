@@ -1,0 +1,13 @@
+body {
+    background: #121212;
+    color: #ebebeb;
+}
+
+a {
+    color: #ebebeb;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 1em;
+}
