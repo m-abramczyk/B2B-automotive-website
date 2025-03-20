@@ -1192,6 +1192,14 @@ TinyMCE styles */
     padding: 1em;
 }
 
+.tinymce a:not(footer .tinymce a) {
+    box-shadow: inset 0 -0.05em currentcolor;
+}
+
+.tinymce strong {
+    font-weight: var(--fw-medium);
+}
+
 /*//////////////////////////////////////////////////////////////////////
 color classes */
 
