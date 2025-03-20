@@ -26,6 +26,7 @@ handler404 = 'pages.views.page_not_found'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
 ]
 

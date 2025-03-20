@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     'nested_admin',
     'pages',
     'case_studies',
@@ -145,6 +146,16 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# TinyMCE
+
+TINYMCE_JS_URL = STATIC_URL + 'js/tinymce/tinymce.min.js'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'toolbar': 'undo redo | bold | link',
+    'menubar': False,
+    'plugins': 'link',
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

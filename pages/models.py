@@ -2,6 +2,7 @@
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.db import models
+from tinymce.models import HTMLField
 
 from covers.models import Cover
 from experts.models import Expert
@@ -341,7 +342,21 @@ class ExternalLink(models.Model):
 
     def __str__(self):
         return self.link_text or "Link"
-    
+
+
+#//////////////////////////////////////////////////////////////
+# Content Block
+
+
+
+
+
+#//////////////////////////////////////////////////////////////
+# Content Block Image
+
+
+
+
 #//////////////////////////////////////////////////////////////
 # Privacy Policy
 
@@ -369,7 +384,7 @@ class PrivacyPolicy(models.Model):
         help_text=('Page title as displayed in page header, max 60 characters'),
     )
 
-    text = models.TextField(
+    text = HTMLField(
         blank=True,
         null=True,
     )
