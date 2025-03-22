@@ -1,11 +1,15 @@
-# import os
+import os
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.db import models
+
 from tinymce.models import HTMLField
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 from covers.models import Cover
 from experts.models import Expert
+from labels.models import Label
 
 
 def upload_to(instance, filename):
@@ -22,6 +26,14 @@ class HomePage(models.Model):
     title = models.TextField(
         max_length=60,
         help_text=('Page title as displayed in page header, max 60 characters'),
+    )
+
+    cover = models.ForeignKey(
+        Cover,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose page cover (no selection = no cover)'),
     )
 
     expert = models.ForeignKey(
@@ -116,6 +128,15 @@ class Page(models.Model):
     title = models.TextField(
         max_length=60,
         help_text=('Page title as displayed in page header, max 60 characters'),
+    )
+
+    # Cover
+    cover = models.ForeignKey(
+        Cover,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose page cover (no selection = no cover)'),
     )
 
     # Thumbnail
@@ -347,14 +368,162 @@ class ExternalLink(models.Model):
 #//////////////////////////////////////////////////////////////
 # Content Block
 
+class ContentBlock(models.Model):
+    
+    BLOCK_TYPES = [
+        ('left', 'Left'),
+        ('right', 'Right'),
+        ('full-width', 'Full-width'),
+        ('timeline', 'Timeline'),
+    ]
 
+    # Block Settings
+    block_type = models.CharField(
+        max_length=20,
+        choices=BLOCK_TYPES,
+        default='left'
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
 
+    # Block content
+    header = models.CharField(
+        max_length=80,
+        help_text=('Block header (required), max 80 characters.'),
+    )
+    text = HTMLField(
+        blank=True,
+        null=True,
+    )
+
+    # Label
+    label = models.ForeignKey(
+        Label, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        help_text=('Choose or create a new label. Labels are reusable accross the page')
+    )
+
+    # Buttons
+    button_1_text = models.CharField(
+        ('Button 1 text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Buttons are only displayed in Left and Right blocks'),
+    )
+    button_1_url = models.CharField(
+        ('Button 1 URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+    )
+    button_2_text = models.CharField(
+        ('Button 2 text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Buttons are only displayed in Left and Right blocks'),
+    )
+    button_2_url = models.CharField(
+        ('Button 2 URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+    )
+
+    # Append block flags
+    append_scroll_nav = models.BooleanField(
+        ('Append scroll nav'),
+        default=False,
+        help_text=('Append scroll navigation menu below the block'),
+    )
+    append_clients = models.BooleanField(
+        ('Append Clients list'),
+        default=False,
+        help_text=('Append Clients list below the block'),
+    )
+    append_founders = models.BooleanField(
+        ('Append Founders list'),
+        default=False,
+        help_text=('Append Founders list below the block'),
+    )
+    append_team = models.BooleanField(
+        ('Append Key Specialists list'),
+        default=False,
+        help_text=('Append Key Specialists list below the block'),
+    )
+
+    # Generic relation to support multiple models
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        verbose_name = ('Content BLock')
+        verbose_name_plural = ('Content BLocks')
+        ordering = ['order']
+
+    def __str__(self):
+        return self.header
 
 
 #//////////////////////////////////////////////////////////////
 # Content Block Image
 
+class ContentBlockImage(models.Model):
+    content_block = models.ForeignKey(
+        ContentBlock,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
 
+    image = models.ImageField(
+        upload_to=upload_to,
+        blank=True,
+        null=True,
+        help_text=('JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right and Timeline) / width: 1680px (block Full-width)'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    caption = models.CharField(
+        max_length=120,
+        blank=True,
+        null=True,
+        help_text=('Main image caption'),
+    )
+    timeline_caption = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=('Long caption for timeline block (leave blank for other block types)'),
+    )
+    year = models.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        help_text=('Year / date for timeline block. Format DD/MM/YYYY (leave blank for other block types)'),
+    )
+
+    verbose_name = ('Image')
+    verbose_name_plural = ('Images')
+
+    def __str__(self):
+        return os.path.basename(self.image.name)
+    
+    @property
+    def slug(self):
+        return self.content_block.content_object.slug
 
 
 #//////////////////////////////////////////////////////////////

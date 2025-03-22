@@ -2,12 +2,15 @@
 {% load static %}
 {% load i18n %}
 
+{% if images %}
+
     <div class="carousel-slider">
         <!-- Slides are dynamically added here -->
-        <img src="{% static 'img/test/carousel-01.jpg' %}" data-image-caption="Caption of image 1. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
-        <img src="{% static 'img/test/carousel-02.jpg' %}" data-image-caption="Caption of image 2. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
-        <img src="{% static 'img/test/carousel-03.jpg' %}" data-image-caption="Caption of image 3. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
-        <img src="{% static 'img/test/team-a-turski.jpg' %}" data-image-caption="Caption of image 4. Lorem ipsum fixum pipsum. O Roma, eternam Gloriam tuam!" alt="Image">
+         
+        {% for image in images %}
+            <img src="{{ image.image.url }}" data-image-caption="{{ image.caption }}" alt="{{ image.caption }}">
+        {% endfor %}
+
     </div>
 
     <div class="carousel-footer">
@@ -43,5 +46,7 @@
 
         </div>
     </div>
+
+{% endif %}
 
 {% endblock %}

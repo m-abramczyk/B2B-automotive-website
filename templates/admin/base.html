@@ -28,6 +28,7 @@ html[data-theme="light"], :root {
     --message-error-bg: #570808;
 
     --darkened-bg: #212121;
+    --darker-bg: #171717;       /* new variable */
     --selected-bg: #1b1b1b;
     --selected-row: #3b4859; /* custom */
 
@@ -42,5 +43,30 @@ html[data-theme="light"], :root {
     --primary: #222f3e;     /* custom */
     --secondary: #222f3e;   /* custom */
 }
+
+/* Page Header */
+h2 {
+    font-size: 3rem;
+}
+
+/* Inline Header */
+.djn-inline-form h3 {
+    background: var(--darker-bg);
+    padding-top: 0.3rem;
+    padding-bottom: 0.7rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/* Nested Inline Header */
+.djn-inline-form .djn-inline-form h3 {
+    background: var(--darker-bg);
+    padding-top: 0.4rem;
+    padding-bottom: 0.7rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
 </style>
 {% endblock %}

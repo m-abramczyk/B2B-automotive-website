@@ -1,34 +1,86 @@
 # import nested_admin
-# from nested_admin import NestedTabularInline, NestedModelAdmin, SortableHiddenMixin
+from nested_admin import NestedTabularInline, NestedStackedInline, NestedGenericStackedInline, NestedModelAdmin
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericStackedInline, GenericInlineModelAdmin
 
-from .models import HomePage, Page, Contact, ExternalLink, PrivacyPolicy, PrivacyPolicyButton, PageNotFound
+from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, ExternalLink, PrivacyPolicy, PrivacyPolicyButton, PageNotFound
+
 
 
 # /////////////////////////////////////////////////////////////
-# Cover Inlines
+# Inlines
 
-class CoverHomePageInline(admin.TabularInline):
-    model = HomePage.cover.through
-    max_num = 1
-    verbose_name  = 'Cover'
-    verbose_name_plural  = 'Cover'
+# Content Block Image Inline
+class ContentBlockImageInline(NestedStackedInline):
+    fieldsets = (
+        (None, {
+            'fields': ('image', 'order',),
+        }),
+        (None, {
+            'fields': ('caption', 'year', 'timeline_caption'),
+        }),
+    )
+    model = ContentBlockImage
+    extra = 0
 
-class CoverPageInline(admin.TabularInline):
-    model = Page.cover.through
-    max_num = 1
-    verbose_name  = 'Cover'
-    verbose_name_plural  = 'Cover'
+
+# Content Block Inline
+class ContentBlockInline(NestedGenericStackedInline):
+    fieldsets = (
+        (None, {
+            'fields': ('order', 'block_type'),
+        }),
+        (None, {
+            'fields': ('header', 'label', 'text'),
+        }),
+        (None, {
+            'fields': (('button_1_text', 'button_1_url'), ('button_2_text', 'button_2_url')),
+        }),
+        (None, {
+            'fields': ('append_scroll_nav', 'append_clients', 'append_founders', 'append_team'),
+        }),
+    )
+    model = ContentBlock
+    extra = 0
+    inlines = [ContentBlockImageInline]
+
+
+# Contact External Link Inline
+class ExternalLinkInline(NestedTabularInline):
+    fieldsets = (
+        (None, {
+            'fields': ('link_text', 'link_url', 'order'),
+        }),
+    )
+    model = ExternalLink
+    extra = 1
+    max_num = 3
+
+
+# Privacy Policy Button Inline
+class PrivacyPolicyButtonInline(admin.TabularInline):
+    fieldsets = (
+        (None, {
+            'fields': ('button_text', 'button_url', 'order'),
+        }),
+    )
+    model = PrivacyPolicyButton
+    extra = 1
+    max_num = 3
 
 
 # /////////////////////////////////////////////////////////////
 # Home Page
 
-class HomePageAdmin(admin.ModelAdmin):
+class HomePageAdmin(NestedModelAdmin):
     fieldsets = (
         ('Title', {
             'classes': ('collapse',),
             'fields': ('title',),
+        }),
+        ('Cover', {
+            'classes': ('collapse',),
+            'fields': ('cover',),
         }),
         ('Expert', {
             'classes': ('collapse',),
@@ -40,7 +92,7 @@ class HomePageAdmin(admin.ModelAdmin):
         }),
     )
     inlines = [
-        CoverHomePageInline,
+        ContentBlockInline,
     ]
 
     def has_add_permission(self, request):
@@ -51,7 +103,7 @@ class HomePageAdmin(admin.ModelAdmin):
 # /////////////////////////////////////////////////////////////
 # General Pages
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(NestedModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('is_published',),
@@ -59,6 +111,10 @@ class PageAdmin(admin.ModelAdmin):
         ('Navigation', {
             'classes': ('collapse',),
             'fields': ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order'),
+        }),
+        ('Cover', {
+            'classes': ('collapse',),
+            'fields': ('cover',),
         }),
         ('Thumbnail', {
             'classes': ('collapse',),
@@ -91,7 +147,7 @@ class PageAdmin(admin.ModelAdmin):
         'slug': ('menu_title',),
         }
     inlines = [
-        CoverPageInline,
+        ContentBlockInline,
     ]
 
     # Restrict the parent choices to Section 1 and Section 2 parents
@@ -102,23 +158,9 @@ class PageAdmin(admin.ModelAdmin):
 
 
 # /////////////////////////////////////////////////////////////
-# Contact External Link Inline
-
-class ExternalLinkInline(admin.TabularInline):
-    fieldsets = (
-        (None, {
-            'fields': ('link_text', 'link_url', 'order'),
-        }),
-    )
-    model = ExternalLink
-    extra = 1
-    max_num = 3
-
-
-# /////////////////////////////////////////////////////////////
 # Contact
 
-class ContactAdmin(admin.ModelAdmin):
+class ContactAdmin(NestedModelAdmin):
     fieldsets = (
         ('Title', {
             'classes': ('collapse',),
@@ -139,26 +181,13 @@ class ContactAdmin(admin.ModelAdmin):
     )
     inlines = [
         ExternalLinkInline,
+        ContentBlockInline,
     ]
 
     def has_add_permission(self, request):
         return False
     def has_delete_permission(self, request, obj=None):
         return False
-
-
-# /////////////////////////////////////////////////////////////
-# Privacy Policy Button Inline
-
-class PrivacyPolicyButtonInline(admin.TabularInline):
-    fieldsets = (
-        (None, {
-            'fields': ('button_text', 'button_url', 'order'),
-        }),
-    )
-    model = PrivacyPolicyButton
-    extra = 1
-    max_num = 3
 
 
 # /////////////////////////////////////////////////////////////
@@ -209,7 +238,7 @@ class PageNotFoundAdmin(admin.ModelAdmin):
         return False
 
 
-
+# admin.site.register(ContentBlock, ContentBlockAdmin)
 admin.site.register(HomePage, HomePageAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Contact, ContactAdmin)

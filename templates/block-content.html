@@ -1,0 +1,56 @@
+{% block block-content %}
+{% load i18n %}
+{% load label_tags %}
+
+	<div class="grid block block-{{ content_block.block_type }}">
+
+		<div class="block-header">
+
+            {% with content_block|get_label as label %}
+                {% include 'util-label.html' %}
+            {% endwith %}
+
+            <h3>{{ content_block.header }}</h3>
+
+		</div>
+
+		<div class="block-text">
+
+			<div class="text-20 tinymce">{{ content_block.text|safe }}</div>
+
+			{% if content_block.block_type != "full-width" %}
+                {% if content_block.button_1_text or content_block.button_2_text %}
+
+                    <div class="button-container">
+                        {% if content_block.button_1_text %}
+                            <a href="{{ content_block.button_1_url }}" class="button text-18">{{ content_block.button_1_text }} +</a>
+                        {% endif %}
+                        {% if content_block.button_2_text %}
+                            <a href="{{ content_block.button_2_url }}" class="button text-18">{{ content_block.button_2_text }} +</a>
+                        {% endif %}
+                    </div>
+
+                {% endif %}
+            {% endif %}
+
+		</div>
+
+		{% if content_block.block_type != "full-width" %}
+            <div class="block-img">
+        {% endif %}
+
+            {% if content_block.images %}
+                {% include 'util-carousel.html' with images=content_block.images.all %}
+            {% endif %}
+
+        {% if content_block.block_type != "full-width" %}
+            </div>
+        {% endif %}
+
+	</div>
+
+    {% if content_block.append_clients %}
+        {% include 'block-clients.html' %}
+    {% endif %}
+
+{% endblock %}

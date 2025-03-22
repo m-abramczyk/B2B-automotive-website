@@ -1,8 +1,11 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import render, get_object_or_404
 
+from django.db.models import Prefetch
+from django.contrib.contenttypes.models import ContentType
+
+from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 from case_studies.models import CaseStudy
-from .models import HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 
 
 #////////////////////////////////////////////////////
@@ -11,14 +14,21 @@ from .models import HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 def home_page(request):
 
     page_data = HomePage.objects.first()
-    cover = page_data.cover.first()
-
+    cover = page_data.cover
     expert = page_data.expert
+
+    content_blocks = ContentBlock.objects.filter(
+        content_type=ContentType.objects.get_for_model(HomePage),
+        object_id=page_data.id,
+        ).prefetch_related(
+            Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
+        ).order_by('order')
 
     context = {
         'page_data': page_data,
         'cover': cover,
         'expert': expert,
+        'content_blocks': content_blocks,
     }
 
     return render(request, 'index.html', context)
@@ -42,15 +52,21 @@ def general_page(request, slug):
         cover = []
     else:
         case_studies = []
-        cover = page.cover.first() if page else None
+        cover = page.cover if page else None
 
-    expert = page.expert
+        content_blocks = ContentBlock.objects.filter(
+            content_type=ContentType.objects.get_for_model(Page),
+            object_id=page.id,
+            ).prefetch_related(
+                Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
+            ).order_by('order')
 
     context = {
         'page_data': page,
         'case_studies': case_studies,
         'cover': cover,
-        'expert': expert,
+        'expert': page.expert,
+        'content_blocks': content_blocks,
     }
 
     return render(request, 'page-general.html', context)

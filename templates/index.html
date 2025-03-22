@@ -9,9 +9,9 @@
 
 	<main>
 
-        {% include 'block-left.html' %}
-        {% include 'block-right.html' %}
-        {% include 'block-full-width.html' %}
+        {% for content_block in content_blocks %}
+            {% include 'block-content.html' %}
+        {% endfor %}
 
         {% if expert %}
             {% include 'block-expert.html' %}
