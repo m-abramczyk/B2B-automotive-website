@@ -50,6 +50,7 @@ def general_page(request, slug):
     if page.is_case_studies_index:
         case_studies = CaseStudy.objects.filter(is_published=True)
         cover = []
+        content_blocks = []
     else:
         case_studies = []
         cover = page.cover if page else None

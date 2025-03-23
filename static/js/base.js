@@ -403,6 +403,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentSlideIndex === slides.length - 1) { arrowRightButton.classList.add('arrow-hidden'); }
             else { arrowRightButton.classList.remove('arrow-hidden'); }
         }
+
+        // Set the height of slide caption container to tallest caption
+        function adjustCaptionHeight() {
+            
+            // Skip if block-timeline
+            if (blockContainer.classList.contains('block-timeline')) return;
+            
+            const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
+            if (slideCaptionElements.length === 0) return;
+            let maxHeight = 0;
+            
+            // Temporarily remove class to get natural height
+            slideCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
+
+            // Measure tallest caption
+            maxHeight = Math.max(
+                ...Array.from(slideCaptionElements).map(caption => caption.offsetHeight)
+            );
+
+            // Reapply the class after measurement
+            slideCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
+
+            // Apply height to container
+            slideCaptionContainer.style.height = `${maxHeight}px`;
+        }
     
         updateSlideCounter();
 
@@ -411,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollWidth = slider.offsetWidth;
             updateSlideCounter();
             hideUnusedArrow();
+            adjustCaptionHeight();
         }
 
         window.addEventListener('load', updateCarousel);

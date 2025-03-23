@@ -5,6 +5,7 @@ from django.db import models
 class Label(models.Model):
     COLOR_CHOICES = [
         ('light-grey', 'Light Grey'),
+        ('grey', 'Grey'),
         ('green', 'Green'),
         ('blue', 'Blue'),
         ('purple', 'Purple'),

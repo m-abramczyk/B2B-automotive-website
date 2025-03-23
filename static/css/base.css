@@ -2,6 +2,7 @@
 
     --g3-black: #1e1e1e;
     --g3-dark-grey: #2d2d2d;
+    --g3-grey: #585858;
     --g3-light-grey: #c8c8c8;
     --g3-off-white: #ebebeb;
     --g3-true-white: #fff;
@@ -134,18 +135,18 @@ font sizes */
     :root {
     --nav-padding: 20px;
     --grid-gap: 20px;
-    --grid-margin: clamp(50px, 20px + 1.5625vw, 60px);
+    --grid-margin: clamp(50px, 35px + 0.7813vw, 55px);
 
-    --fs-16: clamp(16px, 10px + 0.3125vw, 18px);                  /* site map nav */
-    --fs-17: clamp(17px, 11px + 0.3125vw, 19px);                  /* labels text */
-    --fs-18: clamp(18px, 12px + 0.3125vw, 20px);                  /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
-    --fs-20: clamp(20px, 8px + 0.625vw, 24px);                    /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
-    --fs-24: clamp(24px, 12px + 0.625vw, 28px);                   /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
+    --fs-16: clamp(16px, 13px + 0.1563vw, 17px);                  /* site map nav */
+    --fs-17: clamp(17px, 14px + 0.1563vw, 18px);                  /* labels text */
+    --fs-18: clamp(18px, 15px + 0.1563vw, 19px);                  /* thumbnail caption / slide caption and counter / buttons / employee data / footer text / form text */
+    --fs-20: clamp(20px, 14px + 0.3125vw, 22px);                  /* nav thumbnail caption / main text block / scroll-nav text / employee contact / footer header */
+    --fs-24: clamp(24px, 18px + 0.3125vw, 26px);                  /* nav text / text block sub-header / thumbnail header / employee header / large slide counter / contact info */
     --fs-36: clamp(36px, 24px + 0.625vw, 40px);                   /* case studies list header */
-    --fs-40: clamp(40px, 10px + 1.5625vw, 50px);                  /* case studies arrow-nav */
-    --fs-48: clamp(48px, 12px + 1.875vw, 60px);                   /* text block main header / clients header */
-    --fs-72: clamp(72px, 36px + 1.875vw, 84px);                   /* section header */
-    --fs-128: clamp(128px, 32px + 5vw, 160px);                    /* main header */
+    --fs-40: clamp(40px, 28px + 0.625vw, 44px);                   /* case studies arrow-nav */
+    --fs-48: clamp(48px, 30px + 0.9375vw, 54px);                  /* text block main header / clients header */
+    --fs-72: clamp(72px, 48px + 1.25vw, 80px);                    /* section header */
+    --fs-128: clamp(128px, 80px + 2.5vw, 144px);                  /* main header */
     }
 
 }
@@ -1077,7 +1078,7 @@ carousel */
 .carousel-nav {
     display: flex;
     gap: var(--grid-gap);
-    align-items: center;
+    align-items: start;
 }
 
 .carousel-footer {
@@ -1222,6 +1223,8 @@ color classes */
 .bg-black {background: var(--g3-black);}
 .dark-grey {color: var(--g3-dark-grey);}
 .bg-dark-grey {background: var(--g3-dark-grey);}
+.grey {color: var(--g3-grey);}
+.bg-grey {background: var(--g3-grey);}
 .light-grey {color: var(--g3-light-grey);}
 .bg-light-grey {background: var(--g3-light-grey);}
 .off-white {color: var(--g3-off-white);}

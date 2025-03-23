@@ -427,6 +427,11 @@ class ContentBlock(models.Model):
         blank=True,
         help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
     )
+    new_tab_1 = models.BooleanField(
+        ('Open in new tab'),
+        default=False,
+    )
+
     button_2_text = models.CharField(
         ('Button 2 text'),
         max_length=60,
@@ -441,6 +446,11 @@ class ContentBlock(models.Model):
         blank=True,
         help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
     )
+    new_tab_2 = models.BooleanField(
+        ('Open in new tab'),
+        default=False,
+    )
+
     button_clients_text = models.CharField(
         ('Clients button text'),
         max_length=60,
@@ -454,6 +464,10 @@ class ContentBlock(models.Model):
         null=True,
         blank=True,
         help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+    )
+    new_tab_clients = models.BooleanField(
+        ('Open in new tab'),
+        default=False,
     )
 
     # Append block flags
