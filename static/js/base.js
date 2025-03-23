@@ -146,6 +146,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     ///////////////////////////////////////////////////////////////////
+    // current section underline
+
+    const sectionLinks = document.querySelectorAll('#nav-desktop > li > a');
+
+    if (sectionLinks.length > 0) {
+        // Get current URL path and normalize it
+        let currentPath = window.location.pathname;
+        currentPath = currentPath.replace(/^\/[a-z]{2}\//, '/'); // Remove "/en/" or any 2-letter language code and replace with "/"
+
+        sectionLinks.forEach(link => {
+            let linkPath = new URL(link.href).pathname;
+            linkPath = linkPath.replace(/^\/[a-z]{2}\//, '/'); // Remove "/en/" if present and replace with "/"
+
+            // Check if current path starts with or includes the link path
+            if (currentPath === linkPath || currentPath.startsWith(linkPath)) {
+                link.classList.add('current-section');
+            }
+        });
+    }
+
+    ///////////////////////////////////////////////////////////////////
     // Nav mobile toggle
 
     const navMobileToggle = document.getElementById('hamb');

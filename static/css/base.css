@@ -857,6 +857,7 @@ blocks left / right / full-width */
 .block-timeline > .carousel-footer {
     grid-column: 1 / span 4;
     grid-row: 2;
+    align-self: end;
 }
 
 /* block full width */
@@ -873,13 +874,14 @@ blocks left / right / full-width */
 .block-full-width > .content-block-image {
     grid-column: 1 / span 12;
     grid-row: 3;
-    /* max-height: calc(100vh - var(--grid-margin) * 5); */
+    max-height: calc(100vh - var(--grid-margin) * 5);
     padding-top: calc(var(--grid-margin) * 0.8); /* 40px */
 }
 
 .block-full-width > .carousel-footer {
     grid-column: 1 / span 4;
     grid-row: 2;
+    align-self: end;
 }
 
 /* block section pages list */
@@ -1151,16 +1153,25 @@ Privacy Policy */
 /*//////////////////////////////////////////////////////////////////////
 Anchors */
 
-/* Underline style */
-
 a {
     color: inherit;
     text-decoration: none;
+}
+
+/* Underline style */
+
+#nav-desktop > li > a,
+#nav-desktop .dropdown-content a h6,
+.section-pages-list-container a h6,         /* section pages list tile */
+.footer-dropdown a,                         /* footer links */
+.breadcrumbs a,
+.header-caption a {                         /* read more */
     box-shadow: inset 0 -0.05em transparent;
-    transition: box-shadow var(--transition-timing-100);
+    transition: box-shadow var(--transition-timing-200);
 }
 
 #nav-desktop > li > a:hover,
+#nav-desktop > li > a.current-section,      /* nav-desktop current section */
 #nav-desktop .dropdown-content a:hover h6,
 #nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
 .section-pages-list-container a:hover h6,   /* section pages list tile */
@@ -1179,7 +1190,7 @@ a {
 .carousel-arrow-left > svg,                 /* carousel arrows */
 .carousel-arrow-right > svg {               /* carousel arrows */
     opacity: 0.7;
-    transition: var(--transition-opacity-100);
+    transition: var(--transition-opacity-200);
 }
 
 #nav-lang-desktop a:hover,                  /* lang selection desktop */
@@ -1193,7 +1204,7 @@ a {
 /* image link hover */
 
 a img {
-    transition: var(--transition-opacity-150);
+    transition: var(--transition-opacity-200);
 }
 
 a:hover img {
