@@ -82,14 +82,21 @@ def contact_page(request):
 
     contact_page_links = contact_page.externallink_set.order_by('order')
     contact_page_link_header = contact_page_links.first()
-
     expert = contact_page.expert
+
+    content_blocks = ContentBlock.objects.filter(
+        content_type=ContentType.objects.get_for_model(Contact),
+        object_id=contact_page.id,
+        ).prefetch_related(
+            Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
+        ).order_by('order')
 
     context = {
         'contact_page': contact_page,
         'contact_page_links': contact_page_links,
         'contact_page_link_header': contact_page_link_header,
         'expert': expert,
+        'content_blocks': content_blocks,
     }
 
     return render(request, 'page-contact.html', context)
