@@ -9,10 +9,12 @@
 
 	<main>
 
+        <!-- Content Blocks -->
         {% for content_block in content_blocks %}
             {% include 'block-content.html' %}
         {% endfor %}
 
+        <!-- Expert Block -->
         {% if expert %}
             {% include 'block-expert.html' %}
         {% endif %}

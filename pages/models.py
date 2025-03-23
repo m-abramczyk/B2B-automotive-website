@@ -374,14 +374,18 @@ class ContentBlock(models.Model):
         ('left', 'Left'),
         ('right', 'Right'),
         ('full-width', 'Full-width'),
-        ('timeline', 'Timeline'),
+    ]
+
+    IMAGE_DISPLAY_TYPES = [
+        ('carousel', 'Carousel'),
+        ('wipe', 'Wipe'),
     ]
 
     # Block Settings
     block_type = models.CharField(
         max_length=20,
         choices=BLOCK_TYPES,
-        default='left'
+        default='left',
     )
     order = models.PositiveIntegerField(
         default=0,
@@ -414,7 +418,7 @@ class ContentBlock(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Buttons are only displayed in Left and Right blocks'),
+        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks'),
     )
     button_1_url = models.CharField(
         ('Button 1 URL'),
@@ -428,10 +432,24 @@ class ContentBlock(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Buttons are only displayed in Left and Right blocks'),
+        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks'),
     )
     button_2_url = models.CharField(
         ('Button 2 URL'),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+    )
+    button_clients_text = models.CharField(
+        ('Clients button text'),
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Fill-in if appending Clients list to this block'),
+    )
+    button_clients_url = models.CharField(
+        ('Clients button URL'),
         max_length=255,
         null=True,
         blank=True,
@@ -449,6 +467,11 @@ class ContentBlock(models.Model):
         default=False,
         help_text=('Append Clients list below the block'),
     )
+    append_timeline = models.BooleanField(
+        ('Append Timeline block'),
+        default=False,
+        help_text=('Append Timeline block below the block'),
+    )
     append_founders = models.BooleanField(
         ('Append Founders list'),
         default=False,
@@ -458,6 +481,15 @@ class ContentBlock(models.Model):
         ('Append Key Specialists list'),
         default=False,
         help_text=('Append Key Specialists list below the block'),
+    )
+
+    # Block Settings
+    display_type = models.CharField(
+        ('Image Display Type'),
+        max_length=20,
+        choices=IMAGE_DISPLAY_TYPES,
+        default='carousel',
+        help_text=('Choose display type for the images. If set to "wipe", the first two images will be used.'),
     )
 
     # Generic relation to support multiple models
@@ -488,32 +520,32 @@ class ContentBlockImage(models.Model):
         upload_to=upload_to,
         blank=True,
         null=True,
-        help_text=('JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right and Timeline) / width: 1680px (block Full-width)'),
+        help_text=('JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
     )
     order = models.PositiveIntegerField(
         default=0,
         blank=False,
         null=False,
     )
-
     caption = models.CharField(
         max_length=120,
         blank=True,
         null=True,
-        help_text=('Main image caption'),
+        help_text=('Image caption'),
     )
-    timeline_caption = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        help_text=('Long caption for timeline block (leave blank for other block types)'),
-    )
-    year = models.CharField(
-        max_length=10,
-        blank=True,
-        null=True,
-        help_text=('Year / date for timeline block. Format DD/MM/YYYY (leave blank for other block types)'),
-    )
+
+    # timeline_caption = models.CharField(
+    #     max_length=255,
+    #     blank=True,
+    #     null=True,
+    #     help_text=('Long caption for timeline block (leave blank for other block types)'),
+    # )
+    # year = models.CharField(
+    #     max_length=30,
+    #     blank=True,
+    #     null=True,
+    #     help_text=('Year / date for timeline block (leave blank for other block types)'),
+    # )
 
     verbose_name = ('Image')
     verbose_name_plural = ('Images')

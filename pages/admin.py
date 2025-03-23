@@ -14,14 +14,12 @@ from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, Ex
 class ContentBlockImageInline(NestedStackedInline):
     fieldsets = (
         (None, {
-            'fields': ('image', 'order',),
-        }),
-        (None, {
-            'fields': ('caption', 'year', 'timeline_caption'),
+            'fields': ('image', 'order', 'caption'),
         }),
     )
     model = ContentBlockImage
     extra = 0
+    sortable_options = {'disabled': True,}
 
 
 # Content Block Inline
@@ -34,14 +32,18 @@ class ContentBlockInline(NestedGenericStackedInline):
             'fields': ('header', 'label', 'text'),
         }),
         (None, {
-            'fields': (('button_1_text', 'button_1_url'), ('button_2_text', 'button_2_url')),
+            'fields': (('button_1_text', 'button_1_url'), ('button_2_text', 'button_2_url'), ('button_clients_text', 'button_clients_url')),
         }),
         (None, {
-            'fields': ('append_scroll_nav', 'append_clients', 'append_founders', 'append_team'),
+            'fields': ('append_scroll_nav', 'append_clients', 'append_timeline', 'append_founders', 'append_team'),
+        }),
+        (None, {
+            'fields': ('display_type',),
         }),
     )
     model = ContentBlock
     extra = 0
+    sortable_options = {'disabled': True,}
     inlines = [ContentBlockImageInline]
 
 

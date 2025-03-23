@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
         handleNavBackground();
         setDropdownTabindex();
-        updateCarousel()
     });
 
     window.addEventListener('resize', () => {
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeNavMobileResize();
         closeAllDropdowns();
         setDropdownTabindex();
-        updateCarousel()
     });
 
     ///////////////////////////////////////////////////////////////////

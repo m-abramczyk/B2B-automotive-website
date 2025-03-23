@@ -14,11 +14,11 @@
 
 		</div>
 
-		<div class="block-text">
+        <div class="block-text">
 
-			<div class="text-20 tinymce">{{ content_block.text|safe }}</div>
+            <div class="text-20 tinymce">{{ content_block.text|safe }}</div>
 
-			{% if content_block.block_type != "full-width" %}
+            {% if content_block.block_type != "full-width" %}
                 {% if content_block.button_1_text or content_block.button_2_text %}
 
                     <div class="button-container">
@@ -33,9 +33,9 @@
                 {% endif %}
             {% endif %}
 
-		</div>
+        </div>
 
-		{% if content_block.block_type != "full-width" %}
+		{% if content_block.block_type == "left" or content_block.block_type == "right" %}
             <div class="block-img">
         {% endif %}
 
@@ -43,7 +43,7 @@
                 {% include 'util-carousel.html' with images=content_block.images.all %}
             {% endif %}
 
-        {% if content_block.block_type != "full-width" %}
+        {% if content_block.block_type == "left" or content_block.block_type == "right" %}
             </div>
         {% endif %}
 

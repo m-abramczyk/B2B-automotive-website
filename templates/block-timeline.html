@@ -1,0 +1,23 @@
+{% block block-timeline %}
+{% load i18n %}
+{% load label_tags %}
+
+	<div class="grid block block-timeline">
+
+		<div class="block-header">
+
+            {% with timeline|get_label as label %}
+                {% include 'util-label.html' %}
+            {% endwith %}
+
+            <h3>{{ timeline.header }}</h3>
+
+		</div>
+
+            {% if timeline.images %}
+                {% include 'util-carousel-timeline.html' with images=timeline.images.all %}
+            {% endif %}
+
+	</div>
+
+{% endblock %}

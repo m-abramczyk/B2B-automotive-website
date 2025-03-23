@@ -21,9 +21,14 @@
                 {% include 'block-section-pages-list.html' %}
             {% endif %}
 
+            <!-- Content Blocks -->
+            {% for content_block in content_blocks %}
+                {% include 'block-content.html' %}
+            {% endfor %}
             
         {% endif %}
 
+        <!-- Expert Block -->
         {% if expert %}
             {% include 'block-expert.html' %}
         {% endif %}
