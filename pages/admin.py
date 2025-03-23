@@ -29,7 +29,7 @@ class ContentBlockInline(NestedGenericStackedInline):
             'fields': ('order', 'block_type'),
         }),
         (None, {
-            'fields': ('header', 'label', 'text'),
+            'fields': ('header', 'block_id', 'label', 'text'),
         }),
         (None, {
             'fields': (('button_1_text', 'button_1_url', 'new_tab_1'), ('button_2_text', 'button_2_url', 'new_tab_2'), ('button_clients_text', 'button_clients_url', 'new_tab_clients')),
@@ -44,6 +44,7 @@ class ContentBlockInline(NestedGenericStackedInline):
     model = ContentBlock
     extra = 0
     sortable_options = {'disabled': True,}
+    prepopulated_fields= {'block_id': ('header',),}
     inlines = [ContentBlockImageInline]
 
 

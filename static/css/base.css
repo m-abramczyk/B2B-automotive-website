@@ -154,6 +154,10 @@ font sizes */
 /*//////////////////////////////////////////////////////////////////////
 general styles */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     position: relative;
     font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;

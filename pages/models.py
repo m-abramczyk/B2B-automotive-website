@@ -392,6 +392,14 @@ class ContentBlock(models.Model):
         blank=False,
         null=False,
     )
+    block_id = models.SlugField(
+        ('Block ID'),
+        max_length=20,
+        # unique=True,
+        blank=True,
+        null=True,
+        help_text=('For scroll navigation. ID is created automatically based on header'),
+    )
 
     # Block content
     header = models.CharField(

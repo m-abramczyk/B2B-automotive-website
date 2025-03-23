@@ -10,7 +10,7 @@ def navigation_context(request):
 
     # Fetch child pages for each section
     section_1_children = Page.objects.filter(parent=section_1_parent, is_published=True).only('menu_title', 'footer_title', 'slug', 'thumbnail').order_by('order') if section_1_parent else []
-    section_2_children = Page.objects.filter(parent=section_2_parent, is_published=True).only('menu_title', 'footer_title', 'slug', 'thumbnail').order_by('order') if section_1_parent else []
+    section_2_children = Page.objects.filter(parent=section_2_parent, is_published=True).only('menu_title', 'footer_title', 'slug', 'thumbnail').order_by('order') if section_2_parent else []
 
     # Fetch contact page data
     contact_page = Contact.objects.only('menu_title', 'footer_title', 'address_footer').first()
