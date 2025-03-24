@@ -15,8 +15,8 @@ class Cover(models.Model):
         upload_to=upload_to,
         null=True,
         blank=True,
-        validators=[FileExtensionValidator(allowed_extensions=['mp4'])],
-        help_text=('mp4 file, recommended max size: 4Mb / length: ~30s. Upload either Video or Image Cover, not both.'),
+        validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm'])],
+        help_text=('WEBM / MP4 file, recommended max size: 4Mb / length: ~30s. Upload either Video or Image Cover, not both.'),
     )
 
     # Cover Image

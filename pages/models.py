@@ -1,11 +1,14 @@
 import os
+from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
-from django.urls import reverse
-from django.db import models
 
-from tinymce.models import HTMLField
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+
+from tinymce.models import HTMLField
+
+from django.urls import reverse
+from django.db import models
 
 from covers.models import Cover
 from experts.models import Expert
@@ -504,13 +507,25 @@ class ContentBlock(models.Model):
         help_text=('Append Key Specialists list below the block'),
     )
 
-    # Block Settings
+    # Carousel Settings
     display_type = models.CharField(
         ('Image Display Type'),
         max_length=20,
         choices=IMAGE_DISPLAY_TYPES,
         default='carousel',
         help_text=('Choose display type for the images. If set to "wipe", the first two images will be used.'),
+    )
+    video = models.FileField(
+        upload_to=upload_to,
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm'])],
+        help_text=('Overrides Image Display Type: replaces carousel with a single video: WEBM / MP4 file / recommended max size: 4Mb / length: ~30s'),
+    )
+    video_caption = models.CharField(
+        max_length=120,
+        blank=True,
+        null=True,
     )
 
     # Generic relation to support multiple models
@@ -525,6 +540,10 @@ class ContentBlock(models.Model):
 
     def __str__(self):
         return self.header
+    
+    @property
+    def slug(self):
+        return self.content_object.slug
 
 
 #//////////////////////////////////////////////////////////////
@@ -541,7 +560,7 @@ class ContentBlockImage(models.Model):
         upload_to=upload_to,
         blank=True,
         null=True,
-        help_text=('JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
+        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
     )
     order = models.PositiveIntegerField(
         default=0,
@@ -552,7 +571,6 @@ class ContentBlockImage(models.Model):
         max_length=120,
         blank=True,
         null=True,
-        help_text=('Image caption'),
     )
 
     # timeline_caption = models.CharField(

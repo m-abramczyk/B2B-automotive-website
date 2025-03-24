@@ -6,7 +6,11 @@
         {% if cover.cover_video %}
 
             <video id="cover" autoplay playsinline muted loop>
+                {% if cover.cover_video.url|lower|slice:"-5:" == ".webm" %}
+                    <source src="{{ cover.cover_video.url }}" type="video/webm">
+                {% elif cover.cover_video.url|lower|slice:"-4:" == ".mp4" %}
                     <source src="{{ cover.cover_video.url }}" type="video/mp4">
+                {% endif %}
             </video>
 
         {% elif cover.cover_desktop and cover.cover_laptop and cover.cover_tablet and cover.cover_mobile %}

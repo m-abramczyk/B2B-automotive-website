@@ -38,7 +38,7 @@ class ContentBlockInline(NestedGenericStackedInline):
             'fields': ('append_scroll_nav', 'append_clients', 'append_timeline', 'append_founders', 'append_team'),
         }),
         (None, {
-            'fields': ('display_type',),
+            'fields': ('display_type', 'video', 'video_caption'),
         }),
     )
     model = ContentBlock

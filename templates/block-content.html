@@ -39,8 +39,35 @@
             <div class="block-img">
         {% endif %}
 
-            {% if content_block.images %}
-                {% include 'util-carousel.html' with images=content_block.images.all %}
+            {% if content_block.video %}
+
+                <!-- Video display -->
+                <div class="content-block-image">
+
+                        <video autoplay playsinline muted loop controls>
+                            {% if content_block.video.url|lower|slice:"-5:" == ".webm" %}
+                                <source src="{{ content_block.video.url }}" type="video/webm">
+                            {% elif content_block.video.url|lower|slice:"-4:" == ".mp4" %}
+                                <source src="{{ content_block.video.url }}" type="video/mp4">
+                            {% endif %}
+                        </video>
+
+                </div>
+
+                <div class="carousel-footer">
+
+                    {% if content_block.video_caption %}
+                            <p class="text-18">{{ content_block.video_caption }}</p>
+                    {% endif %}
+                    
+                </div>
+
+            {% else %}
+
+                {% if content_block.images %}
+                    {% include 'util-carousel.html' with images=content_block.images.all %}
+                {% endif %}
+
             {% endif %}
 
         {% if content_block.block_type == "left" or content_block.block_type == "right" %}
