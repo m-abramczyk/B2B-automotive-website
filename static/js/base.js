@@ -476,56 +476,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const container = wiper;
         let barActive = false;
+        let currentRatio = 0.5;
         
         // Initialize or reset divider position
         function initializeDivider() {
             const containerWidth = container.offsetWidth;
-            const initLeft = containerWidth / 2;
-            
+            const initLeft = containerWidth * currentRatio;
+
             divider.style.left = `${initLeft}px`;
             imageLeftContainer.style.width = `${initLeft}px`;
             imageLeft.style.minWidth = `${containerWidth}px`;
         }
 
-        // Function to update divider position based on pointer events
+        // Update divider position based on clientX coordinate
         function moveDivider(clientX) {
             const rect = container.getBoundingClientRect();
             let newLeft = clientX - rect.left;
 
             // Constrain divider within bounds
-            if (newLeft < 10) newLeft = 10;
-            if (newLeft > rect.width - 10) newLeft = rect.width - 10;
+            if (newLeft < 1) newLeft = 1;
+            if (newLeft > rect.width - 1) newLeft = rect.width - 1;
 
             // Update divider position and left image container width
+            currentRatio = newLeft / rect.width;
             divider.style.left = `${newLeft}px`;
             imageLeftContainer.style.width = `${newLeft}px`;
         }
+        
+        // Enable dragging when user presses down on the divider
+        divider.addEventListener('pointerdown', (e) => {
+            barActive = true;
+            e.preventDefault();
+            divider.setPointerCapture(e.pointerId);
+            container.style.cursor = 'ew-resize'; // Change cursor on pointerdown
+        });
 
         // Update wiper during drag
-        function updateWiper(e) {
-            if (barActive && e.type === 'mousemove') {
-
-                // Use setTimeout to remove rapid fire
+        container.addEventListener('pointermove', (e) => {
+            if (barActive) {
                 requestAnimationFrame(() => {
                     moveDivider(e.clientX);
                 });
             }
-        }
-        
-        // Enable dragging on mousedown
-        divider.addEventListener('mousedown', (e) => {
-            barActive = true;
-            e.preventDefault();
         });
-    
-        container.addEventListener('mousemove', updateWiper);
-        container.addEventListener('mouseup', () => { barActive = false; });
-        container.addEventListener('mouseleave', () => { barActive = false; });
 
-        // Jump to click position
+        // When pointer is released or canceled, stop dragging
+        const endInteraction = (e) => {
+            barActive = false;
+            container.style.cursor = 'default'; // Reset cursor on release
+        };
+
+        container.addEventListener('pointerup', endInteraction);
+        container.addEventListener('pointercancel', endInteraction);
+        container.addEventListener('pointerleave', endInteraction);
+
+        // Jump-to-click
         container.addEventListener('pointerdown', (e) => {
-            moveDivider(e.clientX);
-            barActive = true; // Allow dragging to continue after jump
+            // Check if the event target is not the divider
+            if (!divider.contains(e.target)) {
+                e.preventDefault();
+                // Capture pointer events on container so dragging continues even if pointer leaves
+                container.setPointerCapture(e.pointerId);
+                moveDivider(e.clientX);
+                barActive = true;                
+                container.style.cursor = 'ew-resize'; // Change cursor on jump-to-click
+            }
         });
 
         initializeDivider();

@@ -1102,6 +1102,7 @@ carousel */
     left: 0;
     height: 100%;
     overflow: hidden;
+    pointer-events: none;
     transition: width 100ms ease;
 }
 
@@ -1114,6 +1115,7 @@ carousel */
     width: 30px;
     transform: translateX(-50%);
     cursor: ew-resize;
+    user-select: none;
     transition: left 100ms ease;
 }
 
@@ -1121,6 +1123,8 @@ carousel */
     width: 2px;
     transform: translateX(-50%);
     background: var(--g3-off-white);
+    pointer-events: none;
+    user-select: none;
 }
 
 /* carousel nav */
