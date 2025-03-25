@@ -1,5 +1,6 @@
 {% block block-content %}
 {% load i18n %}
+{% load static %}
 {% load label_tags %}
 
 	<div class="grid block block-{{ content_block.block_type }}" id="{{ content_block.block_id }}">
@@ -42,9 +43,9 @@
             {% if content_block.video %}
 
                 <!-- Video display -->
-                <div class="content-block-image">
+                <div class="content-block-video">
 
-                        <video autoplay playsinline muted loop controls>
+                        <video autoplay playsinline muted loop controls disablepictureinpicture oncontextmenu="return false;">
                             {% if content_block.video.url|lower|slice:"-5:" == ".webm" %}
                                 <source src="{{ content_block.video.url }}" type="video/webm">
                             {% elif content_block.video.url|lower|slice:"-4:" == ".mp4" %}

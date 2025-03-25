@@ -32,6 +32,7 @@ class CaseStudyAdmin(admin.ModelAdmin):
     )
     list_display = ('menu_title', 'order', 'is_published')
     list_editable = ('order', 'is_published')
+    ordering = ['order']
     prepopulated_fields= {
         'slug': ('menu_title',),
         }

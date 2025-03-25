@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     hideUnusedArrow();
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.51 }); // slightly over half of slide has to be visible to update slide data, to ensure that snap scrolling triggers
     
         slides.forEach(slide => observer.observe(slide));
     
@@ -463,6 +463,74 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', updateCarousel);
         window.addEventListener('resize', updateCarousel);
 
+    });
+
+    ///////////////////////////////////////////////////////////////////
+    // Wiper
+
+    document.querySelectorAll('.image-wiper').forEach((wiper) => {
+        const blockContainer = wiper.closest('.block'); // Scope to contentBlock
+        const divider = blockContainer.querySelector('.divider');
+        const imageLeftContainer = blockContainer.querySelector('.wiper-left');
+        const imageLeft = blockContainer.querySelector('.wiper-left > img');
+
+        const container = wiper;
+        let barActive = false;
+        
+        // Initialize or reset divider position
+        function initializeDivider() {
+            const containerWidth = container.offsetWidth;
+            const initLeft = containerWidth / 2;
+            
+            divider.style.left = `${initLeft}px`;
+            imageLeftContainer.style.width = `${initLeft}px`;
+            imageLeft.style.minWidth = `${containerWidth}px`;
+        }
+
+        // Function to update divider position based on pointer events
+        function moveDivider(clientX) {
+            const rect = container.getBoundingClientRect();
+            let newLeft = clientX - rect.left;
+
+            // Constrain divider within bounds
+            if (newLeft < 10) newLeft = 10;
+            if (newLeft > rect.width - 10) newLeft = rect.width - 10;
+
+            // Update divider position and left image container width
+            divider.style.left = `${newLeft}px`;
+            imageLeftContainer.style.width = `${newLeft}px`;
+        }
+
+        // Update wiper during drag
+        function updateWiper(e) {
+            if (barActive && e.type === 'mousemove') {
+
+                // Use setTimeout to remove rapid fire
+                requestAnimationFrame(() => {
+                    moveDivider(e.clientX);
+                });
+            }
+        }
+        
+        // Enable dragging on mousedown
+        divider.addEventListener('mousedown', (e) => {
+            barActive = true;
+            e.preventDefault();
+        });
+    
+        container.addEventListener('mousemove', updateWiper);
+        container.addEventListener('mouseup', () => { barActive = false; });
+        container.addEventListener('mouseleave', () => { barActive = false; });
+
+        // Jump to click position
+        container.addEventListener('pointerdown', (e) => {
+            moveDivider(e.clientX);
+            barActive = true; // Allow dragging to continue after jump
+        });
+
+        initializeDivider();
+        window.addEventListener('resize', initializeDivider);
+    
     });
 
 });

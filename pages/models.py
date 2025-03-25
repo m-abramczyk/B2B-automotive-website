@@ -588,6 +588,7 @@ class ContentBlockImage(models.Model):
 
     verbose_name = ('Image')
     verbose_name_plural = ('Images')
+    ordering = ['order']
 
     def __str__(self):
         return os.path.basename(self.image.name)

@@ -19,6 +19,7 @@ class ContentBlockImageInline(NestedStackedInline):
     )
     model = ContentBlockImage
     extra = 0
+    ordering = ['order']
     sortable_options = {'disabled': True,}
 
 
@@ -43,6 +44,7 @@ class ContentBlockInline(NestedGenericStackedInline):
     )
     model = ContentBlock
     extra = 0
+    ordering = ['order']
     sortable_options = {'disabled': True,}
     prepopulated_fields= {'block_id': ('header',),}
     inlines = [ContentBlockImageInline]
@@ -58,6 +60,7 @@ class ExternalLinkInline(NestedTabularInline):
     model = ExternalLink
     extra = 1
     max_num = 3
+    ordering = ['order']
 
 
 # Privacy Policy Button Inline
@@ -70,6 +73,7 @@ class PrivacyPolicyButtonInline(admin.TabularInline):
     model = PrivacyPolicyButton
     extra = 1
     max_num = 3
+    ordering = ['order']
 
 
 # /////////////////////////////////////////////////////////////
