@@ -33,7 +33,7 @@ class ContentBlockInline(NestedGenericStackedInline):
             'fields': ('header', 'block_id', 'label', 'text'),
         }),
         (None, {
-            'fields': (('button_1_text', 'button_1_url', 'new_tab_1'), ('button_2_text', 'button_2_url', 'new_tab_2'), ('button_clients_text', 'button_clients_url', 'new_tab_clients')),
+            'fields': (('button_1_text', 'button_1_url', 'new_tab_1'), ('button_2_text', 'button_2_url', 'new_tab_2')),
         }),
         (None, {
             'fields': ('append_scroll_nav', 'append_clients', 'append_timeline', 'append_founders', 'append_team'),
@@ -245,7 +245,7 @@ class PageNotFoundAdmin(admin.ModelAdmin):
         return False
 
 
-# admin.site.register(ContentBlock, ContentBlockAdmin)
+
 admin.site.register(HomePage, HomePageAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Contact, ContactAdmin)

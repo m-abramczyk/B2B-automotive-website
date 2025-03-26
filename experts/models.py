@@ -14,7 +14,7 @@ class Expert(models.Model):
         max_length=60,
     )
     role = models.TextField(
-        max_length=60,
+        max_length=120,
         blank=True,
         null=True,
         help_text=('Expert role. Format text with break-lines, max 60 characters'),

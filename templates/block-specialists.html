@@ -1,0 +1,20 @@
+{% block block-specialists %}
+{% load i18n %}
+
+	<div class="grid block block-team" id="specialists">
+            
+        <h3>{{ specialists.header }}</h3>        
+
+		<div>
+
+            {% for specialist in specialists.specialists.all %}
+                <img src="{{ specialist.thumbnail.url }}" alt="{{ specialist.name }}">
+                <p>{{ specialist.name }}</p>
+                <p>{{ specialist.role }}</p>
+            {% endfor %}
+
+		</div>
+
+	</div>	
+
+{% endblock %}

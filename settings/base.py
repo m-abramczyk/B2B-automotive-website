@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'covers',
     'experts',
     'labels',
+    'special_blocks',
 ]
 
 MIDDLEWARE = [

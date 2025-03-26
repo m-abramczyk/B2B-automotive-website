@@ -1,0 +1,20 @@
+{% block block-founders %}
+{% load i18n %}
+
+	<div class="grid block block-team" id="founders">
+            
+        <h3>{{ founders.header }}</h3>        
+
+		<div>
+
+            {% for founder in founders.founders.all %}
+                <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
+                <p>{{ founder.name }}</p>
+                <p>{{ founder.role }}</p>
+            {% endfor %}
+
+		</div>
+
+	</div>	
+
+{% endblock %}

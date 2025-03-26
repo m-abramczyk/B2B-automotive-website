@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 from case_studies.models import CaseStudy
+from special_blocks.helpers import get_special_blocks
 
 
 #////////////////////////////////////////////////////
@@ -23,14 +24,17 @@ def home_page(request):
         ).prefetch_related(
             Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
         ).order_by('order')
+    
+    special_blocks = get_special_blocks(page_data)
 
     context = {
         'page_data': page_data,
         'cover': cover,
         'expert': expert,
         'content_blocks': content_blocks,
+        **special_blocks,
     }
-
+    
     return render(request, 'index.html', context)
 
 
@@ -47,29 +51,31 @@ def general_page(request, slug):
         page = get_object_or_404(Page, slug=part, parent=parent)
         parent = page
 
-    if page.is_case_studies_index:
-        case_studies = CaseStudy.objects.filter(is_published=True)
-        cover = []
-        content_blocks = []
-    else:
-        case_studies = []
-        cover = page.cover if page else None
-
-        content_blocks = ContentBlock.objects.filter(
-            content_type=ContentType.objects.get_for_model(Page),
-            object_id=page.id,
-            ).prefetch_related(
-                Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
-            ).order_by('order')
-
     context = {
         'page_data': page,
-        'case_studies': case_studies,
-        'cover': cover,
-        'expert': page.expert,
-        'content_blocks': content_blocks,
+        'case_studies': [],
+        'cover': None,
+        'expert': None,
+        'content_blocks': [],        
     }
 
+    if page.is_case_studies_index:
+        context['case_studies'] = CaseStudy.objects.filter(is_published=True)
+        context['expert'] = page.expert
+    else:
+        context['cover'] = page.cover
+        context['expert'] = page.expert
+        
+        context['content_blocks'] = ContentBlock.objects.filter(
+            content_type=ContentType.objects.get_for_model(Page),
+            object_id=page.id,
+        ).prefetch_related(
+            Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
+        ).order_by('order')
+        
+        special_blocks = get_special_blocks(page)
+        context.update(special_blocks)
+    
     return render(request, 'page-general.html', context)
 
 
@@ -90,6 +96,8 @@ def contact_page(request):
         ).prefetch_related(
             Prefetch('images', queryset=ContentBlockImage.objects.order_by('order'))
         ).order_by('order')
+    
+    special_blocks = get_special_blocks(contact_page)
 
     context = {
         'contact_page': contact_page,
@@ -97,6 +105,7 @@ def contact_page(request):
         'contact_page_link_header': contact_page_link_header,
         'expert': expert,
         'content_blocks': content_blocks,
+        **special_blocks,
     }
 
     return render(request, 'page-contact.html', context)

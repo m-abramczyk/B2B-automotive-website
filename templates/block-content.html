@@ -78,7 +78,15 @@
 	</div>
 
     {% if content_block.append_clients %}
-        {% include 'block-clients.html' %}
+        {% include 'block-clients.html' with clients=clients %}
+    {% endif %}
+
+    {% if content_block.append_founders %}
+        {% include 'block-founders.html' with founders=founders %}
+    {% endif %}
+
+    {% if content_block.append_team %}
+        {% include 'block-specialists.html' with specialists=specialists %}
     {% endif %}
 
 {% endblock %}

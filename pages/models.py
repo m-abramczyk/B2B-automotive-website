@@ -461,25 +461,6 @@ class ContentBlock(models.Model):
         default=False,
     )
 
-    button_clients_text = models.CharField(
-        ('Clients button text'),
-        max_length=60,
-        blank=True,
-        null=True,
-        help_text=('Fill-in if appending Clients list to this block'),
-    )
-    button_clients_url = models.CharField(
-        ('Clients button URL'),
-        max_length=255,
-        null=True,
-        blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
-    )
-    new_tab_clients = models.BooleanField(
-        ('Open in new tab'),
-        default=False,
-    )
-
     # Append block flags
     append_scroll_nav = models.BooleanField(
         ('Append scroll nav'),
@@ -568,7 +549,7 @@ class ContentBlockImage(models.Model):
         null=False,
     )
     caption = models.CharField(
-        max_length=120,
+        max_length=240,
         blank=True,
         null=True,
     )
@@ -586,9 +567,10 @@ class ContentBlockImage(models.Model):
     #     help_text=('Year / date for timeline block (leave blank for other block types)'),
     # )
 
-    verbose_name = ('Image')
-    verbose_name_plural = ('Images')
-    ordering = ['order']
+    class Meta:
+        verbose_name = ('Image')
+        verbose_name_plural = ('Images')
+        ordering = ['order']
 
     def __str__(self):
         return os.path.basename(self.image.name)
