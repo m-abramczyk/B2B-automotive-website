@@ -900,7 +900,13 @@ blocks left / right / full-width */
     padding-bottom: var(--grid-margin); /* 50px */
 }
 
-.slide-long-caption-container {
+.timeline-captions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.slide-long-caption-container p {
     padding-top: var(--fs-24);
 }
 
@@ -1858,6 +1864,11 @@ color classes */
 
     .block-full-width > .carousel-footer {
         padding-top: calc(var(--grid-gap) * 0.6); /* 12px */
+    }
+
+    /* block timeline */
+    .timeline-captions {
+        justify-content: flex-start;
     }
 
 }
