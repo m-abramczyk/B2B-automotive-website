@@ -1,16 +1,18 @@
 {% block block-founders %}
 {% load i18n %}
 
-	<div class="grid block block-team" id="founders">
+	<div class="block block-team" id="founders">
             
         <h3>{{ founders.header }}</h3>        
 
-		<div>
+		<div class="grid">
 
             {% for founder in founders.founders.all %}
-                <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
-                <p>{{ founder.name }}</p>
-                <p>{{ founder.role }}</p>
+                <div>
+                    <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
+                    <h5 class="text-20 true-white">{{ founder.name }}</h5>
+                    <p class="text-18 light-grey text-block">{{ founder.role }}</p>
+                </div>
             {% endfor %}
 
 		</div>

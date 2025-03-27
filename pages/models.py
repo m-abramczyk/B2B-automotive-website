@@ -504,7 +504,7 @@ class ContentBlock(models.Model):
         help_text=('Overrides Image Display Type: replaces carousel with a single video: WEBM / MP4 file / recommended max size: 4Mb / length: ~30s'),
     )
     video_caption = models.CharField(
-        max_length=120,
+        max_length=240,
         blank=True,
         null=True,
     )

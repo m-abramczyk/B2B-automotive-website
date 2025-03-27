@@ -979,6 +979,30 @@ blocks left / right / full-width */
     height: calc(var(--grid-margin) * 2.5); /* 125px */
 }
 
+/* block team */
+.block-team > .grid {
+    row-gap: calc(var(--grid-gap) * 2);
+}
+
+.block-team > .grid > * {
+    grid-column: span 3;
+}
+
+.block-team h3 {
+    padding-inline: calc(var(--grid-margin)* 2);
+    padding-bottom: calc(var(--grid-margin) * 1.5); /* 75px */
+}
+
+.block-team h5 {
+    padding-top: var(--fs-20);
+    padding-bottom: calc(var(--fs-24) / 3);
+}
+
+.block-team img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+}
+
 /*//////////////////////////////////////////////////////////////////////
 utilities */
 
@@ -1465,6 +1489,16 @@ color classes */
         gap: calc(var(--grid-margin) * 2.5); /* 100px */
     }
 
+    /* block team */
+    .block-team h3 {
+        padding-bottom: calc(var(--grid-margin) * 1.25); /* 50px */
+    }
+
+    .block-team h5 {
+        padding-top: var(--fs-18);
+        padding-bottom: calc(var(--fs-18) / 3);
+    }
+
     /*//////////////////////////////////////////////////////////////////////
     Privacy Policy */
 
@@ -1636,6 +1670,17 @@ color classes */
     /* block clients */
     .block-clients {
         gap: calc(var(--grid-margin) * 2.5); /* 100px */
+    }
+
+    /* block team */
+    .block-team h3 {
+        padding-inline: var(--grid-margin);
+        padding-bottom: var(--grid-margin); /* 40px */
+    }
+    
+    .block-team h5 {
+        padding-top: var(--fs-18);
+        padding-bottom: calc(var(--fs-18) / 3);
     }
 
     /*//////////////////////////////////////////////////////////////////////
@@ -1992,6 +2037,17 @@ color classes */
 
     .block-clients > *:nth-child(2) {
         gap: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+
+    /* block team */
+    .block-team h3 {
+        padding-inline: var(--grid-margin);
+        padding-bottom: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+    
+    .block-team h5 {
+        padding-top: calc(var(--fs-18) * 0.75);
+        padding-bottom: calc(var(--fs-18) / 3);
     }
 
     /* map */    
