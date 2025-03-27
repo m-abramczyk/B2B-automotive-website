@@ -1,6 +1,8 @@
 import os
 from django.db import models
 
+from labels.models import Label
+
 
 def upload_to_clients(instance, filename):
     return f'clients/{filename}'
@@ -211,3 +213,70 @@ class SpecialistInfo(models.Model):
 
 #//////////////////////////////////////////////////////////////
 # Timeline
+
+class Timeline(models.Model):
+
+    header = models.CharField(
+        max_length=80,
+        help_text=('Block header (required), max 80 characters.'),
+    )
+    label = models.ForeignKey(
+        Label, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        help_text=('Choose or create a new label. Labels are reusable accross the page')
+    )
+
+    class Meta:
+        verbose_name = ('Timeline')
+        verbose_name_plural = ('Timeline')
+
+    def __str__(self):
+        return 'Timeline'
+
+# Timeline Image
+
+class TimelineImage(models.Model):
+    timeline = models.ForeignKey(
+        Timeline,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
+
+    image = models.ImageField(
+        upload_to=upload_to_timeline,
+        blank=True,
+        null=True,
+        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    caption = models.CharField(
+        max_length=240,
+        blank=True,
+        null=True,
+    )
+    long_caption = models.TextField(
+        max_length=600,
+        blank=True,
+        null=True,
+    )
+    year = models.CharField(
+        max_length=30,
+        blank=True,
+        null=True,
+        help_text=('Year / date, for example "2022" or "Ferbruary 2025"'),
+    )
+
+    class Meta:
+        verbose_name = ('Timeline Image')
+        verbose_name_plural = ('Timeline Images')
+        ordering = ['order']
+
+    def __str__(self):
+        return os.path.basename(self.image.name)

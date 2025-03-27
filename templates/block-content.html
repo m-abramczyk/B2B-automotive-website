@@ -81,6 +81,10 @@
         {% include 'block-clients.html' with clients=clients %}
     {% endif %}
 
+    {% if content_block.append_timeline %}
+        {% include 'block-timeline.html' with timeline=timeline %}
+    {% endif %}
+
     {% if content_block.append_founders %}
         {% include 'block-founders.html' with founders=founders %}
     {% endif %}

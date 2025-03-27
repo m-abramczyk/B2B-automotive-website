@@ -34,7 +34,7 @@
             <div class="content-block-image carousel-slider">
                 
                 {% for image in images %}
-                    <img src="{{ image.image.url }}" data-image-caption="{{ image.caption }}" alt="{{ image.caption }}">
+                    <img src="{{ image.image.url }}" data-image-caption="{{ image.caption|default:'' }}" alt="{{ image.caption|default:'No image caption' }}">
                 {% endfor %}
 
             </div>

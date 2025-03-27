@@ -1,7 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from pages.models import ContentBlock
-from .models import Clients, Founders, Specialists
-# , Timeline
+from .models import Clients, Founders, Specialists, Timeline
 
 def get_special_blocks(page):
     """
@@ -42,8 +41,8 @@ def get_special_blocks(page):
         special['has_specialists'] = True
         special['specialists'] = Specialists.objects.prefetch_related('specialists').first()
         
-    # if content_blocks.filter(append_timeline=True).exists():
-    #     special['has_timeline'] = True
-    #     special['timeline'] = Timeline.objects.first()
+    if content_blocks.filter(append_timeline=True).exists():
+        special['has_timeline'] = True
+        special['timeline'] = Timeline.objects.prefetch_related('images').first()
 
     return special

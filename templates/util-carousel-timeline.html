@@ -4,15 +4,15 @@
     <div class="content-block-image carousel-slider">
                 
         {% for image in images %}
-            <img src="{{ image.image.url }}" data-image-caption="{{ image.caption }}" alt="{{ image.caption }}">
+            <img src="{{ image.image.url }}" data-image-year="{{ image.year|default:'' }}:" data-image-caption="{{ image.caption|default:'' }}" data-image-long-caption="{{ image.long_caption|default:'' }}" alt="{{ image.caption|default:'No image caption' }}">
         {% endfor %}
-
+        
     </div>
 
     <div class="carousel-footer">
         <div>
 
-            <div class="carousel-counter text-18 tabular light-grey">
+            <div class="carousel-counter text-24 tabular off-white">
                 <div class="slide-index-container">
                 <!-- Slide indexes are dynamically added here -->
                 </div>
@@ -41,15 +41,11 @@
 
             <div class="slide-year-container text-24 red">
                 <!-- Slide caption is dynamically updated here -->
-                <p>{{ images.0.year }}</p>
             </div>
-            <div class="slide-caption-container text-24">
+            <div class="slide-caption-container text-24 true-white">
                 <!-- Slide caption is dynamically updated here -->
             </div>
-            <div class="slide-long-caption-container text-18">
-                <!-- Slide caption is dynamically updated here -->
-                <p>{{ images.0.timeline_caption }}</p>
-            </div>
+            <div class="slide-long-caption-container text-18 text-block off-white"></div>
 
         </div>
 

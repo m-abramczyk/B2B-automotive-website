@@ -554,19 +554,6 @@ class ContentBlockImage(models.Model):
         null=True,
     )
 
-    # timeline_caption = models.CharField(
-    #     max_length=255,
-    #     blank=True,
-    #     null=True,
-    #     help_text=('Long caption for timeline block (leave blank for other block types)'),
-    # )
-    # year = models.CharField(
-    #     max_length=30,
-    #     blank=True,
-    #     null=True,
-    #     help_text=('Year / date for timeline block (leave blank for other block types)'),
-    # )
-
     class Meta:
         verbose_name = ('Image')
         verbose_name_plural = ('Images')

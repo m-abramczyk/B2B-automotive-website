@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import ClientLogo, Clients, FounderInfo, Founders, SpecialistInfo, Specialists
-# , TimelineImage, Timeline
+from .models import ClientLogo, Clients, FounderInfo, Founders, SpecialistInfo, Specialists, TimelineImage, Timeline
 
 
 
@@ -122,3 +121,42 @@ class SpecialistsAdmin(admin.ModelAdmin):
         return False
 
 admin.site.register(Specialists, SpecialistsAdmin)
+
+
+#//////////////////////////////////////////////////////////////
+# Timeline
+
+# Timeline Inline
+class TimelineImageInline(admin.StackedInline):
+    fieldsets = (
+        (None, {
+            'fields': ('image', 'order'),
+        }),
+        ('Captions', {
+            'classes': ('collapse',),
+            'fields': ('year', 'caption', 'long_caption'),
+        }),
+
+    )
+    model = TimelineImage
+    extra = 1
+    ordering = ['order']
+
+
+# Timeline
+class TimelineAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('header', 'label'),
+        }),
+    )
+    inlines = [
+        TimelineImageInline,
+    ]
+
+    # def has_add_permission(self, request):
+    #     return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
+
+admin.site.register(Timeline, TimelineAdmin)

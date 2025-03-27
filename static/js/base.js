@@ -359,8 +359,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrowLeftButton = blockContainer.querySelector('.carousel-arrow-left');
         const arrowRightButton = blockContainer.querySelector('.carousel-arrow-right');
         const slideIndexContainer = blockContainer.querySelector('.slide-index-container');
-        const slideCaptionContainer = blockContainer.querySelector('.slide-caption-container');
         const counterContainer = blockContainer.querySelector('.carousel-counter');
+        const slideCaptionContainer = blockContainer.querySelector('.slide-caption-container');
+        const slideLongCaptionContainer = blockContainer.querySelector('.slide-long-caption-container');
+        const slideYearContainer = blockContainer.querySelector('.slide-year-container');
     
         let scrollWidth = slider.offsetWidth;
         let currentSlideIndex = 0;
@@ -396,6 +398,19 @@ document.addEventListener('DOMContentLoaded', () => {
             captionElement.textContent = slide.dataset.imageCaption || ''; // Use data attribute for caption
             captionElement.classList.add('slide-caption');
             slideCaptionContainer.appendChild(captionElement);
+
+            if (blockContainer.classList.contains('block-timeline')) {
+                // Create Timeline captions
+                const yearElement = document.createElement('p');
+                yearElement.textContent = slide.dataset.imageYear || '';
+                yearElement.classList.add('slide-caption');
+                slideYearContainer.appendChild(yearElement);
+
+                const longCaptionElement = document.createElement('p');
+                longCaptionElement.textContent = slide.dataset.imageLongCaption || '';
+                longCaptionElement.classList.add('slide-caption');
+                slideLongCaptionContainer.appendChild(longCaptionElement);
+            }
         });
 
         const slideNumberElement = document.createElement('p');
@@ -408,11 +423,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const slideIndexElements = slideIndexContainer.querySelectorAll('.slide-index');
             const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
 
-            slideIndexElements.forEach(element => { element.classList.remove('current-slide'); });        
+            slideIndexElements.forEach(element => { element.classList.remove('current-slide'); });
             slideIndexElements[currentSlideIndex].classList.add('current-slide');
 
-            slideCaptionElements.forEach(element => { element.classList.remove('current-caption'); });        
+            slideCaptionElements.forEach(element => { element.classList.remove('current-caption'); });
             slideCaptionElements[currentSlideIndex].classList.add('current-caption');
+
+            if (blockContainer.classList.contains('block-timeline')) {
+
+                const slideLongCaptionElements = slideLongCaptionContainer.querySelectorAll('.slide-caption');
+                const slideYearElements = slideYearContainer.querySelectorAll('.slide-caption');
+
+                slideYearElements.forEach(element => { element.classList.remove('current-caption'); });
+                slideYearElements[currentSlideIndex].classList.add('current-caption');
+
+                slideLongCaptionElements.forEach(element => { element.classList.remove('current-caption'); });        
+                slideLongCaptionElements[currentSlideIndex].classList.add('current-caption'); 
+            }
         }
     
         // Gray-out unused arrows
