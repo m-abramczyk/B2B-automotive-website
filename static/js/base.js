@@ -423,6 +423,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const slideIndexElements = slideIndexContainer.querySelectorAll('.slide-index');
             const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
 
+            if (slides.length === 0) { return; }
+
             slideIndexElements.forEach(element => { element.classList.remove('current-slide'); });
             slideIndexElements[currentSlideIndex].classList.add('current-slide');
 
@@ -457,59 +459,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // If block-timeline, adjust parent container height
             if (blockContainer.classList.contains('block-timeline')) {
-                const slideYearElements = slideYearContainer.querySelectorAll('.slide-caption');
-                const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
-                const slideLongCaptionElements = slideLongCaptionContainer.querySelectorAll('.slide-caption');
-                const captionsContainer = blockContainer.querySelector('.timeline-captions');
-                
-                if (slideYearElements.length === 0 && slideCaptionElements.length === 0 && slideLongCaptionElements.length === 0) return;
-        
-                // Temporarily remove class to get natural height
-                slideYearElements.forEach(caption => caption.classList.remove('slide-caption'));
-                slideCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
-                slideLongCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
-        
-                // Measure tallest caption of each array
-                const maxHeightYear = slideYearElements.length
-                    ? Math.max(...Array.from(slideYearElements).map(caption => caption.offsetHeight))
-                    : 0;
-                const maxHeightCaption = slideCaptionElements.length
-                    ? Math.max(...Array.from(slideCaptionElements).map(caption => caption.offsetHeight))
-                    : 0;
-                const maxHeightLongCaption = slideLongCaptionElements.length
-                    ? Math.max(...Array.from(slideLongCaptionElements).map(caption => caption.offsetHeight))
-                    : 0;
-        
-                // Reapply the class after measurement
-                slideYearElements.forEach(caption => caption.classList.add('slide-caption'));
-                slideCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
-                slideLongCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
-        
-                // Combine heights and apply to parent container
-                const combinedMaxHeight = maxHeightYear + maxHeightCaption + maxHeightLongCaption;
-                captionsContainer.style.height = `${combinedMaxHeight}px`;
-        
-            } else {
 
-                // Logic for non-block-timeline
-                const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
-                if (slideCaptionElements.length === 0) return;
-                let maxHeight = 0;
+                if (window.innerWidth >= 1280) {
+
+                    const slideYearElements = slideYearContainer.querySelectorAll('.slide-caption');
+                    const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
+                    const slideLongCaptionElements = slideLongCaptionContainer.querySelectorAll('.slide-caption');
+                    const captionsContainer = blockContainer.querySelector('.timeline-captions');
+                    
+                    if (slideYearElements.length === 0 && slideCaptionElements.length === 0 && slideLongCaptionElements.length === 0) return;
+            
+                    // Temporarily remove class to get natural height
+                    slideYearElements.forEach(caption => caption.classList.remove('slide-caption'));
+                    slideCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
+                    slideLongCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
+            
+                    // Measure tallest caption of each array
+                    const maxHeightYear = slideYearElements.length
+                        ? Math.max(...Array.from(slideYearElements).map(caption => caption.offsetHeight))
+                        : 0;
+                    const maxHeightCaption = slideCaptionElements.length
+                        ? Math.max(...Array.from(slideCaptionElements).map(caption => caption.offsetHeight))
+                        : 0;
+                    const maxHeightLongCaption = slideLongCaptionElements.length
+                        ? Math.max(...Array.from(slideLongCaptionElements).map(caption => caption.offsetHeight))
+                        : 0;
+            
+                    // Reapply the class after measurement
+                    slideYearElements.forEach(caption => caption.classList.add('slide-caption'));
+                    slideCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
+                    slideLongCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
+            
+                    // Combine heights and apply to parent container
+                    const combinedMaxHeight = maxHeightYear + maxHeightCaption + maxHeightLongCaption;
+                    captionsContainer.style.height = `${combinedMaxHeight}px`;
         
-                // Temporarily remove class to get natural height
-                slideCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
-        
-                // Measure tallest caption
-                maxHeight = Math.max(
-                    ...Array.from(slideCaptionElements).map(caption => caption.offsetHeight)
-                );
-        
-                // Reapply the class after measurement
-                slideCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
-        
-                // Apply height to container
-                slideCaptionContainer.style.height = `${maxHeight}px`;
+                } else {
+                
+                    // Reset height for smaller screens
+                    const captionsContainer = blockContainer.querySelector('.timeline-captions');
+                    captionsContainer.style.height = "auto";
+                }
+                
+                return; // Exit block-timeline logic
             }
+
+            // Logic for non-block-timeline
+            const slideCaptionElements = slideCaptionContainer.querySelectorAll('.slide-caption');
+            if (slideCaptionElements.length === 0) return;
+            let maxHeight = 0;
+    
+            // Temporarily remove class to get natural height
+            slideCaptionElements.forEach(caption => caption.classList.remove('slide-caption'));
+    
+            // Measure tallest caption
+            maxHeight = Math.max(
+                ...Array.from(slideCaptionElements).map(caption => caption.offsetHeight)
+            );
+    
+            // Reapply the class after measurement
+            slideCaptionElements.forEach(caption => caption.classList.add('slide-caption'));
+    
+            // Apply height to container
+            slideCaptionContainer.style.height = `${maxHeight}px`;
+            
         }
     
         updateSlideCounter();
