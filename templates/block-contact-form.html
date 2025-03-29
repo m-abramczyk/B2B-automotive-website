@@ -1,0 +1,46 @@
+{% block block-contact-form %}
+{% load i18n %}
+{% load label_tags %}
+
+	<div class="grid block block-left" id="contact-form">
+
+		<div class="block-header">
+
+            {% with content_block|get_label as label %}
+                {% include 'util-label.html' %}
+            {% endwith %}
+
+            <!-- <h3>{{ content_block.header }}</h3> -->
+             <h3>Contact Form</h3>
+
+		</div>
+
+        <div class="block-text">
+
+            <!-- <div class="text-20 tinymce">{{ content_block.text|safe }}</div> -->
+            <div class="text-20 tinymce">Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text Paragraph text</div>
+            
+            <!-- {% if content_block.button_1_text %}
+
+                <div class="button-container">
+                        <a href="#header" class="button text-18">{{ content_block.button_1_text }} +</a>
+                </div>
+
+            {% endif %} -->
+            <div class="button-container">
+
+                <a href="#header" class="button text-18">Button text +</a>
+
+            </div>
+
+        </div>
+
+        <div class="block-img">
+
+            Contact Form
+
+        </div>
+
+	</div>
+
+{% endblock %}

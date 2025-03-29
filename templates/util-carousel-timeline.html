@@ -4,7 +4,11 @@
     <div class="content-block-image carousel-slider">
                 
         {% for image in images %}
-            <img src="{{ image.image.url }}" data-image-year="{{ image.year|default:'' }}:" data-image-caption="{{ image.caption|default:'' }}" data-image-long-caption="{{ image.long_caption|default:'' }}" alt="{{ image.caption|default:'No image caption' }}">
+            <img src="{{ image.image.url }}"
+                data-image-year="{{ image.year|default:'' }}:"
+                data-image-caption="{{ image.caption|default:'' }}"
+                data-image-long-caption="{{ image.long_caption|default:'' }}"
+                alt="{{ image.caption|default:'No image caption' }}">
         {% endfor %}
         
     </div>

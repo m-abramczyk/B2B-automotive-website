@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Nav Dropdown Content
 
     const nav = document.querySelector('nav');
+    const body = document.querySelector('body'); // used in Lightbox
     const dropdowns = nav.querySelectorAll('[data-dropdown]');
     const dropdownTriggers = nav.querySelectorAll('[data-dropdown-trigger]');
     const dropdownCloseTriggers = nav.querySelectorAll('[data-dropdown-close-trigger]');
@@ -349,13 +350,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ///////////////////////////////////////////////////////////////////
     // Carousel
-
+    
     document.querySelectorAll('.carousel-slider').forEach((slider) => {
         const slides = slider.querySelectorAll('img');
-        const blockContainer = slider.closest('.block'); // Scope within the nearest block
+        const blockContainer = slider.parentNode.closest('div'); // Scope within the nearest parent block
     
-        if (!blockContainer) return; // Safety check
-    
+        if (!blockContainer) return;
+
         const arrowLeftButton = blockContainer.querySelector('.carousel-arrow-left');
         const arrowRightButton = blockContainer.querySelector('.carousel-arrow-right');
         const slideIndexContainer = blockContainer.querySelector('.slide-index-container');
@@ -367,6 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let scrollWidth = slider.offsetWidth;
         let currentSlideIndex = 0;
     
+
+        // click scrolling
         function scrollLeft() { slider.scrollLeft -= scrollWidth; }
         function scrollRight() { slider.scrollLeft += scrollWidth; }
     
@@ -539,6 +542,54 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', updateCarousel);
 
     });
+
+
+    ///////////////////////////////////////////////////////////////////
+    // Lightbox
+
+    // const lightboxTriggers = blockContainer.querySelectorAll('.lightbox-trigger img');
+    // const relatedLightbox = blockContainer.querySelector('.lightbox');
+
+    // if (!relatedLightbox) return;
+
+    // const lightboxCloseButton = relatedLightbox.querySelector('.lightbox-close-button');
+    // const lightboxSlider = relatedLightbox.querySelector('.carousel-slider');
+    // const lightboxSlides = lightboxSlider ? lightboxSlider.querySelectorAll('img') : [];
+
+    // // Click open Lightbox
+    // lightboxTriggers.forEach((image, index) => {
+    //     image.addEventListener('click', () => {
+    //         currentSlideIndex = index;
+    //         startLightbox();
+    //         updateCarousel(lightboxSlider, currentSlideIndex);
+    //     });
+    // });
+
+    // // Click close Lightbox
+    // lightboxCloseButton.addEventListener('click', e => {
+    //     closeLightbox();
+    // });
+
+    // // Utilities //////////////////////////////////////////
+    // function startLightbox() {
+    //     currentScroll = window.scrollY;
+    //     relatedLightbox.classList.add('lightbox-active');
+    //     nav.classList.add('lightbox-active');
+    //     setTimeout(() => {
+    //         body.classList.add('lightbox-active');
+    //     }, 150); // Timeout same as lightbox css transition
+    // }
+
+    // function closeLightbox() {
+    //     relatedLightbox.classList.remove('lightbox-active');
+    //     body.classList.remove('lightbox-active');
+    //     nav.classList.remove('lightbox-active');
+    //     window.scrollTo(0, currentScroll);
+    // }
+
+
+
+
 
     ///////////////////////////////////////////////////////////////////
     // Wiper

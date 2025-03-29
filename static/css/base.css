@@ -856,7 +856,8 @@ blocks left / right / full-width */
 }
 
 .block-full-width > .content-block-image,
-.block-full-width > .content-block-video {
+.block-full-width > .content-block-video,
+.block-full-width > .content-block-wiper {
     grid-column: 1 / span 12;
     grid-row: 3;
     max-height: calc(100vh - var(--grid-margin) * 5);
@@ -1086,15 +1087,18 @@ utilities */
 
 
 /*//////////////////////////////////////////////////////////////////////
-carousel */
+Carousel and Lightbox */
 
 /* general */
-.content-block-image {
+.content-block-image,
+.content-block-wiper {
     display: flex;
     height: 100%;
 }
 
-.content-block-image > img {
+.content-block-image > img,
+.content-block-wiper > img,
+.lightbox-image > img {
     aspect-ratio: 1.5 / 1;
     min-height: 100%;
     min-width: 100%;
@@ -1229,6 +1233,88 @@ carousel */
 .current-caption {    /* class added by js */
     display: block;
 }
+
+
+/*//////////////////////////////////////////////////////////////////////
+Lightbox */
+
+.lightbox {
+    background: var(--g3-black);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    user-select: none;                  /* prevent selecting when invisible */
+    -webkit-user-select: none;          /* prevent safari selecting when invisible */
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition-opacity-150);
+    overflow: hidden;
+    z-index: 5;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: calc(var(--grid-gap) * 1.5);
+    padding-inline: calc(var(--grid-margin) * 2);
+    padding-block: calc(var(--grid-margin) * 1) calc(var(--grid-margin) * 2);
+}
+
+.lightbox-image {
+    display: flex;
+    height: max-content;
+    max-height: 100%;
+    place-self: center;
+    aspect-ratio: 1.5 / 1;
+}
+
+.lightbox .carousel-footer .slide-caption-container,
+.lightbox .carousel-footer > p { /* caption for slider and single photo */
+    width: calc(50vw - var(--grid-margin) * 2 - var(--grid-gap) / 2);
+}
+
+.lightbox-close-button {
+    width: var(--grid-margin);
+    height: var(--grid-margin);
+    margin-left: auto;
+}
+
+.lightbox-close-button > svg {
+    display: block;
+    pointer-events: none;
+}
+
+.lightbox-close-button rect {
+    transform-origin: center;
+}
+
+.lightbox-close-button .close-button-rec-1 {transform: rotate(-45deg);}
+.lightbox-close-button .close-button-rec-2 {transform: rotate(45deg);}
+
+
+
+/*//////////////////////////////////////////////
+/* lightbox active styles */
+
+body.lightbox-active {
+    overflow: hidden;
+    position: fixed;
+    touch-action: none;
+}
+
+nav.lightbox-active {
+    transform: translateY(-100%);
+}
+
+.lightbox.lightbox-active {
+    opacity: 1;
+    pointer-events: auto;
+    user-select: auto;          /* toggle off preventing selecting when invisible */
+    -webkit-user-select: auto;  /* toggle off preventing safari selecting when invisible */
+}
+
 
 /*//////////////////////////////////////////////////////////////////////
 Privacy Policy */
@@ -1538,6 +1624,14 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    Lightbox */
+
+    .lightbox {
+        padding-inline: calc(var(--grid-margin) * 1.5);
+        padding-block: calc(var(--grid-margin) * 1) calc(var(--grid-margin) * 1.5);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     Privacy Policy */
 
     .privacy-policy > * {
@@ -1660,7 +1754,8 @@ color classes */
     }
 
     .block-full-width > .content-block-image,
-    .block-full-width > .content-block-video {
+    .block-full-width > .content-block-video,
+    .block-full-width > .content-block-wiper {
         grid-column: 1 / span 8;
         grid-row: 2;
     }
@@ -1742,6 +1837,15 @@ color classes */
         padding-top: var(--fs-18);
         padding-bottom: calc(var(--fs-18) / 3);
     }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Lightbox */
+    
+    .lightbox {
+        padding-inline: calc(var(--grid-margin) * 1);
+        padding-block: calc(var(--grid-margin) * 1) calc(var(--grid-margin) * 1.5);
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////
     Privacy Policy */
@@ -1858,7 +1962,8 @@ color classes */
     blocks left / right / full-width */ 
 
     .block-full-width > .content-block-image,
-    .block-full-width > .content-block-video {
+    .block-full-width > .content-block-video,
+    .block-full-width > .content-block-wiper {
         margin-top: 0;
     }
 
@@ -1869,6 +1974,15 @@ color classes */
     /* block timeline */
     .timeline-captions {
         justify-content: flex-start;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Lightbox */ 
+
+    /* caption for slider and single photo */
+    .lightbox .carousel-footer .slide-caption-container,
+    .lightbox .carousel-footer > p { 
+        width: auto;
     }
 
 }
@@ -2039,7 +2153,8 @@ color classes */
     }
 
     .block-full-width > .content-block-image,
-    .block-full-width > .content-block-video {
+    .block-full-width > .content-block-video,
+    .block-full-width > .content-block-wiper {
         grid-column: 1 / span 4;
         grid-row: 2;
     }
@@ -2144,6 +2259,26 @@ color classes */
         height: auto;
         width: 100%;
         aspect-ratio: 1 / 1;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Lightbox */
+    
+    .lightbox {
+        padding-inline: calc(var(--grid-margin) * 1);
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .lightbox-image {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100vw;
+        max-height: 50vh;
+        transform: translateY(-60%);
     }
 
     /*//////////////////////////////////////////////////////////////////////

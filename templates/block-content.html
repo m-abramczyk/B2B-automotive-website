@@ -1,9 +1,8 @@
 {% block block-content %}
 {% load i18n %}
-{% load static %}
 {% load label_tags %}
 
-	<div class="grid block block-{{ content_block.block_type }}" id="{{ content_block.block_id }}">
+	<div class="grid block content-block block-{{ content_block.block_type }}" id="{{ content_block.block_id }}">
 
 		<div class="block-header">
 
@@ -65,8 +64,13 @@
 
             {% else %}
 
-                {% if content_block.images %}
+                {% if content_block.images and content_block.display_type == "wipe" %}
+                    {% include 'util-wiper.html' with images=content_block.images.all %}
+                {% endif %}
+
+                {% if content_block.images and content_block.display_type != "wipe" %}
                     {% include 'util-carousel.html' with images=content_block.images.all %}
+                    {% include 'util-lightbox.html' with images=content_block.images.all %}
                 {% endif %}
 
             {% endif %}

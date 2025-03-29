@@ -1,0 +1,33 @@
+{% block util-wiper %}
+{% load i18n %}
+
+    {% if images|length > 1 %}
+
+        <!-- Image Wipe display -->
+        <div class="content-block-wiper">
+
+            <div class="image-wiper">
+                <img src="{{ images.1.image.url }}">
+                <div class="wiper-left">
+                    <img src="{{ images.0.image.url }}"
+                        data-image-caption="{{ images.0.caption }}"
+                        alt="{{ images.0.caption }}">
+                </div>
+                <div class="divider">
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="carousel-footer">
+
+            {% if images.0.caption %}
+                    <p class="text-18">{{ images.0.caption }}</p>
+            {% endif %}
+            
+        </div>
+
+    {% endif %}
+
+{% endblock %}
