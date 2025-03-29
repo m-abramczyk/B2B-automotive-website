@@ -26,9 +26,14 @@ def home_page(request):
         ).order_by('order')
     
     special_blocks = get_special_blocks(page_data)
+    
+    meta_title = page_data.meta_title if page_data.meta_title else page_data.title.rstrip(":")
+    meta_description = page_data.meta_description
 
     context = {
         'page_data': page_data,
+        'meta_title': meta_title,
+        'meta_description': meta_description,
         'cover': cover,
         'expert': expert,
         'content_blocks': content_blocks,
@@ -51,12 +56,17 @@ def general_page(request, slug):
         page = get_object_or_404(Page, slug=part, parent=parent)
         parent = page
 
+    meta_title = page.meta_title if page.meta_title else page.title.rstrip(":")
+    meta_description = page.meta_description
+
     context = {
         'page_data': page,
+        'meta_title': meta_title,
+        'meta_description': meta_description,
         'case_studies': [],
         'cover': None,
         'expert': None,
-        'content_blocks': [],        
+        'content_blocks': [],
     }
 
     if page.is_case_studies_index:
@@ -90,6 +100,9 @@ def contact_page(request):
     contact_page_link_header = contact_page_links.first()
     expert = contact_page.expert
 
+    meta_title = contact_page.meta_title if contact_page.meta_title else contact_page.title.rstrip(":")
+    meta_description = contact_page.meta_description
+
     content_blocks = ContentBlock.objects.filter(
         content_type=ContentType.objects.get_for_model(Contact),
         object_id=contact_page.id,
@@ -101,6 +114,8 @@ def contact_page(request):
 
     context = {
         'contact_page': contact_page,
+        'meta_title': meta_title,
+        'meta_description': meta_description,
         'contact_page_links': contact_page_links,
         'contact_page_link_header': contact_page_link_header,
         'expert': expert,
@@ -119,9 +134,14 @@ def privacy_policy(request):
     privacy_policy = PrivacyPolicy.objects.first()
     privacy_policy_buttons = privacy_policy.privacypolicybutton_set.order_by('order')
 
+    meta_title = privacy_policy.meta_title if privacy_policy.meta_title else privacy_policy.title.rstrip(":")
+    meta_description = privacy_policy.meta_description
+
     context = {
         'privacy_policy': privacy_policy,
         'privacy_policy_buttons': privacy_policy_buttons,
+        'meta_title': meta_title,
+        'meta_description': meta_description,
     }
 
     return render(request, 'page-privacy-policy.html', context)

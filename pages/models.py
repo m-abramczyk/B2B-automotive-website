@@ -51,7 +51,7 @@ class HomePage(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. Auto-filled from menu title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
     )
     meta_description = models.TextField(
         max_length=255,

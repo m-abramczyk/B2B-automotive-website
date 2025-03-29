@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 
-	<title>G3{% if meta_title %} | {{ meta_title }}{% endif %}</title>	
-	<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{% trans 'Default Meta Description.' %}{% endif %}">
+	<title>G3{% if meta_title %} - {{ meta_title }}{% endif %}</title>
+	<meta name="description" content="{% if meta_description %}{{ meta_description }}{% endif %}">
 
 	{% for lang_code, lang_name in languages %}
 		<link rel="alternate" href="https://g3.net.pl/{{ lang_code }}{{ request.path_info|slice:'3:' }}" hreflang="{{ lang_code }}">
@@ -21,7 +21,11 @@
 
 	{% load static %}
 
-	<!-- <link rel="icon" href="{% static 'fav/favicon.ico' %}" id="fav"> -->
+	<link rel="icon" type="image/png" href="{% static 'fav/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="shortcut icon" href="{% static '/fav/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'fav/apple-touch-icon.png' %}">
+    <meta name="apple-mobile-web-app-title" content="G3" />
+    <link rel="manifest" href="{% static 'fav/site.webmanifest' %}">
 	
 	<link rel="stylesheet" href="{% static 'css/fonts.css' %}" type="text/css">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
