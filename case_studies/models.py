@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.db import models
 
 from experts.models import Expert
+from covers.models import CaseStudyCover
 
 
 def upload_to(instance, filename):
@@ -44,6 +45,15 @@ class CaseStudy(models.Model):
         blank=True,
         null=True,
         help_text=('1:1 ratio, 300px x 300px'),
+    )
+
+    # cover
+    cover = models.ForeignKey(
+        CaseStudyCover,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=('Chose case study cover (no selection = no cover)'),
     )
 
     # Expert

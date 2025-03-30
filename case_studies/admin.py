@@ -9,7 +9,7 @@ from .models import CaseStudy
 class CaseStudyAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('is_published', 'year', 'menu_title', 'thumbnail'),
+            'fields': ('is_published', 'year', 'menu_title', 'thumbnail', 'cover'),
         }),
         ('URL', {
             'classes': ('collapse',),

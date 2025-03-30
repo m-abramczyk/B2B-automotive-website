@@ -4,8 +4,21 @@
 	{% load static %}
 	{% load i18n %}
 
-    {% include 'util-cover.html' %}
-	{% include 'util-header.html' %}
+    {% if page_data.is_case_studies_index and case_studies %}
+
+        <div id="cs-cover-slider">
+            {% for cover in covers %}
+                {% include 'util-cover.html' %}
+            {% endfor %}
+        </div>
+
+    {% else %}
+
+        {% include 'util-cover.html' %}
+
+    {% endif %}
+
+    {% include 'util-header.html' %}
 
 	<main>
         {% if page_data.is_case_studies_index %}

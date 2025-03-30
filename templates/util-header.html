@@ -11,16 +11,26 @@
                 <h1 class="text-block">{{ page_data.title }}</h1>
             {% endif %}
 
-            {% if page_data.is_case_studies_index %}
+            {% if page_data.is_case_studies_index and case_studies %}
+
                 <div class="header-caption text-24">
-                    <div>
-                        <p class="medium">Caption</p>
-                        <div class="no-wrap"><a href="#">Read more</a> ></div>
-                    </div>
-                    <div class="tabular no-wrap">
-                        < 2 / 4 >
+
+                    {% for case_study in case_studies %}
+                        <div class="cs-slider-caption">
+                            <p class="medium">{{ case_study.menu_title }}</p>
+                            <div class="no-wrap"><a href="{{ case_study.get_absolute_url }}">Read more</a> ></div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="tabular no-wrap cover-index-container">
+                        <span class="cs-slider-arrow-left">< </span>
+                        <!-- slide index -->
+                        <span class="cs-counter-slash"> / </span>
+                        <!-- slide number -->
+                        <span class="cs-slider-arrow-right"> ></span>
                     </div>
                 </div>
+                
             {% endif %}
 
         </div>

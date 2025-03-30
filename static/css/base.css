@@ -317,7 +317,7 @@ h4 {
 /*//////////////////////////////////////////////////////////////////////
 image styles */
 
-#cover {
+.cover {
     position: absolute;
     display: block;
     width: 100%;
@@ -328,7 +328,7 @@ image styles */
     z-index: -1;
 }
 
-img:not(#cover) {
+img:not(.cover) {
     display: block;
     font-style: italic;
     font-size: var(--fs-20);
@@ -691,7 +691,7 @@ header {
     transform: translateY(0.2em); /* move to the baseline */
 }
 
-.header-caption > *:first-child > * {
+.header-caption > .cs-slider-caption > * {
     text-align: right; /* justify right */
 }
 
@@ -1078,6 +1078,45 @@ Case Studies */
     display: flex;
     align-items: flex-start;
 }
+
+/* cs cover slider */
+#cs-cover-slider {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    gap: 4px;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+
+#cs-cover-slider::-webkit-scrollbar {    /* Hide scrollbar in Safari */
+    display: none;
+}
+
+#cs-cover-slider .cover {
+    position: relative;
+    scroll-snap-align: center;
+    min-width: 100vw;
+}
+
+.cs-slider-arrow-left,
+.cs-slider-arrow-right {
+    cursor: pointer;
+}
+
+.cs-slider-caption,
+.cs-cover-index {
+    display: none;
+}
+
+.cs-current {
+    display: inline;
+}
+
 
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1984,7 +2023,7 @@ color classes */
         justify-content: space-between;
     }
 
-    .header-caption > *:first-child > * {
+    .header-caption > .cs-slider-caption > * {
         text-align: left; /* justify left */
     }
 
@@ -2377,6 +2416,7 @@ color classes */
     .block-cs-index a {
         gap: calc(var(--grid-gap)* 0.4); /* 8px */
     }
+
 
     /*//////////////////////////////////////////////////////////////////////
     Lightbox */

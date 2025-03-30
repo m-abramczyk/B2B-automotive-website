@@ -349,6 +349,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     ///////////////////////////////////////////////////////////////////
+    // Case Studies Cover Slider
+
+    const coverSlider = document.querySelector('#cs-cover-slider');
+
+    if (coverSlider) {
+
+        const covers = coverSlider.querySelectorAll('.cover');
+        const captions = document.querySelectorAll('.cs-slider-caption');
+        const coverIndexContainer = document.querySelector('.cover-index-container');
+        const arrowLeft = document.querySelector('.cs-slider-arrow-left');
+        const arrowRight = document.querySelector('.cs-slider-arrow-right');
+        const counterSlash = document.querySelector('.cs-counter-slash');
+
+        let scrollWidth = coverSlider.offsetWidth;
+        let currentIndex = 0;
+
+        // click scrolling
+        function scrollLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                coverSlider.scrollLeft -= scrollWidth;
+            } else {
+                // Fake loop: Jump to last cover
+                currentIndex = covers.length - 1;
+                coverSlider.scrollLeft = scrollWidth * currentIndex;
+            }
+            updateCounter();
+        }
+
+        function scrollRight() {
+            if (currentIndex < covers.length - 1) {
+                currentIndex++;
+                coverSlider.scrollLeft += scrollWidth;
+            } else {
+                // Fake loop: Jump to first cover
+                currentIndex = 0;
+                coverSlider.scrollLeft = 0;
+            }
+            updateCounter();
+        }
+
+        arrowLeft.addEventListener('click', scrollLeft);
+        arrowRight.addEventListener('click', scrollRight);
+
+        // create cover index elements
+        covers.forEach((cover, index) => {
+            const coverIndex = document.createElement('span');
+            coverIndex.textContent = index + 1;
+            coverIndex.classList.add('cs-cover-index');
+            coverIndexContainer.insertBefore(coverIndex, counterSlash);
+        });
+
+        const coverNumber = document.createElement('span');
+        coverNumber.textContent = covers.length;
+        coverIndexContainer.insertBefore(coverNumber, arrowRight);
+
+        // update counter
+        function updateCounter() {
+            const coverIndexElements = coverIndexContainer.querySelectorAll('.cs-cover-index');
+            if (covers.length === 0) { return; }
+
+            coverIndexElements.forEach(element => { element.classList.remove('cs-current'); });
+            coverIndexElements[currentIndex].classList.add('cs-current');
+
+            captions.forEach(element => { element.classList.remove('cs-current'); });
+            captions[currentIndex].classList.add('cs-current');
+        }
+
+        window.addEventListener('load', updateCounter);
+
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////
     // Carousel
     
     document.querySelectorAll('.carousel-slider').forEach((slider) => {
@@ -360,7 +435,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrowLeftButton = blockContainer.querySelector('.carousel-arrow-left');
         const arrowRightButton = blockContainer.querySelector('.carousel-arrow-right');
         const slideIndexContainer = blockContainer.querySelector('.slide-index-container');
-        const counterContainer = blockContainer.querySelector('.carousel-counter');
         const slideCaptionContainer = blockContainer.querySelector('.slide-caption-container');
         const slideLongCaptionContainer = blockContainer.querySelector('.slide-long-caption-container');
         const slideYearContainer = blockContainer.querySelector('.slide-year-container');
@@ -415,11 +489,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideLongCaptionContainer.appendChild(longCaptionElement);
             }
         });
-
-        const slideNumberElement = document.createElement('p');
-        slideNumberElement.textContent = slides.length;
-        slideNumberElement.classList.add('slide-number');
-        counterContainer.appendChild(slideNumberElement);
     
         function updateSlideCounter() {
 

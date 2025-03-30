@@ -64,15 +64,22 @@ def general_page(request, slug):
         'meta_title': meta_title,
         'meta_description': meta_description,
         'case_studies': [],
+        'covers': [],
         'cover': None,
         'expert': None,
         'content_blocks': [],
     }
 
     if page.is_case_studies_index:
-        context['case_studies'] = CaseStudy.objects.filter(is_published=True)
+
+        case_studies = CaseStudy.objects.filter(is_published=True).select_related('cover')
+        context['case_studies'] = case_studies
+        context['covers'] = [cs.cover for cs in case_studies if cs.cover]
+        
         context['expert'] = page.expert
+        
     else:
+
         context['cover'] = page.cover
         context['expert'] = page.expert
         
