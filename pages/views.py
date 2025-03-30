@@ -68,11 +68,12 @@ def general_page(request, slug):
         'cover': None,
         'expert': None,
         'content_blocks': [],
+        'current_sort': None,
     }
 
     if page.is_case_studies_index:
 
-        case_studies = CaseStudy.objects.filter(is_published=True).select_related('cover')
+        case_studies = CaseStudy.objects.filter(is_published=True).select_related('cover').order_by('-year')
         context['case_studies'] = case_studies
         context['covers'] = [cs.cover for cs in case_studies if cs.cover]
         

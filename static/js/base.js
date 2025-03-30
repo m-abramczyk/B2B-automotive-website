@@ -222,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeNavMobile() {
+        // Temporarily disable document smooth scrolling
+        document.documentElement.style.scrollBehavior = 'auto';
 
         animationToggle.classList.remove('nav-active');
         navMobile.classList.remove('nav-active');
@@ -234,6 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
         navMobileLinks.forEach(link => {
             link.setAttribute('tabindex', '-1');
         });
+
+        // Reinstate document smooth scrolling
+        setTimeout(() => {
+            document.documentElement.style.scrollBehavior = '';
+        }, 300);
     }
 
     // Close nav if resizing to desktop
@@ -421,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', updateCounter);
 
     }
-
 
 
     ///////////////////////////////////////////////////////////////////
@@ -743,5 +749,53 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', initializeDivider);
     
     });
+
+
+    ///////////////////////////////////////////////////////////////////
+    // Case Studies Sorting
+
+    const csSort = document.querySelector('.cs-index-sort');
+
+    if (csSort) {
+
+        const buttonDate = csSort.querySelector('#button-date');
+        const buttonName = csSort.querySelector('#button-name');
+        const buttonTrigger = csSort.querySelector('#sort-trigger');
+
+        buttonDate.addEventListener('click', () => {
+            sortCaseStudies('date');
+            buttonDate.blur();
+            buttonName.classList.remove('current-sort');
+            buttonDate.classList.add('current-sort');
+        });
+
+        buttonName.addEventListener('click', () => {
+            sortCaseStudies('name');
+            buttonName.blur();
+            buttonName.classList.add('current-sort');
+            buttonDate.classList.remove('current-sort');
+        });
+
+        buttonTrigger.addEventListener('click', () => {
+            buttonTrigger.blur();
+        });
+
+    }
+
+    function sortCaseStudies(sortBy) {
+        const container = document.querySelector('.block-cs-index > *:last-child');
+        const items = Array.from(container.getElementsByClassName('case-study-tile'));
+
+        items.sort((a, b) => {
+            if (sortBy === 'name') {
+                return a.dataset.name.localeCompare(b.dataset.name);
+            } else {
+                return b.dataset.year - a.dataset.year;
+            }
+        });
+
+        container.innerHTML = "";
+        items.forEach(item => container.appendChild(item));
+    }
 
 });
