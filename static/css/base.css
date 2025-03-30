@@ -1103,8 +1103,7 @@ Case Studies */
     -webkit-user-select: none;
 }
 
-.cs-index-sort:hover ul,
-.cs-index-sort:focus-within ul {
+.cs-index-sort.dropdown-active ul {
     transform: translateX(-100%);
     opacity: 1;
     pointer-events: auto;
@@ -1118,8 +1117,7 @@ Case Studies */
     transition: var(--transition-transform-200);
 }
 
-.cs-index-sort:hover svg,
-.cs-index-sort button:focus svg {
+.cs-index-sort.dropdown-active svg {
     transform: rotate(-180deg);
 }
 
@@ -2498,8 +2496,7 @@ color classes */
         transform: translateX(-33%);
     }
 
-    .cs-index-sort:hover ul,
-    .cs-index-sort:focus-within ul {
+    .cs-index-sort.dropdown-active ul {
         transform: translateX(70%);
     }
 
