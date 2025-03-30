@@ -9,13 +9,7 @@ from .models import CaseStudy
 class CaseStudyAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('is_published', 'order'),
-        }),
-        ('Thumbnail', {
-            'fields': ('thumbnail',),
-        }),
-        ('Title', {
-            'fields': ('menu_title',),
+            'fields': ('is_published', 'year', 'menu_title', 'thumbnail'),
         }),
         ('URL', {
             'classes': ('collapse',),
@@ -30,9 +24,9 @@ class CaseStudyAdmin(admin.ModelAdmin):
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    list_display = ('menu_title', 'order', 'is_published')
-    list_editable = ('order', 'is_published')
-    ordering = ['order']
+    list_display = ('menu_title', 'year', 'is_published')
+    list_editable = ('year', 'is_published')
+    ordering = ['-year']
     prepopulated_fields= {
         'slug': ('menu_title',),
         }

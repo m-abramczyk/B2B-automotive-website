@@ -10,9 +10,7 @@
 	<main>
         {% if page_data.is_case_studies_index %}
 
-            {% for case_study in case_studies %}
-                <a href="{{ case_study.get_absolute_url }}">{{ case_study.menu_title }}</a>
-            {% endfor %}
+            {% include 'block-cs-index.html' %}
 
         {% else %}
 

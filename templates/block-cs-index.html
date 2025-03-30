@@ -1,0 +1,36 @@
+{% block block-cs-index %}
+{% load i18n %}
+
+	<div class="block-cs-index">
+
+        <div>
+
+            <h4 class="light-grey">Discover projects we have worked on:</h4>
+
+            <div class="cs-index-sort text-24">
+                <p class="light-grey">{% trans 'Sort:' %}&MediumSpace;</p>
+                <button class="off-white">{% trans 'Year' %}</button>
+            </div>
+
+        </div>
+
+		<div>
+
+            {% for case_study in case_studies %}
+
+                <a href="{{ case_study.get_absolute_url }}">
+                    {% if case_study.thumbnail %}
+                        <img src="{{ case_study.thumbnail.url }}" alt="{{ case_study.menu_title }} thumbnail">
+                    {% endif %}
+                    <div>
+                        <h6 class="text-24 true-white">{{ case_study.menu_title }}</h6>
+                        {% if case_study.year %}<p class="text-24 light-grey tabular">{{ case_study.year }}</p>{% endif %}
+                    </div>
+                </a>
+
+            {% endfor %}
+
+		</div>
+	</div>	
+
+{% endblock %}

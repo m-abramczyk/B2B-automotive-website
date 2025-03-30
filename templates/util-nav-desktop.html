@@ -14,7 +14,9 @@
                     {% for page in section_1_children %}
                         <li>
                             <a href="{{ page.get_absolute_url }}">
-                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                {% if page.thumbnail %}
+                                    <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                {% endif %}
                                 <h6 class="text-20">{{ page.menu_title }}</h6>
                             </a>
                         </li>
@@ -34,7 +36,9 @@
                     {% for page in section_2_children %}
                         <li>
                             <a href="{{ page.get_absolute_url }}">
-                                <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                {% if page.thumbnail %}
+                                    <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
+                                {% endif %}
                                 <h6 class="text-20">{{ page.menu_title }}</h6>
                             </a>
                         </li>

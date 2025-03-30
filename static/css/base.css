@@ -1030,6 +1030,57 @@ blocks left / right / full-width */
 }
 
 /*//////////////////////////////////////////////////////////////////////
+Case Studies */
+
+.block-cs-index {
+    border-bottom: 1px solid var(--g3-off-white);
+    background: var(--g3-black);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-margin) * 1.6); /* 80px */
+    padding-inline: calc(var(--grid-margin) * 2); /* 100px */
+    padding-block: calc(var(--grid-margin) * 1.6) calc(var(--grid-margin) * 4); /* 80px 200px */
+}
+
+/* index header */
+.block-cs-index > *:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--grid-gap);
+}
+
+/* index tile grid */
+.block-cs-index > *:last-child {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: calc(var(--grid-margin)* 1.2);
+    column-gap: var(--grid-gap);
+}
+
+.block-cs-index a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+.block-cs-index img {
+    aspect-ratio: 1.5 / 1;
+    width: 100%;
+}
+
+.block-cs-index a > *:last-child {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--grid-gap);
+}
+
+.cs-index-sort {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////
 utilities */
 
 #map {
@@ -1368,6 +1419,7 @@ a {
 #nav-desktop > li > a,
 #nav-desktop .dropdown-content a h6,
 .section-pages-list-container a h6,
+.block-cs-index a h6,
 .breadcrumbs a,
 #nav-mobile > ul > li:last-child > ul p,
 .footer-lang p {
@@ -1376,6 +1428,7 @@ a {
 
 #nav-desktop > li > a,
 #nav-desktop .dropdown-content a h6,
+.block-cs-index a h6,                       /* cs index tile */
 .section-pages-list-container a h6,         /* section pages list tile */
 .footer-dropdown a,                         /* footer links */
 .breadcrumbs a,
@@ -1386,9 +1439,10 @@ a {
 
 #nav-desktop > li > a:hover,
 #nav-desktop > li > a.current-section,      /* nav-desktop current section */
-#nav-desktop .dropdown-content a:hover h6,
-#nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
+#nav-desktop .dropdown-content a:hover h6,  /* nav-desktop tile */
+.block-cs-index a:hover h6,                 /* cs index tile */
 .section-pages-list-container a:hover h6,   /* section pages list tile */
+#nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
 .footer-lang p,                             /* footer current language */
 .footer-dropdown a:hover,                   /* footer links */
 .breadcrumbs a:hover,
@@ -1624,6 +1678,23 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    Case Studies */
+
+    .block-cs-index {
+        gap: calc(var(--grid-margin) * 1.6); /* 60px */
+        padding-block: calc(var(--grid-margin) * 1.5) calc(var(--grid-margin) * 3.5); /* 60px 140px */
+    }
+
+    /* index tile grid */
+    .block-cs-index > *:last-child {
+        row-gap: calc(var(--grid-margin)* 1.5); /* 60px */
+    }
+
+    .block-cs-index a {
+        gap: calc(var(--grid-gap) * 0.6); /* 12px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     Lightbox */
 
     .lightbox {
@@ -1837,6 +1908,25 @@ color classes */
         padding-top: var(--fs-18);
         padding-bottom: calc(var(--fs-18) / 3);
     }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Case Studies */
+
+    .block-cs-index {
+        gap: calc(var(--grid-margin) * 2); /* 80px */
+        padding-inline: var(--grid-margin); /* 40px */
+        padding-block: var(--grid-margin) calc(var(--grid-margin) * 3.5); /* 40px 140px */
+    }
+
+    /* index tile grid */
+    .block-cs-index > *:last-child {
+        row-gap: var(--grid-margin); /* 40px */
+    }
+
+    .block-cs-index a {
+        gap: calc(var(--grid-gap) * 0.5); /* 10px */
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////
     Lightbox */
@@ -2259,6 +2349,33 @@ color classes */
         height: auto;
         width: 100%;
         aspect-ratio: 1 / 1;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Case Studies */
+
+    .block-cs-index {
+        gap: calc(var(--grid-margin) * 1.67); /* 40px */
+        padding-inline: var(--grid-margin); /* 24px */
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 4); /* 30px 100px */
+    }
+
+    /* index header */
+    .block-cs-index > *:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: calc(var(--grid-margin) * 1.67); /* 40px */
+    }
+
+    /* index tile grid */
+    .block-cs-index > *:last-child {
+        grid-template-columns: 1fr;
+        row-gap: calc(var(--grid-margin)* 1.67); /* 40px */
+    }
+
+    .block-cs-index a {
+        gap: calc(var(--grid-gap)* 0.4); /* 8px */
     }
 
     /*//////////////////////////////////////////////////////////////////////

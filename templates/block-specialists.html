@@ -9,7 +9,9 @@
 
             {% for specialist in specialists.specialists.all %}
                 <div>
-                    <img src="{{ specialist.thumbnail.url }}" alt="{{ specialist.name }}">
+                    {% if specialist.thumbnail %}
+                        <img src="{{ specialist.thumbnail.url }}" alt="{{ specialist.name }}">
+                    {% endif %}
                     <h5 class="text-20 true-white">{{ specialist.name }}</h5>
                     <p class="text-18 light-grey text-block">{{ specialist.role }}</p>
                 </div>

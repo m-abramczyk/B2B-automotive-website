@@ -28,7 +28,9 @@
 
             </div>
 
-            <img src="{{ expert.thumbnail.url }}" alt="{{ expert.name }}">
+            {% if expert.thumbnail %}
+                <img src="{{ expert.thumbnail.url }}" alt="{{ expert.name }}">
+            {% endif %}
 
 		</div>
 	</div>

@@ -8,7 +8,9 @@
 		<div>
 
             {% for logo in clients.logos.all %}
-                <img src="{{ logo.svg_file.url }}" alt="Client Logo {{ forloop.counter }}">
+                {% if logo.svg_file %}
+                    <img src="{{ logo.svg_file.url }}" alt="Client Logo {{ forloop.counter }}">
+                {% endif %}
             {% endfor %}
 
 		</div>

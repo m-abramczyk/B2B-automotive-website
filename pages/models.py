@@ -539,8 +539,6 @@ class ContentBlockImage(models.Model):
 
     image = models.ImageField(
         upload_to=upload_to,
-        blank=True,
-        null=True,
         help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
     )
     order = models.PositiveIntegerField(

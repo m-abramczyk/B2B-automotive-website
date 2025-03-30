@@ -9,7 +9,9 @@
 
             {% for founder in founders.founders.all %}
                 <div>
-                    <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
+                    {% if founder.thumbnail %}
+                        <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
+                    {% endif %}
                     <h5 class="text-20 true-white">{{ founder.name }}</h5>
                     <p class="text-18 light-grey text-block">{{ founder.role }}</p>
                 </div>

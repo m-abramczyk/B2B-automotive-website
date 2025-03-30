@@ -4,7 +4,7 @@ from .base import *
 
 SECRET_KEY = open(Path(os.getenv('WEBAPP_CONF_DIR')) / 'secret-key').read().strip()
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.g3.net.pl']
 

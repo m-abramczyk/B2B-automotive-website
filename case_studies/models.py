@@ -19,10 +19,10 @@ class CaseStudy(models.Model):
         default=False,
         help_text=('Check to publish. Unpublished page doesnt appear in the navigation, but can still be previewed under its URL ([slug] or [parent_slug/slug])'),
     )
-    order = models.PositiveIntegerField(
-        default=0,
-        blank=False,
-        null=False,
+    year = models.PositiveIntegerField(
+        blank=True,
+        null=True,
+        help_text=('Year as displayed in index thumbnail caption. Also used for sorting the list'),
     )
 
     # URL and titles
@@ -72,7 +72,7 @@ class CaseStudy(models.Model):
     class Meta:
         verbose_name = ('Case Study')
         verbose_name_plural = ('Case Studies')
-        ordering = ('order',)
+        ordering = ('-year',)
 
     def __str__(self):
         return (self.menu_title)

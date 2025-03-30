@@ -74,8 +74,6 @@ class ClientLogo(models.Model):
     )
     svg_file = models.FileField(
         upload_to=upload_to_clients,
-        blank=True,
-        null=True,
         help_text=('Upload SVG file (preferably) or PNG if must be'),
     )
     order = models.PositiveIntegerField(
@@ -246,8 +244,6 @@ class TimelineImage(models.Model):
 
     image = models.ImageField(
         upload_to=upload_to_timeline,
-        blank=True,
-        null=True,
         help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
     )
     order = models.PositiveIntegerField(
