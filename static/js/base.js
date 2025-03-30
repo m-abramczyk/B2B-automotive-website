@@ -398,6 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const coverIndex = document.createElement('span');
             coverIndex.textContent = index + 1;
             coverIndex.classList.add('cs-cover-index');
+            if (index === 0) { coverIndex.classList.add('cs-current'); }
             coverIndexContainer.insertBefore(coverIndex, counterSlash);
         });
 

@@ -1103,6 +1103,10 @@ Case Studies */
     min-width: 100vw;
 }
 
+.cover-index-container {
+    user-select: none;
+}
+
 .cs-slider-arrow-left,
 .cs-slider-arrow-right {
     cursor: pointer;
@@ -1265,7 +1269,7 @@ Carousel and Lightbox */
 .divider-line {
     width: 2px;
     transform: translateX(-50%);
-    background: var(--g3-off-white);
+    background: var(--g3-dark-grey);
     pointer-events: none;
     user-select: none;
 }
