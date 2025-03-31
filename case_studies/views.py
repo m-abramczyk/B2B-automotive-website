@@ -15,12 +15,20 @@ def case_study_detail(request, parent_slug, slug):
             raise Http404("Invalid parent page for the case study.")
 
     case_study = get_object_or_404(CaseStudy, slug=slug, is_published=True)
-    # cover = page.cover.first() if page else None
+
+    case_studies = list(CaseStudy.objects.filter(is_published=True).order_by('-year'))
+    current_index = next((i for i, cs in enumerate(case_studies) if cs.slug == slug), None)
+    prev_case_study = case_studies[current_index - 1] if current_index is not None and current_index > 0 else None
+    next_case_study = case_studies[current_index + 1] if current_index is not None and current_index < len(case_studies) - 1 else None
+
+    cover = case_study.cover if case_study else None
     expert = case_study.expert
 
     context = {
         'case_study': case_study,
-        # 'cover': cover,
+        'prev_case_study': prev_case_study,
+        'next_case_study': next_case_study,
+        'cover': cover,
         'expert': expert,
     }
 

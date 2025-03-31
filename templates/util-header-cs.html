@@ -1,0 +1,39 @@
+{% block util-header-cs %}
+{% load i18n %}
+
+    <header class="true-white" id="header">
+
+        {% include 'util-header-breadcrumbs.html' %}
+
+        <div id="header-content" class="grid">
+            
+            {% if case_study.menu_title %}
+                <h1 class="text-block">{{ case_study.menu_title }}</h1>
+            {% endif %}
+
+                <div class="header-caption text-24">
+
+                    <div class="tabular no-wrap cover-index-container">
+                        {% if prev_case_study %}
+                            <span>< <a href="{{ prev_case_study.get_absolute_url }}">{% trans 'Previous' %}</a></span>
+                        {% else %}
+                            <span class="cs-previous-next-inactive">< {% trans 'Previous' %}</span>
+                        {% endif %}
+
+                        <span class="cs-counter-slash"> / </span>
+
+                        {% if next_case_study %}
+                            <span><a href="{{ next_case_study.get_absolute_url }}">{% trans 'Next' %}</a> ></span>
+                        {% else %}
+                            <span class="cs-previous-next-inactive">{% trans 'Next' %} ></span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                
+
+        </div>
+            
+    </header>
+
+{% endblock %}

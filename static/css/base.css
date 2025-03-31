@@ -1177,6 +1177,41 @@ Case Studies */
     display: inline;
 }
 
+/*//////////////////////////////////////////////////////////////////////
+Case Study detail */
+
+.block-cs {
+    border-bottom: 1px solid var(--g3-off-white);
+    background: var(--g3-black);
+    row-gap: var(--grid-margin); /* 50px */
+    padding-block: var(--grid-margin) calc(var(--grid-margin) * 2); /* 50px 100px */
+}
+
+.cs-prev {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+}
+
+.cs-next {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+    text-align: right;
+}
+
+.cs-prev img,
+.cs-next img {
+    aspect-ratio: 1.5 / 1;
+    width: 100%;
+    padding-block: calc(var(--fs-40) * 0.75) calc(var(--fs-24) * 0.42); /* 30px 10px */
+}
+
+.block-cs a h6 {
+    display: inline;
+}
+
+.cs-previous-next-inactive {
+    opacity: 0.5;
+}
 
 
 /*//////////////////////////////////////////////////////////////////////
@@ -1519,6 +1554,7 @@ a {
 #nav-desktop .dropdown-content a h6,
 .section-pages-list-container a h6,
 .block-cs-index a h6,
+.block-cs a h6,
 .breadcrumbs a,
 #nav-mobile > ul > li:last-child > ul p,
 .footer-lang p {
@@ -1528,6 +1564,7 @@ a {
 #nav-desktop > li > a,
 #nav-desktop .dropdown-content a h6,
 .block-cs-index a h6,                       /* cs index tile */
+.block-cs a h6,                              /* cs previous / next tile */
 .section-pages-list-container a h6,         /* section pages list tile */
 .footer-dropdown a,                         /* footer links */
 .breadcrumbs a,
@@ -1540,6 +1577,7 @@ a {
 #nav-desktop > li > a.current-section,      /* nav-desktop current section */
 #nav-desktop .dropdown-content a:hover h6,  /* nav-desktop tile */
 .block-cs-index a:hover h6,                 /* cs index tile */
+.block-cs a:hover h6,                       /* cs previous / next tile */
 .section-pages-list-container a:hover h6,   /* section pages list tile */
 #nav-mobile > ul > li:last-child > ul p,    /* nav-mobile current language */
 .footer-lang p,                             /* footer current language */
@@ -1794,6 +1832,18 @@ color classes */
     }
 
     /*//////////////////////////////////////////////////////////////////////
+    Case Study Detail */
+
+    .block-cs {
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 50px 80px */
+    }
+    
+    .cs-prev img,
+    .cs-next img {
+        padding-block: calc(var(--fs-40) * 1) calc(var(--fs-24) * 0.5); /* 30px 10px */
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
     Lightbox */
 
     .lightbox {
@@ -2026,6 +2076,25 @@ color classes */
         gap: calc(var(--grid-gap) * 0.5); /* 10px */
     }
 
+    /*//////////////////////////////////////////////////////////////////////
+    Case Study Detail */
+
+    .block-cs {
+        padding-block: calc(var(--grid-margin) * 1) calc(var(--grid-margin) * 1.5); /* 40px 60px */
+    }
+    
+    .cs-prev {
+        grid-column: 1 / span 3;
+    }
+    
+    .cs-next {
+        grid-column: 6 / span 3;
+    }
+    
+    .cs-prev img,
+    .cs-next img {
+        padding-block: calc(var(--fs-40) * 1) calc(var(--fs-24) * 0.5); /* 30px 10px */
+    }
 
     /*//////////////////////////////////////////////////////////////////////
     Lightbox */
@@ -2500,6 +2569,29 @@ color classes */
         transform: translateX(70%);
     }
 
+    /*//////////////////////////////////////////////////////////////////////
+    Case Study Detail */
+
+    .block-cs {
+        row-gap: calc(var(--grid-margin) * 1.67); /* 40px */
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) * 2); /* 30px 50px */
+    }
+    
+    .cs-prev {
+        grid-column: 1 / span 4;
+        grid-row: 2;
+    }
+    
+    .cs-next {
+        grid-column: 1 / span 4;
+        grid-row: 1;
+        text-align: left;
+    }
+    
+    .cs-prev img,
+    .cs-next img {
+        padding-block: calc(var(--grid-margin) * 1.25) calc(var(--grid-margin) / 3); /* 30px 8px */
+    }
 
     /*//////////////////////////////////////////////////////////////////////
     Lightbox */

@@ -5,11 +5,42 @@
 	{% load i18n %}
 
     {% include 'util-cover.html' %}
-	{% include 'util-header.html' %}
+	{% include 'util-header-cs.html' %}
 
 	<main>
 
-        <h3>{{ case_study.menu_title }}</h3>
+        <!-- Key Data -->
+        <div class="grid block-cs cs-key-data">
+
+
+        </div>
+
+        <!-- Content -->
+        <div class="grid block-cs cs-content">
+
+            
+        </div>
+
+        <!-- Previous / Next -->
+        <div class="grid block-cs cs-previous-next">
+
+            {% if prev_case_study %}
+                <a href="{{ prev_case_study.get_absolute_url }}" class="cs-prev">
+                    <h4 class="no-wrap true-white tabular">< {% trans 'Previous Study' %}</h4>
+                    <img src="{{ prev_case_study.thumbnail.url }}" alt="{{ prev_case_study.menu_title }}">
+                    <h6 class="text-24 true-white">{{ prev_case_study.menu_title }}</h6>
+                </a>
+            {% endif %}
+
+            {% if next_case_study %}
+            <a href="{{ next_case_study.get_absolute_url }}" class="cs-next">
+                <h4 class="no-wrap true-white tabular">{% trans 'Next Study' %} ></h4>
+                <img src="{{ next_case_study.thumbnail.url }}" alt="{{ next_case_study.menu_title }}">
+                <h6 class="text-24 true-white">{{ next_case_study.menu_title }}</h6>
+            </a>
+            {% endif %}
+
+        </div>
 
         {% if expert %}
             {% include 'block-expert.html' %}
