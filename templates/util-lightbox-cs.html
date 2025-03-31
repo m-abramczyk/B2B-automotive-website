@@ -1,8 +1,7 @@
-{% block util-lightbox %}
+{% block util-lightbox-cs %}
 {% load i18n %}
 
     <div class="lightbox">
-    <!-- <div class="lightbox lightbox-active"> -->
 
         <button class="lightbox-close-button">
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +64,6 @@
 
                 {% for image in images %}
                     <img src="{{ image.image.url }}"
-                        class="lightbox-single-image"
                         data-image-caption="{{ image.caption }}"
                         alt="{{ image.caption }}">
                 {% endfor %}

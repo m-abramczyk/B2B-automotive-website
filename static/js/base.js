@@ -645,48 +645,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     ///////////////////////////////////////////////////////////////////
-    // Lightbox
+    // CS Lightbox
 
     // const lightboxTriggers = blockContainer.querySelectorAll('.lightbox-trigger img');
     // const relatedLightbox = blockContainer.querySelector('.lightbox');
 
-    // if (!relatedLightbox) return;
+    const csLightbox = document.querySelector('.cs-content .lightbox');
 
-    // const lightboxCloseButton = relatedLightbox.querySelector('.lightbox-close-button');
-    // const lightboxSlider = relatedLightbox.querySelector('.carousel-slider');
-    // const lightboxSlides = lightboxSlider ? lightboxSlider.querySelectorAll('img') : [];
+    if (csLightbox) {
 
-    // // Click open Lightbox
-    // lightboxTriggers.forEach((image, index) => {
-    //     image.addEventListener('click', () => {
-    //         currentSlideIndex = index;
-    //         startLightbox();
-    //         updateCarousel(lightboxSlider, currentSlideIndex);
-    //     });
-    // });
+        const csLightboxTriggers = document.querySelectorAll('.cs-content .lightbox-trigger');
+        const lightboxCloseButton = csLightbox.querySelector('.lightbox-close-button');
+        const slider = csLightbox.querySelector('.carousel-slider');
+        const slides = slider ? slider.querySelectorAll('img'): [];
+        const singleImage = csLightbox.querySelector('.lightbox-image img');
 
-    // // Click close Lightbox
-    // lightboxCloseButton.addEventListener('click', e => {
-    //     closeLightbox();
-    // });
+        let currentSlideIndex = 0;
 
-    // // Utilities //////////////////////////////////////////
-    // function startLightbox() {
-    //     currentScroll = window.scrollY;
-    //     relatedLightbox.classList.add('lightbox-active');
-    //     nav.classList.add('lightbox-active');
-    //     setTimeout(() => {
-    //         body.classList.add('lightbox-active');
-    //     }, 150); // Timeout same as lightbox css transition
-    // }
+        // Click open Lightbox
+        csLightboxTriggers.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                currentSlideIndex = index;
+                startLightbox();
+                if (slider) scrollToSlide(currentSlideIndex);
+            });
+        });
 
-    // function closeLightbox() {
-    //     relatedLightbox.classList.remove('lightbox-active');
-    //     body.classList.remove('lightbox-active');
-    //     nav.classList.remove('lightbox-active');
-    //     window.scrollTo(0, currentScroll);
-    // }
+        // Click close Lightbox
+        lightboxCloseButton.addEventListener('click',  () => closeLightbox());
 
+        // Click on slide to close Lightbox
+        if (slider) {
+            slides.forEach(slide => {
+                slide.addEventListener('click', () => closeLightbox());
+            });
+        } else {
+            singleImage.addEventListener('click', closeLightbox);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (!csLightbox.classList.contains('lightbox-active')) return;
+    
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (slider) {
+                if (event.key === 'ArrowRight' && currentSlideIndex < slides.length - 1) {
+                    currentSlideIndex++;
+                    scrollToSlideSmooth(currentSlideIndex);
+                } else if (event.key === 'ArrowLeft' && currentSlideIndex > 0) {
+                    currentSlideIndex--;
+                    scrollToSlideSmooth(currentSlideIndex);
+                }
+            }
+        });
+
+        // Recalculate slide index on resize for button navigation
+        window.addEventListener('resize', () => {
+            if (!csLightbox.classList.contains('lightbox-active') || !slider) return;
+        
+            // Recalculate current slide index
+            const newIndex = Math.round(slider.scrollLeft / slider.offsetWidth);
+            currentSlideIndex = newIndex;
+        });
+
+        // Lightbox Utilities
+        function startLightbox() {
+            currentScroll = window.scrollY;
+
+            csLightbox.classList.add('lightbox-active');
+            nav.classList.add('lightbox-active');
+            setTimeout(() => {
+                body.classList.add('lightbox-active');
+            }, 200); // Timeout same as lightbox css transition
+        }
+
+        function closeLightbox() {
+            document.documentElement.style.scrollBehavior = 'auto';
+
+            csLightbox.classList.remove('lightbox-active');
+            body.classList.remove('lightbox-active');
+            nav.classList.remove('lightbox-active');
+
+            window.scrollTo(0, currentScroll);
+            
+            setTimeout(() => {
+                if (slider) { slider.scrollLeft = 0; } // reset scroll position
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 200);        
+        }
+
+        // Initialize Lightbox on correct image
+        function scrollToSlide(index) {
+            if (!slider) return;
+            const slideWidth = slider.offsetWidth;
+            slider.style.scrollBehavior = 'auto';
+            slider.scrollLeft = index * slideWidth;
+            setTimeout(() => {
+                slider.style.scrollBehavior = 'smooth';
+            }, 50);
+        }
+
+        // Smooth scrolling for key navigation
+        function scrollToSlideSmooth(index) {
+            if (!slider) return;
+            const slideWidth = slider.offsetWidth;
+            slider.scrollLeft = index * slideWidth;
+        }
+
+    }
+
+    ///////////////////////////////////////////////////////////////////
+    // Lightbox Utilities
 
 
 

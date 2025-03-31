@@ -61,7 +61,7 @@
                 {% for section_image in section.section_images.all %}
 
                     <div class="cs-image-tile {% if forloop.counter == 3 %}full-width{% endif %}">
-                        <img src="{{ section_image.image.url }}" alt="{{ case_study.menu_title }}">
+                        <img src="{{ section_image.image.url }}" class="lightbox-trigger" alt="{{ case_study.menu_title }}">
                         {% if section_image.caption %}
                             <p class="text-18 off-white">{{ section_image.caption }}</p>
                         {% endif %}
@@ -85,6 +85,9 @@
 
             {% endfor %}
 
+            {% if all_images %}
+                {% include 'util-lightbox.html' with images=all_images %}
+            {% endif %}
             
         </div>
 

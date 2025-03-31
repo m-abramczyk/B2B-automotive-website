@@ -44,6 +44,8 @@ def case_study_detail(request, parent_slug, slug):
     case_study_data = case_study.data_items.order_by('order')
     sections = case_study.sections.all()
     all_images = list(chain(*[section.section_images.all() for section in sections]))
+    meta_title = case_study.meta_title if case_study.meta_title else case_study.menu_title.rstrip(":")
+    meta_description = case_study.meta_description
 
     context = {
         'case_study': case_study,
@@ -55,6 +57,8 @@ def case_study_detail(request, parent_slug, slug):
         'case_study_data': case_study_data,
         'sections': sections,
         'all_images': all_images,
+        'meta_title': meta_title,
+        'meta_description': meta_description,
     }
 
     return render(request, 'page-case-study-detail.html', context)
