@@ -1,20 +1,37 @@
+from itertools import chain
+from django.db.models import Prefetch
+
 from django.utils.translation import gettext as _
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
 from pages.models import Page
-from .models import CaseStudy
+from .models import CaseStudy, Section, SectionImage
 
 
 def case_study_detail(request, parent_slug, slug):
 
+    # Resolving parent URL
     case_studies_index = get_object_or_404(Page, is_case_studies_index=True, is_published=True)
     if case_studies_index.parent:
         parent = get_object_or_404(Page, slug=parent_slug)
         if parent != case_studies_index.parent:
             raise Http404("Invalid parent page for the case study.")
 
-    case_study = get_object_or_404(CaseStudy, slug=slug, is_published=True)
+    # Prefetch ordered sections and their related images
+    sections_qs = Section.objects.prefetch_related(
+        Prefetch('section_images', queryset=SectionImage.objects.order_by('order'))
+    ).order_by('order')
+
+    case_study = get_object_or_404(
+        CaseStudy.objects.prefetch_related(
+            Prefetch('sections', queryset=sections_qs)
+        ),
+        slug=slug,
+        is_published=True
+    )
+
+    # case_study = get_object_or_404(CaseStudy, slug=slug, is_published=True)
 
     case_studies = list(CaseStudy.objects.filter(is_published=True).order_by('-year'))
     current_index = next((i for i, cs in enumerate(case_studies) if cs.slug == slug), None)
@@ -23,6 +40,10 @@ def case_study_detail(request, parent_slug, slug):
 
     cover = case_study.cover if case_study else None
     expert = case_study.expert
+    case_study_labels = case_study.labels.order_by('order')
+    case_study_data = case_study.data_items.order_by('order')
+    sections = case_study.sections.all()
+    all_images = list(chain(*[section.section_images.all() for section in sections]))
 
     context = {
         'case_study': case_study,
@@ -30,6 +51,10 @@ def case_study_detail(request, parent_slug, slug):
         'next_case_study': next_case_study,
         'cover': cover,
         'expert': expert,
+        'case_study_labels': case_study_labels,
+        'case_study_data': case_study_data,
+        'sections': sections,
+        'all_images': all_images,
     }
 
     return render(request, 'page-case-study-detail.html', context)

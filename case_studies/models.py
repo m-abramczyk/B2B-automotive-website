@@ -1,8 +1,11 @@
+import os
 from django.urls import reverse
 from django.db import models
+from tinymce.models import HTMLField
 
-from experts.models import Expert
 from covers.models import CaseStudyCover
+from experts.models import Expert
+from labels.models import Label
 
 
 def upload_to(instance, filename):
@@ -56,6 +59,24 @@ class CaseStudy(models.Model):
         help_text=('Chose case study cover (no selection = no cover)'),
     )
 
+    # Key data
+    header = models.CharField(
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Header of Key Data block'),
+    )
+    labels_header = models.CharField(
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Header of labels group'),
+    )
+    text = HTMLField(
+        blank=True,
+        null=True,
+    )
+
     # Expert
     expert = models.ForeignKey(
         Expert,
@@ -96,3 +117,148 @@ class CaseStudy(models.Model):
             'parent_slug': parent.slug,
             'slug': self.slug,
         })
+    
+
+#//////////////////////////////////////////////////////////////
+# Label Inline
+
+class CaseStudyLabel(models.Model):
+    page = models.ForeignKey(
+        CaseStudy,
+        on_delete=models.CASCADE,
+        related_name="labels",
+    )
+
+    label = models.ForeignKey(
+        Label, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        help_text=('Choose or create a new label. Labels are reusable accross the page')
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = ('Case Study Label')
+        verbose_name_plural = ('Case Study Labels')
+        ordering = ('order',)
+
+    def __str__(self):
+        return "Label"
+
+
+#//////////////////////////////////////////////////////////////
+# Data Inline
+
+class CaseStudyData(models.Model):
+    page = models.ForeignKey(
+        CaseStudy,
+        on_delete=models.CASCADE,
+        related_name="data_items",
+    )
+
+    data_type = models.CharField(
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('Displayed in the first column of Key Data table'),
+    )
+    data_content = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=('Displayed in the second column of Key Data table'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = ('Data Item')
+        verbose_name_plural = ('Data Items')
+        ordering = ('order',)
+
+    def __str__(self):
+        return self.data_type or "Data Item"
+    
+    
+#//////////////////////////////////////////////////////////////
+# Section Inline
+
+class Section(models.Model):
+    case_study = models.ForeignKey(
+        CaseStudy,
+        on_delete=models.CASCADE,
+        related_name="sections",
+    )
+
+    header = models.TextField(
+        max_length=120,
+        blank=True,
+        null=True,
+        help_text=('Optional Header to display below section images. Format with break-lines.'),
+    )
+    text = HTMLField(
+        blank=True,
+        null=True,
+        help_text=('Optional text to display below section images. Format with break-lines.'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = ('Section')
+        verbose_name_plural = ('Sections')
+        ordering = ('order',)
+
+    def __str__(self):
+        return self.header or "Untitled Section"
+    
+    
+#//////////////////////////////////////////////////////////////
+# Section Image Inline
+
+class SectionImage(models.Model):
+    section = models.ForeignKey(
+        Section,
+        on_delete=models.CASCADE,
+        related_name="section_images",
+    )
+
+    image = models.ImageField(
+        upload_to=upload_to,
+        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1680px'),
+    )    
+    caption = models.TextField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text=('Optional caption to display below an image. Format with break-lines.'),
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
+
+
+    class Meta:
+        verbose_name = ('Image')
+        verbose_name_plural = ('Images')
+        ordering = ['order']
+
+    def __str__(self):
+        return os.path.basename(self.image.name)
+    
+    @property
+    def slug(self):
+        return self.section.case_study.slug

@@ -3,6 +3,7 @@
 	{% block content %}
 	{% load static %}
 	{% load i18n %}
+    {% load label_tags %}
 
     {% include 'util-cover.html' %}
 	{% include 'util-header-cs.html' %}
@@ -10,13 +11,79 @@
 	<main>
 
         <!-- Key Data -->
-        <div class="grid block-cs cs-key-data">
+        <div class="grid block-cs">
 
+            {% if case_study.header %}
+                <h3 class="true-white">{{ case_study.header }}</h3>
+            {% endif %}
+
+            <div class="cs-key-data">
+
+                {% if case_study_data %}
+                    <ul class="text-24 true-white tabular">
+                        {% for data_item in case_study_data %}
+                            <li>
+                                <p>{{ data_item.data_type }}</p>
+                                <p>{{ data_item.data_content }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if case_study.labels_header %}
+                    <h5 class="text-24 true-white">{{ case_study.labels_header }}</h5>
+                {% endif %}
+
+                {% if case_study_labels %}
+                    <div class="button-container">
+                        {% for case_study_label in case_study_labels %}
+                            {% with case_study_label|get_label as label %}
+                                {% include 'util-label.html' %}
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+
+            {% if case_study.text %}
+                <div class="text-20 true-white tinymce">{{ case_study.text|safe }}</div>
+            {% endif %}
 
         </div>
 
         <!-- Content -->
         <div class="grid block-cs cs-content">
+
+
+            {% for section in sections %}
+            
+                {% for section_image in section.section_images.all %}
+
+                    <div class="cs-image-tile {% if forloop.counter == 3 %}full-width{% endif %}">
+                        <img src="{{ section_image.image.url }}" alt="{{ case_study.menu_title }}">
+                        {% if section_image.caption %}
+                            <p class="text-18 off-white">{{ section_image.caption }}</p>
+                        {% endif %}
+                    </div>
+
+                {% endfor %}
+
+                {% if section.header or section.text %}
+
+                    <div class="cs-section-text">
+                        {% if section.header %}
+                            <h3 class="true-white text-block">{{ section.header }}</h3>
+                        {% endif %}
+
+                        {% if section.text %}
+                            <div class="text-20 true-white tinymce">{{ section.text|safe }}</div>
+                        {% endif %}
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
 
             
         </div>
@@ -27,7 +94,11 @@
             {% if prev_case_study %}
                 <a href="{{ prev_case_study.get_absolute_url }}" class="cs-prev">
                     <h4 class="no-wrap true-white tabular">< {% trans 'Previous Study' %}</h4>
-                    <img src="{{ prev_case_study.thumbnail.url }}" alt="{{ prev_case_study.menu_title }}">
+
+                    {% if prev_case_study.thumbnail %}
+                        <img src="{{ prev_case_study.thumbnail.url }}" alt="{{ prev_case_study.menu_title }}">
+                    {% endif %}
+                    
                     <h6 class="text-24 true-white">{{ prev_case_study.menu_title }}</h6>
                 </a>
             {% endif %}
@@ -35,7 +106,11 @@
             {% if next_case_study %}
             <a href="{{ next_case_study.get_absolute_url }}" class="cs-next">
                 <h4 class="no-wrap true-white tabular">{% trans 'Next Study' %} ></h4>
-                <img src="{{ next_case_study.thumbnail.url }}" alt="{{ next_case_study.menu_title }}">
+
+                {% if next_case_study.thumbnail %}
+                    <img src="{{ next_case_study.thumbnail.url }}" alt="{{ next_case_study.menu_title }}">
+                {% endif %}
+
                 <h6 class="text-24 true-white">{{ next_case_study.menu_title }}</h6>
             </a>
             {% endif %}

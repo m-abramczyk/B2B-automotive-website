@@ -371,9 +371,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let scrollWidth = coverSlider.offsetWidth;
         let currentIndex = 0;
+        let autoScroll;
 
         // click scrolling
         function scrollLeft() {
+            resetAutoScroll();
             if (currentIndex > 0) {
                 currentIndex--;
                 coverSlider.scrollLeft -= scrollWidth;
@@ -386,6 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function scrollRight() {
+            resetAutoScroll();
             if (currentIndex < covers.length - 1) {
                 currentIndex++;
                 coverSlider.scrollLeft += scrollWidth;
@@ -425,7 +428,28 @@ document.addEventListener('DOMContentLoaded', () => {
             captions[currentIndex].classList.add('cs-current');
         }
 
-        window.addEventListener('load', updateCounter);
+        // Called on load and resize
+        function updateSlider() {
+            scrollWidth = coverSlider.offsetWidth;
+            updateCounter();
+        }
+
+        window.addEventListener('load', updateSlider);
+        window.addEventListener('resize', updateSlider);
+
+        // Auto-scroll every 7 seconds
+        function startAutoScroll() {
+            autoScroll = setInterval(() => {
+                scrollRight();
+            }, 7000);
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScroll);
+            startAutoScroll();
+        }
+
+        startAutoScroll();
 
     }
 

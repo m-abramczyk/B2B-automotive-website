@@ -29,13 +29,23 @@
 
             {% for case_study in case_studies %}
 
-                <a href="{{ case_study.get_absolute_url }}" class="case-study-tile" data-name="{{ case_study.menu_title }}" data-year="{{ case_study.year }}">
+                <a href="{{ case_study.get_absolute_url }}"
+                    class="case-study-tile"
+                    data-name="{{ case_study.menu_title }}"
+                    data-year="{{ case_study.year }}">
+
                     {% if case_study.thumbnail %}
                         <img src="{{ case_study.thumbnail.url }}" alt="{{ case_study.menu_title }} thumbnail">
                     {% endif %}
+
                     <div>
+                        
                         <h6 class="text-24 true-white">{{ case_study.menu_title }}</h6>
-                        {% if case_study.year %}<p class="text-24 light-grey tabular">{{ case_study.year }}</p>{% endif %}
+                        
+                        {% if case_study.year %}
+                            <p class="text-24 light-grey tabular">{{ case_study.year }}</p>
+                        {% endif %}
+
                     </div>
                 </a>
 

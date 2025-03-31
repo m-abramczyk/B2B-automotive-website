@@ -61,6 +61,7 @@ class ExternalLinkInline(NestedTabularInline):
     extra = 1
     max_num = 3
     ordering = ['order']
+    sortable_options = {'disabled': True,}
 
 
 # Privacy Policy Button Inline
