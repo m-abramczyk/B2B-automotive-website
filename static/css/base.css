@@ -1537,10 +1537,35 @@ Lightbox */
     overflow: hidden;
 }
 
-.lightbox .carousel-footer .slide-caption-container,
-.lightbox .carousel-footer > p { /* caption for slider and single photo */
-    width: calc(50vw - var(--grid-margin) * 2 - var(--grid-gap) / 2);
+.lightbox .carousel-footer {
+    flex-direction: column;
+    gap: calc(var(--grid-gap) * 0.75); /* 20px */
 }
+
+.lightbox .carousel-nav {
+    align-items: end;
+}
+
+.lightbox .carousel-footer > :last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--grid-gap) * 1.2); /* 24px */
+}
+
+/* caption for slider and single photo */
+.lightbox .carousel-footer .slide-caption-container,
+.lightbox .carousel-footer > p {
+    width: calc(50vw - var(--grid-margin) * 2 - var(--grid-gap) / 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+/* .lightbox .carousel-footer .slide-caption-container > p {
+    max-height: 8em;
+} */
 
 .lightbox-close-button {
     width: var(--grid-margin);
@@ -2269,6 +2294,10 @@ color classes */
         padding-block: calc(var(--grid-margin) * 1) calc(var(--grid-margin) * 1.5);
     }
 
+    .lightbox .carousel-footer .slide-caption-container,
+    .lightbox .carousel-footer > p { /* caption for slider and single photo */
+        width: calc(75vw - var(--grid-margin) * 1 - var(--grid-gap));
+    }
 
     /*//////////////////////////////////////////////////////////////////////
     Privacy Policy */
@@ -2397,15 +2426,6 @@ color classes */
     /* block timeline */
     .timeline-captions {
         justify-content: flex-start;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////
-    Lightbox */ 
-
-    /* caption for slider and single photo */
-    .lightbox .carousel-footer .slide-caption-container,
-    .lightbox .carousel-footer > p { 
-        width: auto;
     }
 
 }
@@ -2826,6 +2846,12 @@ color classes */
         width: 100vw;
         max-height: 50vh;
         transform: translateY(-60%);
+    }
+
+    /* caption for slider and single photo */
+    .lightbox .carousel-footer .slide-caption-container,
+    .lightbox .carousel-footer > p { 
+        width: auto;
     }
 
     /*//////////////////////////////////////////////////////////////////////

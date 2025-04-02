@@ -560,6 +560,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set the height of slide caption container to tallest caption
         function adjustCaptionHeight() {
 
+            // Dont adjust lightbox captions
+            // if (blockContainer.classList.contains('lightbox')) return;
+
             // If block-timeline, adjust parent container height
             if (blockContainer.classList.contains('block-timeline')) {
 
