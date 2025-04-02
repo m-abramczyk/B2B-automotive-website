@@ -1267,6 +1267,10 @@ Case Study detail */
     padding-top: calc(var(--fs-20) * 0.5);
 }
 
+.cs-image-tile.full-width p {
+    max-width: calc(100% / 3 - var(--grid-gap) * 2/3); /* 4 grid columns */
+}
+
 /* Prev / Next */
 .cs-prev {
     grid-column: 1 / span 4;
@@ -1976,6 +1980,16 @@ color classes */
         grid-column: 7 / span 6;
     }
 
+    /* regular image caption */
+    .cs-image-tile p {
+        max-width: calc(100% * 5/6 - var(--grid-gap) * 1/6); /* 5 grid columns */
+    }
+
+    /* full width image caption */
+    .cs-image-tile.full-width p {
+        max-width: calc(100% * 5/12 - var(--grid-gap) * 7/12); /* 5 grid columns */
+    }
+
     /* prev / next */
     .cs-prev img,
     .cs-next img {
@@ -2270,6 +2284,11 @@ color classes */
     .cs-image-tile p {
         max-width: 100%;
         padding-top: calc(var(--fs-20) * 0.5);
+    }
+
+    /* full width image caption */
+    .cs-image-tile.full-width p {
+        max-width: calc(100% * 3/4 - var(--grid-gap) * 1/4); /* 6 grid columns */
     }
 
     /* previous / next */
@@ -2808,6 +2827,11 @@ color classes */
     .cs-image-tile p {
         max-width: 100%;
         padding-top: calc(var(--fs-20) * 0.4);
+    }
+
+    /* full width image caption */
+    .cs-image-tile.full-width p {
+        max-width: 100%;
     }
 
     /* previous / next */
