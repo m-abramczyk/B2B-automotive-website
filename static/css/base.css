@@ -328,6 +328,14 @@ image styles */
     z-index: -1;
 }
 
+.cover-placeholder {
+    position: absolute;
+    width: 100%;
+    height: 75vh;
+    height: 75svh;
+    background: var(--g3-dark-grey);
+}
+
 img:not(.cover) {
     display: block;
     font-style: italic;
@@ -1280,10 +1288,6 @@ Case Study detail */
 
 .block-cs a h6 {
     display: inline;
-}
-
-.cs-previous-next-inactive {
-    opacity: 0.5;
 }
 
 

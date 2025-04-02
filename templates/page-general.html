@@ -6,11 +6,15 @@
 
     {% if page_data.is_case_studies_index and case_studies %}
 
-        <div id="cs-cover-slider">
-            {% for cover in covers %}
-                {% include 'util-cover.html' %}
-            {% endfor %}
-        </div>
+        {% if covers %}
+            <div id="cs-cover-slider">
+                {% for cover in covers %}
+                    {% include 'util-cover.html' %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="cover-placeholder"></div>
+        {% endif %}
 
     {% else %}
 

@@ -69,7 +69,7 @@ class SectionInline(NestedStackedInline):
 class CaseStudyAdmin(NestedModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('is_published', 'year', 'menu_title', 'thumbnail', 'cover'),
+            'fields': ('is_published', 'index_cover_slider', 'year', 'menu_title', 'thumbnail', 'cover'),
         }),
         ('URL', {
             'classes': ('collapse',),
@@ -88,8 +88,8 @@ class CaseStudyAdmin(NestedModelAdmin):
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    list_display = ('menu_title', 'year', 'is_published')
-    list_editable = ('year', 'is_published')
+    list_display = ('menu_title', 'year', 'index_cover_slider', 'is_published')
+    list_editable = ('year', 'index_cover_slider', 'is_published')
     ordering = ['-year']
     prepopulated_fields= {
         'slug': ('menu_title',),

@@ -17,8 +17,14 @@ class Label(models.Model):
     ]
     
     label_text = models.CharField(
-        max_length=600,
+        max_length=60,
         unique=True
+    )
+    label_url = models.CharField(
+        max_length=60,
+        blank=True,
+        null=True,
+        help_text=('(optional) URL for clickable labels (only on Case Study pages)'),
     )
     color = models.CharField(
         max_length=20,

@@ -244,7 +244,7 @@ class TimelineImage(models.Model):
 
     image = models.ImageField(
         upload_to=upload_to_timeline,
-        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1280px (blocks Left, Right) / width: 1680px (block Full-width)'),
+        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1500px'),
     )
     order = models.PositiveIntegerField(
         default=0,

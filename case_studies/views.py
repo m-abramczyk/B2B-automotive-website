@@ -28,15 +28,16 @@ def case_study_detail(request, parent_slug, slug):
             Prefetch('sections', queryset=sections_qs)
         ),
         slug=slug,
-        is_published=True
     )
-
-    # case_study = get_object_or_404(CaseStudy, slug=slug, is_published=True)
 
     case_studies = list(CaseStudy.objects.filter(is_published=True).order_by('-year'))
     current_index = next((i for i, cs in enumerate(case_studies) if cs.slug == slug), None)
-    prev_case_study = case_studies[current_index - 1] if current_index is not None and current_index > 0 else None
-    next_case_study = case_studies[current_index + 1] if current_index is not None and current_index < len(case_studies) - 1 else None
+    if current_index is not None:
+        prev_case_study = case_studies[current_index - 1] if current_index > 0 else case_studies[-1]
+        next_case_study = case_studies[current_index + 1] if current_index < len(case_studies) - 1 else case_studies[0]
+    else:
+        prev_case_study = None
+        next_case_study = None
 
     cover = case_study.cover if case_study else None
     expert = case_study.expert

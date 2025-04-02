@@ -75,8 +75,7 @@ def general_page(request, slug):
 
         case_studies = CaseStudy.objects.filter(is_published=True).select_related('cover').order_by('-year')
         context['case_studies'] = case_studies
-        context['covers'] = [cs.cover for cs in case_studies if cs.cover]
-        
+        context['covers'] = [cs.cover for cs in case_studies if cs.cover and cs.index_cover_slider]        
         context['expert'] = page.expert
         
     else:

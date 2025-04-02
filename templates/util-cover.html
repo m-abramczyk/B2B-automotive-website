@@ -1,6 +1,8 @@
 {% block util-cover %}
 {% load i18n %}
 
+{% if cover %}
+
     {% if cover.cover_video %}
 
         <video class="cover" autoplay playsinline muted loop>
@@ -21,5 +23,11 @@
         class="cover">
 
     {% endif %}
+    
+{% else %}
+
+    <div class="cover-placeholder"></div>
+
+{% endif %}
 
 {% endblock %}

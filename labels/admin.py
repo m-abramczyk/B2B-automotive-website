@@ -5,7 +5,7 @@ from .models import Label
 class LabelAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            "fields": ("label_text", "color"),
+            "fields": ("label_text", "label_url", "color"),
         }),
     )
     list_display = ("label_text", "color")

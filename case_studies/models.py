@@ -17,11 +17,10 @@ def upload_to(instance, filename):
 
 class CaseStudy(models.Model):
 
-    # Navigation
     is_published = models.BooleanField(
         ('Published'),
         default=False,
-        help_text=('Check to publish. Unpublished page doesnt appear in the navigation, but can still be previewed under its URL ([slug] or [parent_slug/slug])'),
+        help_text=('Check to publish. Unpublished Case Study doesnt appear in Case Study Index page, but can still be previewed under its URL (example: /company/case-studies/zeekr-x/).'),
     )
     year = models.PositiveIntegerField(
         blank=True,
@@ -33,13 +32,13 @@ class CaseStudy(models.Model):
     menu_title = models.CharField(
         ('Title'),
         max_length=60,
-        help_text=('Page title as displayed in page header and breadcrumbs, max 60 characters'),
+        help_text=('Case Study title as displayed in page header and breadcrumbs, max 60 characters'),
     )
     slug = models.SlugField(
         ('URL Settings'),
         max_length=50,
         unique=True,
-        help_text=('URL is created automatically based on menu title. Dont touch unless title is long and not suitable for url'),
+        help_text=('URL is created automatically based on title. Dont touch unless title is long and not suitable for url'),
     )
 
     # Thumbnail
@@ -47,7 +46,7 @@ class CaseStudy(models.Model):
         upload_to=upload_to,
         blank=True,
         null=True,
-        help_text=('1:1 ratio, 300px x 300px'),
+        help_text=('3:2 ratio, 1280px x 854px'),
     )
 
     # cover
@@ -58,18 +57,25 @@ class CaseStudy(models.Model):
         on_delete=models.SET_NULL,
         help_text=('Chose case study cover (no selection = no cover)'),
     )
+    index_cover_slider = models.BooleanField(
+        ('Show in Index slider'),
+        default=True,
+        help_text=('Check to display Cover in header slider on Case Study Index Page'),
+    )
 
     # Key data
     header = models.CharField(
         max_length=60,
         blank=True,
         null=True,
+        default='Key data:',
         help_text=('Header of Key Data block'),
     )
     labels_header = models.CharField(
         max_length=60,
         blank=True,
         null=True,
+        default='Scope of work:',
         help_text=('Header of labels group'),
     )
     text = HTMLField(
@@ -83,7 +89,7 @@ class CaseStudy(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text=('Chose an expert to display at the bottom of the page (no selection = no expert)'),
+        help_text=('Chose or add an expert to display at the bottom of the page (no selection = no expert)'),
     )
 
     # Meta data
@@ -91,7 +97,7 @@ class CaseStudy(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. Auto-filled from menu title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
     )
     meta_description = models.TextField(
         max_length=255,
@@ -202,7 +208,7 @@ class Section(models.Model):
         max_length=120,
         blank=True,
         null=True,
-        help_text=('Optional Header to display below section images. Format with break-lines.'),
+        help_text=('Optional Header to display below section images. Format with break-lines. If both Header and Text fields are left empty, images will flow continuously to next section.'),
     )
     text = HTMLField(
         blank=True,
@@ -236,18 +242,19 @@ class SectionImage(models.Model):
 
     image = models.ImageField(
         upload_to=upload_to,
-        help_text=('WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1680px'),
+        help_text=('There can be max 3 images in a section. First two images are small, third image is full width. Format: WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1680px'),
     )    
     caption = models.TextField(
         max_length=500,
         blank=True,
         null=True,
-        help_text=('Optional caption to display below an image. Format with break-lines.'),
+        help_text=('Optional caption to display below an image.'),
     )
     order = models.PositiveIntegerField(
         default=0,
         blank=False,
         null=False,
+        help_text=('Image order within the the block'),
     )
 
 

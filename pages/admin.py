@@ -51,28 +51,28 @@ class ContentBlockInline(NestedGenericStackedInline):
 
 
 # Contact External Link Inline
-class ExternalLinkInline(NestedTabularInline):
+class ExternalLinkInline(admin.StackedInline):
     fieldsets = (
         (None, {
             'fields': ('link_text', 'link_url', 'order'),
         }),
     )
     model = ExternalLink
-    extra = 1
+    extra = 0
     max_num = 3
     ordering = ['order']
     sortable_options = {'disabled': True,}
 
 
 # Privacy Policy Button Inline
-class PrivacyPolicyButtonInline(admin.TabularInline):
+class PrivacyPolicyButtonInline(admin.StackedInline):
     fieldsets = (
         (None, {
             'fields': ('button_text', 'button_url', 'order'),
         }),
     )
     model = PrivacyPolicyButton
-    extra = 1
+    extra = 0
     max_num = 3
     ordering = ['order']
 
@@ -118,7 +118,7 @@ class PageAdmin(NestedModelAdmin):
         }),
         ('Navigation', {
             'classes': ('collapse',),
-            'fields': ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order'),
+            'fields': ('parent', 'order'),
         }),
         ('Cover', {
             'classes': ('collapse',),
@@ -149,7 +149,7 @@ class PageAdmin(NestedModelAdmin):
             'fields': ('meta_title', 'meta_description'),
         }),
     )
-    list_display = ('menu_title', 'is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order', 'is_published')
+    list_display = ('display_menu_title', 'is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order', 'is_published')
     list_editable = ('is_section_1_parent', 'is_section_2_parent', 'is_case_studies_index', 'parent', 'order', 'is_published')
     prepopulated_fields= {
         'slug': ('menu_title',),
@@ -157,6 +157,11 @@ class PageAdmin(NestedModelAdmin):
     inlines = [
         ContentBlockInline,
     ]
+
+    # Append 'index' if is_case_study_index
+    def display_menu_title(self, obj):
+        return f"{obj.menu_title} index" if obj.is_case_studies_index else obj.menu_title
+    display_menu_title.short_description = "Page Title" # Custom column name
 
     # Restrict the parent choices to Section 1 and Section 2 parents
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
