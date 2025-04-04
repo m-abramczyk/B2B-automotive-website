@@ -59,10 +59,11 @@ def build_breadcrumbs(request):
             # Handle Privacy Policy Page (hardcoded URL = 'privacy-policy')
             elif part == 'privacy-policy':
                 privacy_policy = PrivacyPolicy.objects.filter(is_published=True).first()
-                breadcrumbs.append({
-                    'title': privacy_policy.menu_title,
-                    'url': privacy_policy.get_absolute_url(),
-                })
+                if privacy_policy:
+                    breadcrumbs.append({
+                        'title': privacy_policy.menu_title,
+                        'url': privacy_policy.get_absolute_url(),
+                    })
                 break
 
             # Attempt to find a published Page with this slug and parent

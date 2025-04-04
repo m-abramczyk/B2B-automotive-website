@@ -13,9 +13,14 @@
 	<title>G3{% if meta_title %} — {{ meta_title }}{% endif %}</title>
 	<meta name="description" content="{% if meta_description %}{{ meta_description }}{% endif %}">
 
+    {% if not is_published %}
+        <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+
 	{% for lang_code, lang_name in languages %}
 		<link rel="alternate" href="https://g3.net.pl/{{ lang_code }}{{ request.path_info|slice:'3:' }}" hreflang="{{ lang_code }}">
 	{% endfor %}
+    
 	<link rel="alternate" href="https://g3.net.pl/en{{ request.path_info|slice:'3:' }}" hreflang="x-default">
 	<link rel="canonical" href="https://g3.net.pl{{ request.path_info }}">
 

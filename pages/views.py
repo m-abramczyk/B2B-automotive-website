@@ -4,6 +4,10 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
 from django.contrib.contenttypes.models import ContentType
 
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from contact_form.forms import ContactForm
+
 from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 from case_studies.models import CaseStudy
 from special_blocks.helpers import get_special_blocks
@@ -29,11 +33,13 @@ def home_page(request):
     
     meta_title = page_data.meta_title if page_data.meta_title else page_data.title.rstrip(":")
     meta_description = page_data.meta_description
+    is_published = True
 
     context = {
         'page_data': page_data,
         'meta_title': meta_title,
         'meta_description': meta_description,
+        'is_published': is_published,
         'cover': cover,
         'expert': expert,
         'content_blocks': content_blocks,
@@ -58,11 +64,13 @@ def general_page(request, slug):
 
     meta_title = page.meta_title if page.meta_title else page.title.rstrip(":")
     meta_description = page.meta_description
+    is_published = page.is_published
 
     context = {
         'page_data': page,
         'meta_title': meta_title,
         'meta_description': meta_description,
+        'is_published': is_published,
         'case_studies': [],
         'covers': [],
         'cover': None,
@@ -109,6 +117,7 @@ def contact_page(request):
 
     meta_title = contact_page.meta_title if contact_page.meta_title else contact_page.title.rstrip(":")
     meta_description = contact_page.meta_description
+    is_published = True
 
     content_blocks = ContentBlock.objects.filter(
         content_type=ContentType.objects.get_for_model(Contact),
@@ -119,14 +128,42 @@ def contact_page(request):
     
     special_blocks = get_special_blocks(contact_page)
 
+    # Contact Form
+    form = ContactForm()
+    
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        # Check honeypot field
+        if form.data.get('middle_name'):
+            return JsonResponse({'success': False, 'message': 'Bot detected — message not sent.'})
+        
+        if form.is_valid():
+            send_mail(
+                subject='New Contact Form Message',
+                message=form.cleaned_data['message'],
+                from_email=form.cleaned_data['email'],
+                recipient_list=['maciej.abramczyk@gmail.com'],
+            )
+            form = ContactForm()
+            return JsonResponse({'success': True, 'message': 'Thank you! Your message has been sent!'})
+        else:
+            errors = {field: error.get_json_data() for field, error in form.errors.items()}
+            return JsonResponse({'success': False, 'message': 'Please correct the fields above before sending.', 'errors': errors})
+
+
     context = {
         'contact_page': contact_page,
         'meta_title': meta_title,
         'meta_description': meta_description,
+        'is_published': is_published,
         'contact_page_links': contact_page_links,
         'contact_page_link_header': contact_page_link_header,
         'expert': expert,
         'content_blocks': content_blocks,
+
+        'form': form,
+
         **special_blocks,
     }
 
@@ -143,12 +180,14 @@ def privacy_policy(request):
 
     meta_title = privacy_policy.meta_title if privacy_policy.meta_title else privacy_policy.title.rstrip(":")
     meta_description = privacy_policy.meta_description
+    is_published = privacy_policy.is_published
 
     context = {
         'privacy_policy': privacy_policy,
         'privacy_policy_buttons': privacy_policy_buttons,
         'meta_title': meta_title,
         'meta_description': meta_description,
+        'is_published': is_published,
     }
 
     return render(request, 'page-privacy-policy.html', context)
@@ -164,8 +203,11 @@ def page_not_found(request, exception):
     except PageNotFound.DoesNotExist:
         page_not_found = None
 
+    is_published = True
+
     context = {
-        'page_not_found': page_not_found
+        'page_not_found': page_not_found,
+        'is_published': is_published,
     }
 
     return render(request, '404.html', context, status=404)

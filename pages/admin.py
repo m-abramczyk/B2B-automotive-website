@@ -183,6 +183,10 @@ class ContactAdmin(NestedModelAdmin):
             'classes': ('collapse',),
             'fields': ('phone_number', 'email', 'address', 'fiscal_data', 'address_footer'),
         }),
+        ('Contact Form', {
+            'classes': ('collapse',),
+            'fields': ('form_header', 'form_text', 'label', 'button_form_text'),
+        }),
         ('Expert', {
             'classes': ('collapse',),
             'fields': ('expert',),

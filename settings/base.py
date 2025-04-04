@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'experts',
     'labels',
     'special_blocks',
+    'contact_form',
 ]
 
 MIDDLEWARE = [
@@ -147,6 +148,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Email Backend for local development
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 # TinyMCE
 

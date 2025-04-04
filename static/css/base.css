@@ -1613,6 +1613,76 @@ nav.lightbox-active {
 
 
 /*//////////////////////////////////////////////////////////////////////
+Contact Form */
+
+#contact-form form {
+    color: var(--g3-off-white);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-gap));
+}
+
+#contact-form form > div {
+    position: relative;
+}
+
+#contact-form input,
+#contact-form textarea {
+    color: var(--g3-true-white);
+    font-family: 'untitled-sans', 'Helvetica', 'Arial', sans-serif;
+    font-weight: var(--fw-normal);
+    font-size: var(--fs-18);
+    line-height: 1.33;
+    letter-spacing: -0.03em;
+
+    width: 100%;
+    background: var(--g3-black);
+    border: none;
+    border-bottom: 1px solid var(--g3-true-white);
+    padding-bottom: 0.2em;
+}
+
+#contact-form textarea {
+    field-sizing: content;
+    max-height: 9em;
+    resize: none;
+}
+
+#contact-form input:focus-visible,
+#contact-form textarea:focus-visible {
+    outline: none;
+}
+
+#contact-form input:placeholder-shown,
+#contact-form textarea:placeholder-shown {
+    color: var(--g3-grey);
+    opacity: 1;
+}
+
+#contact-form input:user-invalid,
+#contact-form textarea:user-invalid {
+    color: var(--g3-red);
+}
+
+#contact-form .block-img button {
+    margin-top: calc(var(--grid-margin) * 1/5);
+}
+
+.form-error-message {
+    color: var(--g3-red);
+}
+
+.field-error-message {
+    color: var(--g3-red);
+    opacity: 0.54;
+    text-align: end;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////
 Privacy Policy */
 
 .privacy-policy {
@@ -2014,6 +2084,14 @@ color classes */
     .privacy-policy > .button-container {
         padding-top: calc(var(--grid-margin) * 1.5);
     }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Contact Form */
+
+    #contact-form .block-img button {
+        margin-top: 0;
+    }
+
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -2331,6 +2409,17 @@ color classes */
 
     .privacy-policy > .button-container {
         padding-top: var(--grid-margin);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Contact Form */
+
+    #contact-form form {
+        gap: calc(var(--grid-gap));
+    }
+
+    #contact-form .block-img button {
+        margin-top: 0;
     }
 
 }
@@ -2887,6 +2976,17 @@ color classes */
 
     .privacy-policy > .button-container {
         padding-top: calc(var(--grid-margin) * 1.667);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Contact Form */
+
+    #contact-form form {
+        gap: calc(var(--grid-gap) * 1.25);
+    }
+
+    #contact-form .block-img button {
+        margin-top: 0;
     }
 
 }

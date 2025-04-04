@@ -70,7 +70,6 @@
 
                 {% if content_block.images and content_block.display_type != "wipe" %}
                     {% include 'util-carousel.html' with images=content_block.images.all %}
-                    {% include 'util-lightbox.html' with images=content_block.images.all %}
                 {% endif %}
 
             {% endif %}

@@ -171,7 +171,7 @@ class CaseStudyData(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Displayed in the first column of Key Data table'),
+        help_text=('( Year / Client / Team / Tools ) Displayed in the first column of Key Data table'),
     )
     data_content = models.CharField(
         max_length=255,
@@ -186,12 +186,12 @@ class CaseStudyData(models.Model):
     )
 
     class Meta:
-        verbose_name = ('Data Item')
-        verbose_name_plural = ('Data Items')
+        verbose_name = ('Key Data Item')
+        verbose_name_plural = ('Key Data Items')
         ordering = ('order',)
 
     def __str__(self):
-        return self.data_type or "Data Item"
+        return self.data_type or "Untitled Item"
     
     
 #//////////////////////////////////////////////////////////////
@@ -245,10 +245,10 @@ class SectionImage(models.Model):
         help_text=('There can be max 3 images in a section. First two images are small, third image is full width. Format: WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1680px'),
     )    
     caption = models.TextField(
-        max_length=500,
+        max_length=255,
         blank=True,
         null=True,
-        help_text=('Optional caption to display below an image.'),
+        help_text=('Optional caption to display below an image (max 255 characters)'),
     )
     order = models.PositiveIntegerField(
         default=0,

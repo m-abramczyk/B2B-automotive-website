@@ -298,6 +298,37 @@ class Contact(models.Model):
         help_text=('Address as displayed in footer. Format text with break-lines. For email link use mailto:email@g3.net.pl'),
     )
 
+    # Contact Form
+    form_header = models.CharField(
+        ('Contact Form Header'),
+        max_length=80,
+        blank=True,
+        null=True,
+        default='Drop us a line:',
+        help_text=('Max 80 characters.'),
+    )
+    form_text = HTMLField(
+        ('Contact Form Text'),
+        blank=True,
+        null=True,
+        help_text=('Format with break-lines.'),
+    )
+    label = models.ForeignKey(
+        Label,
+        on_delete=models.SET_NULL,
+        blank=True, 
+        null=True,
+        help_text=('Choose or create a new label. Labels are reusable accross the page')
+    )
+    button_form_text = models.CharField(
+        ('Contact Form button'),
+        max_length=60,
+        blank=True,
+        null=True,
+        default='Contact in a traditional way',
+        help_text=('Button scrolls to header section contact info'),
+    )
+
     # Expert
     expert = models.ForeignKey(
         Expert,
