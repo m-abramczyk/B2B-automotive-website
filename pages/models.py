@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from tinymce.models import HTMLField
 
 from django.urls import reverse
+from django.utils.translation import get_language, override
 from django.db import models
 
 from covers.models import Cover
@@ -72,7 +73,6 @@ class HomePage(models.Model):
 # General Page
 
 class Page(models.Model):
-    cover = models.ManyToManyField(Cover, related_name='page')
 
     # Navigation Flags
     is_published = models.BooleanField(
@@ -241,12 +241,18 @@ class Page(models.Model):
         # Prevent subsections from having a section pages list
         if self.parent and self.has_section_pages_list:
             raise ValidationError("Subsection page cannot have a section pages list.")
+
         
-    def get_absolute_url(self):
+    def get_full_slug(self):
+        """Recursively build the full slug path."""
         if self.parent:
-            return f"{self.parent.get_absolute_url()}{self.slug}/"
-        else:
-            return f"/{self.slug}/"
+            return f"{self.parent.get_full_slug()}/{self.slug}"
+        return self.slug
+
+    def get_absolute_url(self):
+        lang = get_language()
+        with override(lang):
+            return reverse('general_page', kwargs={'slug': self.get_full_slug()})
 
     def save(self, *args, **kwargs):
         self.full_clean()
