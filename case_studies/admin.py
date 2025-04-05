@@ -1,5 +1,6 @@
 from django.contrib import admin
 from nested_admin import NestedStackedInline, NestedModelAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
 from .models import CaseStudy, CaseStudyLabel, CaseStudyData, Section, SectionImage
 
@@ -10,7 +11,7 @@ from .models import CaseStudy, CaseStudyLabel, CaseStudyData, Section, SectionIm
 
 
 # Key Data Inline
-class CaseStudyDataInline(admin.StackedInline):
+class CaseStudyDataInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('data_type', 'data_content', 'order'),
@@ -36,7 +37,7 @@ class CaseStudyLabelInline(admin.TabularInline):
 
 
 # Content Block Image Inline
-class SectionImageInline(NestedStackedInline):
+class SectionImageInline(NestedStackedInline, TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('image', 'order', 'caption'),
@@ -50,7 +51,7 @@ class SectionImageInline(NestedStackedInline):
 
 
 # Sections Inline
-class SectionInline(NestedStackedInline):
+class SectionInline(NestedStackedInline, TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('order', 'header', 'text'),
@@ -66,7 +67,7 @@ class SectionInline(NestedStackedInline):
 # /////////////////////////////////////////////////////////////
 # Case Study Detail
 
-class CaseStudyAdmin(NestedModelAdmin):
+class CaseStudyAdmin(NestedModelAdmin, TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('is_published', 'index_cover_slider', 'year', 'menu_title', 'thumbnail', 'cover'),

@@ -1,9 +1,10 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from .models import Expert
 
 
-class ExpertAdmin(admin.ModelAdmin):
+class ExpertAdmin(TranslationAdmin):
     fieldsets = (
         ('Credentials', {
             'classes': ('collapse',),

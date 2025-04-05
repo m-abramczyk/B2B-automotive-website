@@ -1,5 +1,6 @@
 # import nested_admin
 from nested_admin import NestedTabularInline, NestedStackedInline, NestedGenericStackedInline, NestedModelAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline, GenericInlineModelAdmin
 
@@ -11,7 +12,7 @@ from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, Ex
 # Inlines
 
 # Content Block Image Inline
-class ContentBlockImageInline(NestedStackedInline):
+class ContentBlockImageInline(NestedStackedInline, TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('image', 'order', 'caption'),
@@ -24,7 +25,7 @@ class ContentBlockImageInline(NestedStackedInline):
 
 
 # Content Block Inline
-class ContentBlockInline(NestedGenericStackedInline):
+class ContentBlockInline(NestedGenericStackedInline, TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('order', 'block_type'),
@@ -51,7 +52,7 @@ class ContentBlockInline(NestedGenericStackedInline):
 
 
 # Contact External Link Inline
-class ExternalLinkInline(admin.StackedInline):
+class ExternalLinkInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('link_text', 'link_url', 'order'),
@@ -65,7 +66,7 @@ class ExternalLinkInline(admin.StackedInline):
 
 
 # Privacy Policy Button Inline
-class PrivacyPolicyButtonInline(admin.StackedInline):
+class PrivacyPolicyButtonInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('button_text', 'button_url', 'order'),
@@ -80,7 +81,7 @@ class PrivacyPolicyButtonInline(admin.StackedInline):
 # /////////////////////////////////////////////////////////////
 # Home Page
 
-class HomePageAdmin(NestedModelAdmin):
+class HomePageAdmin(NestedModelAdmin, TranslationAdmin):
     fieldsets = (
         ('Title', {
             'classes': ('collapse',),
@@ -111,7 +112,7 @@ class HomePageAdmin(NestedModelAdmin):
 # /////////////////////////////////////////////////////////////
 # General Pages
 
-class PageAdmin(NestedModelAdmin):
+class PageAdmin(NestedModelAdmin, TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('is_published',),
@@ -173,7 +174,7 @@ class PageAdmin(NestedModelAdmin):
 # /////////////////////////////////////////////////////////////
 # Contact
 
-class ContactAdmin(NestedModelAdmin):
+class ContactAdmin(NestedModelAdmin, TranslationAdmin):
     fieldsets = (
         ('Title', {
             'classes': ('collapse',),
@@ -210,7 +211,7 @@ class ContactAdmin(NestedModelAdmin):
 # /////////////////////////////////////////////////////////////
 # Privacy Policy
 
-class PrivacyPolicyAdmin(admin.ModelAdmin):
+class PrivacyPolicyAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('is_published',),
@@ -242,7 +243,7 @@ class PrivacyPolicyAdmin(admin.ModelAdmin):
 # /////////////////////////////////////////////////////////////
 # 404 Page
 
-class PageNotFoundAdmin(admin.ModelAdmin):
+class PageNotFoundAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('text', 'link_text'),

@@ -1,8 +1,9 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 from .models import Label
 
 
-class LabelAdmin(admin.ModelAdmin):
+class LabelAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             "fields": ("label_text", "label_url", "color"),

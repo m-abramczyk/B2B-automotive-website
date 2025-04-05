@@ -1,4 +1,5 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
 from .models import ClientLogo, Clients, FounderInfo, Founders, SpecialistInfo, Specialists, TimelineImage, Timeline
 
@@ -21,7 +22,7 @@ class ClientLogoInline(admin.TabularInline):
 
 
 # Clients
-class ClientsAdmin(admin.ModelAdmin):
+class ClientsAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('header',),
@@ -51,7 +52,7 @@ admin.site.register(Clients, ClientsAdmin)
 # Founders
 
 # Founders Inline
-class FounderInfoInline(admin.StackedInline):
+class FounderInfoInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': (('name', 'order'),),
@@ -67,7 +68,7 @@ class FounderInfoInline(admin.StackedInline):
 
 
 # Founders
-class FoundersAdmin(admin.ModelAdmin):
+class FoundersAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('header',),
@@ -89,7 +90,7 @@ admin.site.register(Founders, FoundersAdmin)
 # Specialists
 
 # Specialists Inline
-class SpecialistInfoInline(admin.StackedInline):
+class SpecialistInfoInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': (('name', 'order'),),
@@ -105,7 +106,7 @@ class SpecialistInfoInline(admin.StackedInline):
 
 
 # Specialists
-class SpecialistsAdmin(admin.ModelAdmin):
+class SpecialistsAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('header',),
@@ -127,7 +128,7 @@ admin.site.register(Specialists, SpecialistsAdmin)
 # Timeline
 
 # Timeline Inline
-class TimelineImageInline(admin.StackedInline):
+class TimelineImageInline(TranslationStackedInline):
     fieldsets = (
         (None, {
             'fields': ('image', 'order'),
@@ -144,7 +145,7 @@ class TimelineImageInline(admin.StackedInline):
 
 
 # Timeline
-class TimelineAdmin(admin.ModelAdmin):
+class TimelineAdmin(TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('header', 'label'),

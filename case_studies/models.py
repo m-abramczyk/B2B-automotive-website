@@ -244,7 +244,7 @@ class SectionImage(models.Model):
         upload_to=upload_to,
         help_text=('There can be max 3 images in a section. First two images are small, third image is full width. Format: WEBP / JPG / PNG / GIF / ratio: 3:2 / width: 1680px'),
     )    
-    caption = models.TextField(
+    caption = models.CharField(
         max_length=255,
         blank=True,
         null=True,
