@@ -896,56 +896,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form');
     const submitButton = document.getElementById('form-button');
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent full page reload
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent full page reload
 
-        // Remove any existing messages
-        const oldMessages = form.querySelectorAll('.form-success-message, .form-error-message');
-        oldMessages.forEach(msg => msg.remove());
+            // Remove any existing messages
+            const oldMessages = form.querySelectorAll('.form-success-message, .form-error-message');
+            oldMessages.forEach(msg => msg.remove());
 
-        // Remove old field error messages
-        form.querySelectorAll('.field-error-message').forEach(el => el.remove());
+            // Remove old field error messages
+            form.querySelectorAll('.field-error-message').forEach(el => el.remove());
 
-        const formData = new FormData(form);
-        const url = form.dataset.url;
-        const csrfToken = form.dataset.csrf;
+            const formData = new FormData(form);
+            const url = form.dataset.url;
+            const csrfToken = form.dataset.csrf;
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken,
-            },
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-    
-            if (data.success) {
-                const success = document.createElement('p');
-                success.textContent = data.message;
-                success.classList.add('form-success-message');
-                form.insertBefore(success, submitButton);
-                form.reset();
-            } else {
-                // Global message
-                const globalError = document.createElement('p');
-                globalError.textContent = data.message;
-                globalError.classList.add('form-error-message');
-                form.insertBefore(globalError, submitButton);
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+        
+                if (data.success) {
+                    const success = document.createElement('p');
+                    success.textContent = data.message;
+                    success.classList.add('form-success-message');
+                    form.insertBefore(success, submitButton);
+                    form.reset();
+                } else {
+                    // Global message
+                    const globalError = document.createElement('p');
+                    globalError.textContent = data.message;
+                    globalError.classList.add('form-error-message');
+                    form.insertBefore(globalError, submitButton);
 
-                // Field-specific errors
-                for (const [field, errorList] of Object.entries(data.errors)) {
-                    const input = form.querySelector(`[name="${field}"]`);
-                    if (input) {
-                        const error = document.createElement('p');
-                        error.textContent = errorList[0].message;
-                        error.classList.add('field-error-message');
-                        input.insertAdjacentElement('afterend', error);
+                    // Field-specific errors
+                    for (const [field, errorList] of Object.entries(data.errors)) {
+                        const input = form.querySelector(`[name="${field}"]`);
+                        if (input) {
+                            const error = document.createElement('p');
+                            error.textContent = errorList[0].message;
+                            error.classList.add('field-error-message');
+                            input.insertAdjacentElement('afterend', error);
+                        }
                     }
-                }
-            }            
-        })
-    });
-
+                }            
+            })
+        });
+    }
 
 });
