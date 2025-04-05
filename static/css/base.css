@@ -1619,7 +1619,7 @@ Contact Form */
     color: var(--g3-off-white);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--grid-gap));
+    gap: calc(var(--grid-margin));
 }
 
 #contact-form form > div {
@@ -2415,7 +2415,7 @@ color classes */
     Contact Form */
 
     #contact-form form {
-        gap: calc(var(--grid-gap));
+        gap: calc(var(--grid-margin));
     }
 
     #contact-form .block-img button {
@@ -2982,7 +2982,7 @@ color classes */
     Contact Form */
 
     #contact-form form {
-        gap: calc(var(--grid-gap) * 1.25);
+        gap: calc(var(--grid-margin) * 1.25);
     }
 
     #contact-form .block-img button {

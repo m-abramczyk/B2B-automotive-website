@@ -136,7 +136,7 @@ def contact_page(request):
 
         # Check honeypot field
         if form.data.get('middle_name'):
-            return JsonResponse({'success': False, 'message': 'Bot detected — message not sent.'})
+            return JsonResponse({'success': False, 'message': _('Bot detected — message not sent.')})
         
         if form.is_valid():
             send_mail(
@@ -146,10 +146,16 @@ def contact_page(request):
                 recipient_list=['maciej.abramczyk@gmail.com'],
             )
             form = ContactForm()
-            return JsonResponse({'success': True, 'message': 'Thank you! Your message has been sent!'})
+            return JsonResponse({'success': True, 'message': _('Thank you! Your message has been sent!')})
         else:
             errors = {field: error.get_json_data() for field, error in form.errors.items()}
-            return JsonResponse({'success': False, 'message': 'Please correct the fields above before sending.', 'errors': errors})
+
+            # print("Form Errors:", form.errors)
+            # translated_errors = {}
+            # for field, errors in form.errors.items():
+            #     translated_errors[field] = [_(str(error)) for error in errors]
+            # print("Translated Errors:", translated_errors)
+            return JsonResponse({'success': False, 'message': _('Please correct the fields above before sending.'), 'errors': errors})
 
 
     context = {
@@ -161,9 +167,7 @@ def contact_page(request):
         'contact_page_link_header': contact_page_link_header,
         'expert': expert,
         'content_blocks': content_blocks,
-
         'form': form,
-
         **special_blocks,
     }
 

@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-05 00:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\contact_form\forms.py:12
+msgid "Name*"
+msgstr "Vorname*"
+
+#: .\contact_form\forms.py:13
+msgid "Surname"
+msgstr "Nachname"
+
+#: .\contact_form\forms.py:14
+msgid "Your e-mail*"
+msgstr "Ihre E-Mail-Adresse*"
+
+#: .\contact_form\forms.py:15
+msgid "Company"
+msgstr "Unternehmen"
+
+#: .\contact_form\forms.py:16
+msgid "Your message*"
+msgstr "Ihre Nachricht*"
+
+#: .\contact_form\forms.py:19 .\contact_form\forms.py:21
+#: .\contact_form\forms.py:24
+msgid "Field required"
+msgstr "Pflichtfeld"
+
+#: .\contact_form\forms.py:22
+msgid "Incorrect e-mail format"
+msgstr "Ungültiges E-Mail-Format"
+
+#: .\pages\views.py:139
+msgid "Bot detected — message not sent."
+msgstr "Bot erkannt – Nachricht wurde nicht gesendet."
+
+#: .\pages\views.py:149
+msgid "Thank you! Your message has been sent!"
+msgstr "Vielen Dank! Ihre Nachricht wurde versendet!"
+
+#: .\pages\views.py:152
+msgid "Please correct the fields above before sending."
+msgstr "Bitte korrigieren Sie die obenstehenden Felder vor dem Senden."
+
+#: .\templates\block-contact-form.html:50
+msgid "Send Message"
+msgstr "Nachricht senden"
+
+#: .\templates\block-cs-index.html:13
+msgid "Year"
+msgstr "Jahr"
+
+#: .\templates\block-cs-index.html:14
+msgid "Name"
+msgstr "Name"
+
+#: .\templates\block-cs-index.html:18
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+#: .\templates\page-case-study-detail.html:99
+msgid "Previous Study"
+msgstr "Vorherige Fallstudie"
+
+#: .\templates\page-case-study-detail.html:111
+msgid "Next Study"
+msgstr "Nächste Fallstudie"
+
+#: .\templates\util-header-cs.html:18 .\templates\util-header-cs.html:20
+msgid "Previous"
+msgstr "Vorherige"
+
+#: .\templates\util-header-cs.html:26 .\templates\util-header-cs.html:28
+msgid "Next"
+msgstr "Nächste"
+
+#: .\templates\util-header.html:21
+msgid "Read more"
+msgstr "Mehr erfahren"

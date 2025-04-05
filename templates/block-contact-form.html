@@ -40,18 +40,14 @@
                 {{ form.middle_name }} {# Honeypot field — don't style or wrap #}                
                 
                 <div>{{ form.name }}</div>
-
                 <div>{{ form.surname }}</div>
-
                 <div>{{ form.email }}</div>
-                
                 <div>{{ form.company }}</div>
-
                 <div>{{ form.message }}</div>
-            
+
                 <!-- Show either error or success message -->
                 
-                <button id="form-button" type="submit" class="button text-18">Send Message</button>
+                <button id="form-button" type="submit" class="button text-18">{% trans 'Send Message' %}</button>
 
             </form>
 

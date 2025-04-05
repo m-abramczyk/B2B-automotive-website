@@ -894,7 +894,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact Form
 
     const form = document.getElementById('form');
-    const messageBox = document.getElementById('form-message');
     const submitButton = document.getElementById('form-button');
 
     form.addEventListener('submit', function (e) {

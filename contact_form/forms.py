@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django import forms
 from .models import ContactSubmission
 
@@ -8,17 +9,25 @@ class ContactForm(forms.ModelForm):
         model = ContactSubmission
         fields = ['name', 'surname', 'email', 'company', 'message']
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Name*'}),
-            'surname': forms.TextInput(attrs={'placeholder': 'Surname'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Your e-mail*'}),
-            'company': forms.TextInput(attrs={'placeholder': 'Company'}),
-            'message': forms.Textarea(attrs={'placeholder': 'Your message*'}),
+            'name': forms.TextInput(attrs={'placeholder': _('Name*')}),
+            'surname': forms.TextInput(attrs={'placeholder': _('Surname')}),
+            'email': forms.EmailInput(attrs={'placeholder': _('Your e-mail*')}),
+            'company': forms.TextInput(attrs={'placeholder': _('Company')}),
+            'message': forms.Textarea(attrs={'placeholder': _('Your message*')}),
         }
         error_messages = {
-            'name': {'required': 'Field required'},
+            'name': {'required': _('Field required')},
             'email': {
-                'required': 'Field required',
-                'invalid': 'Incorrect e-mail format',
+                'required': _('Field required'),
+                'invalid': _('Incorrect e-mail format'),
             },
-            'message': {'required': 'Field required'},
+            'message': {'required': _('Field required')},
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Ensure the placeholders are translated correctly
+        for field in self.fields.values():
+            if field.widget.attrs.get('placeholder'):
+                field.widget.attrs['placeholder'] = _(field.widget.attrs['placeholder'])
