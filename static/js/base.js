@@ -846,6 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const buttonDate = csSort.querySelector('#button-date');
         const buttonName = csSort.querySelector('#button-name');
         const buttonTrigger = csSort.querySelector('#sort-trigger');
+        const dropdown = csSort.querySelector('ul');
 
         buttonDate.addEventListener('click', () => {
             sortCaseStudies('date');
@@ -886,6 +887,18 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = "";
             items.forEach(item => container.appendChild(item));
         }
+
+        function updateDropdownPosition() {
+            if (window.innerWidth < 600) {
+                const offset = dropdown.offsetWidth - buttonTrigger.offsetWidth;
+                dropdown.style.left = `calc(-${offset}px + var(--fs-24) * 1.5)`;
+            } else {
+                dropdown.style.left = ""; // reset if not mobile
+            }
+        }
+    
+        window.addEventListener('resize', updateDropdownPosition);
+        window.addEventListener('load', updateDropdownPosition);
 
     }
 

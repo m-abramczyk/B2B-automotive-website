@@ -2852,15 +2852,19 @@ color classes */
         gap: calc(var(--fs-24) * 0.42); /* 10px */
     }
 
+    .cs-index-sort {
+        width: max-content;
+    }
+
     .cs-index-sort ul {
         padding-right: 0;
-        padding-left: calc(var(--fs-24) * 1); /* 24px */
-        transform: translateX(-33%);
+        padding-left: var(--fs-24); /* 24px */
     }
 
     .cs-index-sort.dropdown-active ul {
-        transform: translateX(70%);
+        transform: translateX(100%);
     }
+
 
     /*//////////////////////////////////////////////////////////////////////
     Case Study Detail */

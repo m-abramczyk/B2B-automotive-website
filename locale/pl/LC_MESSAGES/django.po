@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 20:43+0200\n"
+"POT-Creation-Date: 2025-04-05 23:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,9 @@ msgstr "Przed wysłaniem, prosimy o poprawienie powyższych pól"
 msgid "Send Message"
 msgstr "Wyślij wiadomość"
 
+msgid "Discover projects we have worked on:"
+msgstr "Poznaj nasze dotychczasowe projekty:"
+
 msgid "Year"
 msgstr "Rok"
 
@@ -60,7 +63,7 @@ msgid "Name"
 msgstr "Nazwa"
 
 msgid "Sort by"
-msgstr "Sortuj według"
+msgstr "Sortuj"
 
 msgid "Previous Study"
 msgstr "Poprzedni projekt"
