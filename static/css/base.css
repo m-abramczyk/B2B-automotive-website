@@ -61,7 +61,7 @@ font sizes */
     --fs-40: clamp(20px, 12.8889px + 2.963vw, 24px);               /* case studies arrow-nav */
     --fs-48: clamp(30px, 26.4444px + 1.4815vw, 32px);              /* text block main header / clients header */
     --fs-72: clamp(32px, 24.8889px + 2.963vw, 36px);               /* section header */
-    --fs-128: clamp(36px, 0.4444px + 14.8148vw, 56px);             /* main header */
+    --fs-128: clamp(36px, -2.5px + 14vw, 50px);                    /* main header */
     }
 
 
@@ -83,7 +83,7 @@ font sizes */
     --fs-40: clamp(24px, 21.6888px + 0.6163vw, 28px);              /* case studies arrow-nav */
     --fs-48: clamp(32px, 27.3775px + 1.2327vw, 40px);              /* text block main header / clients header */
     --fs-72: clamp(36px, 29.0663px + 1.849vw, 48px);               /* section header */
-    --fs-128: clamp(56px, 42.1325px + 3.698vw, 80px);              /* main header */
+    --fs-128: clamp(50px, 32.6656px + 4.6225vw, 80px);             /* main header */
     }
 
 }
