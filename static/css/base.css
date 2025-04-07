@@ -1742,6 +1742,11 @@ a {
     padding-bottom: 0.075em;
 }
 
+/* nav desktop dropdown content compensation for bottom padding */
+#nav-desktop .dropdown-content a h6 {
+    line-height: 1.125;
+}
+
 #nav-desktop > li > a,
 #nav-desktop .dropdown-content a h6,
 .block-cs-index a h6,                       /* cs index tile */
