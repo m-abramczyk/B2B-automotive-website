@@ -1530,7 +1530,6 @@ Lightbox */
 
 .lightbox-image {
     display: flex;
-    height: max-content;
     max-height: 100%;
     place-self: center;
     aspect-ratio: 1.5 / 1;
