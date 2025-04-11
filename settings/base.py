@@ -159,7 +159,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 TINYMCE_DEFAULT_CONFIG = {
     "height": 300,
     "width": 625,
-    'toolbar': 'undo redo | bold | link | bullist numlist',
+    'toolbar': 'undo redo | bold | link | bullist numlist | removeformat',
     'plugins': 'link, lists',
     'branding': False,
     'menubar': False,

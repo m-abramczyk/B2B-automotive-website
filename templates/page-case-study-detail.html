@@ -53,43 +53,45 @@
         </div>
 
         <!-- Content -->
-        <div class="grid block-cs cs-content">
+        {% if sections %}
+            <div class="grid block-cs cs-content">
 
 
-            {% for section in sections %}
-            
-                {% for section_image in section.section_images.all %}
+                {% for section in sections %}
+                
+                    {% for section_image in section.section_images.all %}
 
-                    <div class="cs-image-tile {% if forloop.counter == 3 %}full-width{% endif %}">
-                        <img src="{{ section_image.image.url }}" class="lightbox-trigger" alt="{{ case_study.menu_title }}">
-                        {% if section_image.caption %}
-                            <p class="text-18 off-white">{{ section_image.caption }}</p>
-                        {% endif %}
-                    </div>
+                        <div class="cs-image-tile {% if forloop.counter == 3 %}full-width{% endif %}">
+                            <img src="{{ section_image.image.url }}" class="lightbox-trigger" alt="{{ case_study.menu_title }}">
+                            {% if section_image.caption %}
+                                <p class="text-18 off-white">{{ section_image.caption }}</p>
+                            {% endif %}
+                        </div>
+
+                    {% endfor %}
+
+                    {% if section.header or section.text %}
+
+                        <div class="cs-section-text">
+                            {% if section.header %}
+                                <h3 class="true-white text-block">{{ section.header }}</h3>
+                            {% endif %}
+
+                            {% if section.text %}
+                                <div class="text-20 true-white tinymce">{{ section.text|safe }}</div>
+                            {% endif %}
+                        </div>
+
+                    {% endif %}
 
                 {% endfor %}
 
-                {% if section.header or section.text %}
-
-                    <div class="cs-section-text">
-                        {% if section.header %}
-                            <h3 class="true-white text-block">{{ section.header }}</h3>
-                        {% endif %}
-
-                        {% if section.text %}
-                            <div class="text-20 true-white tinymce">{{ section.text|safe }}</div>
-                        {% endif %}
-                    </div>
-
+                {% if all_images %}
+                    {% include 'util-lightbox.html' with images=all_images %}
                 {% endif %}
-
-            {% endfor %}
-
-            {% if all_images %}
-                {% include 'util-lightbox.html' with images=all_images %}
-            {% endif %}
-            
-        </div>
+                
+            </div>
+        {% endif %}
 
         <!-- Previous / Next -->
         <div class="grid block-cs cs-previous-next">

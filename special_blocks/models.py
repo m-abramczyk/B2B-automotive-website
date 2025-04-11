@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from tinymce.models import HTMLField
 
 from labels.models import Label
 
@@ -123,8 +124,8 @@ class FounderInfo(models.Model):
         ('Name and surname'),
         max_length=60,
     )
-    role = models.TextField(
-        max_length=120,
+    role = HTMLField(
+        max_length=255,
         blank=True,
         null=True,
         help_text=('Founder role. Format text with break-lines, max 60 characters'),
@@ -182,8 +183,8 @@ class SpecialistInfo(models.Model):
         ('Name and surname'),
         max_length=60,
     )
-    role = models.TextField(
-        max_length=120,
+    role = HTMLField(
+        max_length=255,
         blank=True,
         null=True,
         help_text=('Specialist role. Format text with break-lines, max 60 characters'),

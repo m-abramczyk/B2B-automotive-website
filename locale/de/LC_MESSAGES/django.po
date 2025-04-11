@@ -64,10 +64,10 @@ msgid "Sort by"
 msgstr "Sortieren"
 
 msgid "Previous Study"
-msgstr "Vorherige Fallstudie"
+msgstr "Vorheriges Projekt"
 
 msgid "Next Study"
-msgstr "Nächste Fallstudie"
+msgstr "Nächstes Projekt"
 
 msgid "Language:"
 msgstr "Sprache:"

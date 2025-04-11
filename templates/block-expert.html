@@ -18,12 +18,21 @@
 
                 <div>
                     <h5 class="text-24 true-white">{{ expert.name }}</h5>
-                    <p class="text-18 light-grey text-block">{{ expert.role }}</p>
+                    {% if expert.role %}
+                        <p class="text-18 light-grey text-block">{{ expert.role }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="text-20 true-white">
-                    <a href="tel:{{ expert.phone_number }}">{{ expert.phone_number }}</a><br>
-                    <a href="mailto:{{ expert.email }}">{{ expert.email }}</a>
+                    {% if expert.phone_number %}
+                        <a href="tel:{{ expert.phone_number }}">{{ expert.phone_number }}</a><br>
+                    {% endif %}
+                    {% if expert.email %}
+                        <a href="mailto:{{ expert.email }}">{{ expert.email }}</a>
+                    {% endif %}
+                    {% if expert.linkedin %}
+                        <br><a href="{{ expert.linkedin }}" target="_blank">Linkedin ></a>
+                    {% endif %}
                 </div>
 
             </div>

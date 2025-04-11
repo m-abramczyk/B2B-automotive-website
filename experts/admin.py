@@ -12,7 +12,7 @@ class ExpertAdmin(TranslationAdmin):
         }),
         ('Contact Data', {
             'classes': ('collapse',),
-            'fields': ('phone_number', 'email'),
+            'fields': ('phone_number', 'email', 'linkedin'),
         }),
         ('Call to action', {
             'classes': ('collapse',),

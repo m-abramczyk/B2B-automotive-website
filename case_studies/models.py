@@ -68,14 +68,12 @@ class CaseStudy(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        default='Key data:',
         help_text=('Header of Key Data block'),
     )
     labels_header = models.CharField(
         max_length=60,
         blank=True,
         null=True,
-        default='Scope of work:',
         help_text=('Header of labels group'),
     )
     text = HTMLField(

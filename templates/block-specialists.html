@@ -13,7 +13,7 @@
                         <img src="{{ specialist.thumbnail.url }}" alt="{{ specialist.name }}">
                     {% endif %}
                     <h5 class="text-20 true-white">{{ specialist.name }}</h5>
-                    <p class="text-18 light-grey text-block">{{ specialist.role }}</p>
+                    <div class="text-18 light-grey tinymce">{{ specialist.role|safe }}</div>
                 </div>
             {% endfor %}
 

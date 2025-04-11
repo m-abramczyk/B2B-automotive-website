@@ -39,6 +39,12 @@ class Expert(models.Model):
         null=True,
         help_text=('Email address in proper format'),
     )
+    linkedin = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text=('Expert Linkedin URL'),
+    )
 
     # Label
     label = models.ForeignKey(

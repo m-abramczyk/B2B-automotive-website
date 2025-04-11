@@ -13,7 +13,7 @@
                         <img src="{{ founder.thumbnail.url }}" alt="{{ founder.name }}">
                     {% endif %}
                     <h5 class="text-20 true-white">{{ founder.name }}</h5>
-                    <p class="text-18 light-grey text-block">{{ founder.role }}</p>
+                    <div class="text-18 light-grey tinymce">{{ founder.role|safe }}</div>
                 </div>
             {% endfor %}
 
