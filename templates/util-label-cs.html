@@ -1,8 +1,9 @@
 {% block util-label-cs %}
 {% load i18n %}
+{% load url_utils %}
 
     {% if label %}
-        {% if label.label_url %}<a href="{{ label.label_url }}">{% endif %}
+        {% if label.label_url %}<a href="{{ label.label_url|i18n_url }}">{% endif %}
             <span class="label text-17 medium uppercase black bg-{{ label.color }}">{{ label.label_text }}</span>
         {% if label.label_url %}</a>{% endif %}
     {% endif %}

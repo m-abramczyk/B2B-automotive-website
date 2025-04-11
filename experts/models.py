@@ -74,7 +74,7 @@ class Expert(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('Button URL. For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
 
     class Meta:

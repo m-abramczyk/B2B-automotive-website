@@ -24,7 +24,7 @@ class Label(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('(optional) URL for clickable labels (only on Case Study pages)'),
+        help_text=('(optional) URL for clickable labels (only on Case Study pages). Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     color = models.CharField(
         max_length=20,

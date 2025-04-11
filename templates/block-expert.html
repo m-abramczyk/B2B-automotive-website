@@ -1,13 +1,14 @@
 {% block block-expert %}
 {% load i18n %}
 {% load label_tags %}
+{% load url_utils %}
 
 	<div class="grid block block-expert" id="expert">
             
         <h2 class="text-block">{{ expert.header }}</h2>
 
         {% if expert.button_text %}
-            <a href="{{ expert.button_url }}" class="button text-18">{{ expert.button_text }} +</a>
+            <a href="{{ expert.button_url|i18n_url }}" class="button text-18">{{ expert.button_text }} +</a>
         {% endif %}
 
 		<div>

@@ -42,7 +42,7 @@ class Clients(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     new_tab_clients = models.BooleanField(
         ('Open in new tab'),

@@ -32,13 +32,14 @@ class CaseStudy(models.Model):
     menu_title = models.CharField(
         ('Title'),
         max_length=60,
-        help_text=('Case Study title as displayed in page header and breadcrumbs, max 60 characters'),
+        unique=True,
+        help_text=('Case Study title as displayed in page header and breadcrumbs, max 60 characters. Must be unique'),
     )
     slug = models.SlugField(
         ('URL Settings'),
         max_length=50,
         unique=True,
-        help_text=('URL is created automatically based on title. Dont touch unless title is long and not suitable for url'),
+        help_text=('URL is created automatically based on title. Dont touch unless title is long and not suitable for url. Must be unique'),
     )
 
     # Thumbnail

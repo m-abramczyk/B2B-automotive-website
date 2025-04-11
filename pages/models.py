@@ -184,7 +184,7 @@ class Page(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     button_2_text = models.CharField(
         ('Button 2 text'),
@@ -197,7 +197,7 @@ class Page(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
 
     # Meta data
@@ -473,7 +473,7 @@ class ContentBlock(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     new_tab_1 = models.BooleanField(
         ('Open in new tab'),
@@ -492,7 +492,7 @@ class ContentBlock(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     new_tab_2 = models.BooleanField(
         ('Open in new tab'),
@@ -500,11 +500,6 @@ class ContentBlock(models.Model):
     )
 
     # Append block flags
-    append_scroll_nav = models.BooleanField(
-        ('Append scroll nav'),
-        default=False,
-        help_text=('Append scroll navigation menu below the block'),
-    )
     append_clients = models.BooleanField(
         ('Append Clients list'),
         default=False,
@@ -680,7 +675,7 @@ class PrivacyPolicyButton(models.Model):
         max_length=255,
         null=True,
         blank=True,
-        help_text=('Button URL. For internal URL skip the language code. Start and end with a trailing slash "/"'),
+        help_text=('Use relative paths for internal pages (e.g., /contact/). External links starting with "http" and scroll links starting with "#"'),
     )
     order = models.PositiveIntegerField(
         default=0,

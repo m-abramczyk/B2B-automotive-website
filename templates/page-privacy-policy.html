@@ -3,6 +3,7 @@
 	{% block content %}
 	{% load static %}
 	{% load i18n %}
+    {% load url_utils %}
 
 	{% include 'util-header-breadcrumbs.html' %}
 
@@ -13,7 +14,7 @@
             <div class="tinymce text-20">{{ privacy_policy.text|safe }}</div>
             <div class="button-container">
                 {% for button in privacy_policy_buttons %}
-                    <a href="{{ button.button_url }}" class="button text-18">{{ button.button_text }} +</a>                    
+                    <a href="{{ button.button_url|i18n_url }}" class="button text-18">{{ button.button_text }} +</a>                    
                 {% endfor %}
             </div>
         </div>

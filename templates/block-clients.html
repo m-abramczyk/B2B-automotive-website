@@ -1,5 +1,6 @@
 {% block block-clients %}
 {% load i18n %}
+{% load url_utils %}
 
 	<div class="grid block block-clients" id="clients">
             
@@ -16,7 +17,7 @@
 		</div>
 
         {% if clients.button_clients_text %}
-            <a href="{{ clients.button_clients_url }}" class="button text-18" {% if clients.new_tab_clients %}target="_blank"{% endif %}>{{ clients.button_clients_text }} +</a>
+            <a href="{{ clients.button_clients_url|i18n_url }}" class="button text-18" {% if clients.new_tab_clients %}target="_blank"{% endif %}>{{ clients.button_clients_text }} +</a>
         {% endif %}
 
 	</div>	

@@ -1,6 +1,7 @@
 {% block block-content %}
 {% load i18n %}
 {% load label_tags %}
+{% load url_utils %}
 
 	<div class="grid block content-block block-{{ content_block.block_type }}" id="{{ content_block.block_id }}">
 
@@ -23,10 +24,10 @@
 
                     <div class="button-container">
                         {% if content_block.button_1_text %}
-                            <a href="{{ content_block.button_1_url }}" class="button text-18" {% if content_block.new_tab_1 %}target="_blank"{% endif %}>{{ content_block.button_1_text }} +</a>
+                            <a href="{{ content_block.button_1_url|i18n_url }}" class="button text-18" {% if content_block.new_tab_1 %}target="_blank"{% endif %}>{{ content_block.button_1_text }} +</a>
                         {% endif %}
                         {% if content_block.button_2_text %}
-                            <a href="{{ content_block.button_2_url }}" class="button text-18" {% if content_block.new_tab_2 %}target="_blank"{% endif %}>{{ content_block.button_2_text }} +</a>
+                            <a href="{{ content_block.button_2_url|i18n_url }}" class="button text-18" {% if content_block.new_tab_2 %}target="_blank"{% endif %}>{{ content_block.button_2_text }} +</a>
                         {% endif %}
                     </div>
 

@@ -1,5 +1,6 @@
 {% block block-section-pages-list %}
 {% load i18n %}
+{% load url_utils %}
 
     <div class="grid block block-section-pages-list">
         <div>
@@ -40,8 +41,12 @@
             {% if page_data.button_1_text or page_data.button_2_text %}
 
                 <div class="button-container">
-                    {% if page_data.button_1_text %}<a href="{{ page_data.button_1_url }}" class="button text-18">{{ page_data.button_1_text }} +</a>{% endif %}
-                    {% if page_data.button_2_text %}<a href="{{ page_data.button_2_url }}" class="button text-18">{{ page_data.button_2_text }} +</a>{% endif %}
+                    {% if page_data.button_1_text %}
+                        <a href="{{ page_data.button_1_url|i18n_url }}" class="button text-18">{{ page_data.button_1_text }} +</a>
+                    {% endif %}
+                    {% if page_data.button_2_text %}
+                        <a href="{{ page_data.button_2_url|i18n_url }}" class="button text-18">{{ page_data.button_2_text }} +</a>
+                    {% endif %}
                 </div>
 
             {% endif %}

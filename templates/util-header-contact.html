@@ -22,7 +22,9 @@
                 </div>
 
                 <div class="button-container">
-                    {% if contact_page_link_header %}<a href="{{ contact_page_link_header.link_url }}" class="button text-18" target="_blank">{% trans 'Follow us on' %} {{ contact_page_link_header.link_text }} +</a>{% endif %}
+                    {% if contact_page_link_header %}
+                        <a href="{{ contact_page_link_header.link_url }}" class="button text-18" target="_blank">{% trans 'Follow us on' %} {{ contact_page_link_header.link_text }} +</a>
+                    {% endif %}
                     <a href="#contact-form" class="button text-18">{% trans 'Drop us a line' %} +</a>
                 </div>
 
