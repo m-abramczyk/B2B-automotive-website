@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'labels',
     'special_blocks',
     'contact_form',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

@@ -37,7 +37,7 @@ class ContentBlockInline(NestedGenericStackedInline, TranslationStackedInline):
             'fields': (('button_1_text', 'button_1_url', 'new_tab_1'), ('button_2_text', 'button_2_url', 'new_tab_2')),
         }),
         (None, {
-            'fields': ('append_scroll_nav', 'append_clients', 'append_timeline', 'append_founders', 'append_team'),
+            'fields': ('append_clients', 'append_timeline', 'append_founders', 'append_team'),
         }),
         (None, {
             'fields': ('display_type', 'video', 'video_caption'),
