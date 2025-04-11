@@ -1413,6 +1413,7 @@ Carousel and Lightbox */
     width: 100%;
     pointer-events: none;
     user-select: none;
+    filter: brightness(0.9);
 }
 
 .wiper-left {
