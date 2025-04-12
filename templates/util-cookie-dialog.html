@@ -1,0 +1,22 @@
+{% block util-cookie-dialog %}
+{% load i18n %}
+{% load url_utils %}
+
+    {% if not request.session.cookie_consent %}
+        <div id="cookie-dialog" class="grid">
+
+            <p class="text-16 true-white">
+                {% if privacy_policy.cookie_consent %}{{ privacy_policy.cookie_consent }}{% else %}This website uses cookies.{% endif %}
+                <a href="{% url 'privacy_policy' %}">
+                    {% if privacy_policy.footer_title %}{{ privacy_policy.footer_title }}{% else %}{{ privacy_policy.menu_title }}{% endif %}
+                </a>
+            </p>
+            
+            <div class="button-container">
+                <a href="{% url 'cookie_consent' %}" class="button text-18">{% if privacy_policy.accept_button %}{{ privacy_policy.accept_button }}{% else %}Accept{% endif %} +</a>                
+            </div>
+
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -6,6 +6,9 @@ register = template.Library()
 
 @register.filter
 def i18n_url(url):
+    if not url:
+        return "#"
+    
     # Leave external URLs or anchor links untouched
     parsed = urlparse(url)
     if parsed.scheme or parsed.netloc or url.startswith("#"):

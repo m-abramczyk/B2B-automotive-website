@@ -17,7 +17,7 @@ def navigation_context(request):
     contact_page_links = contact_page.externallink_set.order_by('order') if contact_page else []
 
     # Fetch Privacy Policy data
-    privacy_policy = PrivacyPolicy.objects.filter(is_published=True).only('menu_title', 'footer_title').first()
+    privacy_policy = PrivacyPolicy.objects.filter(is_published=True).only('menu_title', 'footer_title', 'cookie_consent', 'accept_button').first()
 
     return {
         'section_1_parent': section_1_parent,

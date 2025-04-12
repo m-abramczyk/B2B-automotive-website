@@ -5,12 +5,23 @@ from django.db.models import Prefetch
 from django.contrib.contenttypes.models import ContentType
 
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseForbidden
 from contact_form.forms import ContactForm
 
 from .models import ContentBlock, ContentBlockImage, HomePage, Page, Contact, PrivacyPolicy, PageNotFound
 from case_studies.models import CaseStudy
 from special_blocks.helpers import get_special_blocks
+
+
+#////////////////////////////////////////////////////
+# Cookie Consent
+
+def cookie_consent_view(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        request.session['cookie_consent'] = True
+        request.session.set_expiry(365 * 24 * 3600)
+        return JsonResponse({})
+    return HttpResponseForbidden()
 
 
 #////////////////////////////////////////////////////

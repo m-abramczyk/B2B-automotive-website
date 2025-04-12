@@ -962,4 +962,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+        
+    ///////////////////////////////////////////////////////////////////
+    // Cookie Dialog
+
+    const cookieDialog = document.getElementById('cookie-dialog');
+    if (cookieDialog) {
+
+        setTimeout(() => {
+            cookieDialog.classList.add('visible');
+        }, 1000);
+
+        const link = cookieDialog.querySelector('a.button');
+
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+        
+            fetch(link.href, {
+                method: 'GET',
+                headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(response => {
+                if (response.ok) {
+                cookieDialog.classList.remove('visible');
+                setTimeout(() => {
+                    cookieDialog.style.display = 'none';
+                }, 300);
+                }
+            });
+        });
+    }
+
 });

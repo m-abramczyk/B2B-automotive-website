@@ -371,7 +371,7 @@ nav {
     height: calc(var(--grid-margin) * 2); /* 100px */
     align-items: center;  /* center vertically */
     transition: var(--transition-transform-300);
-    z-index: 2;
+    z-index: 3;
 }
 
 nav.hidden {
@@ -1732,6 +1732,40 @@ Privacy Policy */
 
 
 /*//////////////////////////////////////////////////////////////////////
+Cookies Dialog */
+
+#cookie-dialog {
+    background: var(--g3-dark-grey);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-block: var(--grid-gap); /* 20px */    
+    gap: var(--grid-gap); /* 20px */
+    align-items: center;
+    z-index: 2;
+    transform: translateY(100%);
+    transition: var(--transition-transform-300);
+}
+
+#cookie-dialog p {
+    grid-column: 1 / span 6;
+}
+
+#cookie-dialog a {
+    box-shadow: inset 0 -0.05em currentcolor;
+}
+
+#cookie-dialog .button-container {
+    grid-column: 8 / span 5;
+    justify-content: end;
+}
+
+#cookie-dialog.visible {
+    transform: translateY(0);
+
+}
+
+/*//////////////////////////////////////////////////////////////////////
 Anchors */
 
 a {
@@ -2438,6 +2472,13 @@ color classes */
         margin-top: 0;
     }
 
+    /*//////////////////////////////////////////////////////////////////////
+    Cookies Dialog */
+
+    #cookie-dialog .button-container {
+        grid-column: 7 / span 2;
+    }
+
 }
 
 /*//////////////////////////////////////////////////////////////////////
@@ -3007,6 +3048,24 @@ color classes */
 
     #contact-form .block-img button {
         margin-top: 0;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////
+    Cookies Dialog */
+
+    #cookie-dialog {
+        padding-block: calc(var(--grid-gap) * 1);
+        gap: calc(var(--grid-gap) * 1);
+    }
+
+    #cookie-dialog p {
+        grid-column: 1 / span 4;
+    }
+
+    #cookie-dialog .button-container {
+        grid-column: 1 / span 4;
+        grid-row: 2;
+        justify-content: start;
     }
 
 }

@@ -67,6 +67,8 @@ class PrivacyPolicyTranslationOptions(TranslationOptions):
         'footer_title',
         'title',
         'text',
+        'cookie_consent',
+        'accept_button',
         'meta_title',
         'meta_description',
     )

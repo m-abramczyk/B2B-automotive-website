@@ -630,6 +630,21 @@ class PrivacyPolicy(models.Model):
         null=True,
     )
 
+    # Cookies Modal
+    cookie_consent = models.TextField(
+        ('Cookies Consent Text'),
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text=('Cookies notification text'),
+    )
+    accept_button = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        help_text=('Cookies notification "Accept" button text'),
+    )
+
     # Meta data
     meta_title = models.CharField(
         max_length=60,

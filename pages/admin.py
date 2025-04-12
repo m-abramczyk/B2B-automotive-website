@@ -224,6 +224,10 @@ class PrivacyPolicyAdmin(TranslationAdmin):
             'classes': ('collapse',),
             'fields': ('text',),
         }),
+        ('Cookies Form', {
+            'classes': ('collapse',),
+            'fields': ('cookie_consent', 'accept_button'),
+        }),
         ('Meta Data', {
             'classes': ('collapse',),
             'fields': ('meta_title', 'meta_description'),
