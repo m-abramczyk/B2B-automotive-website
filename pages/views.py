@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
 from django.contrib.contenttypes.models import ContentType
 
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.http import JsonResponse, HttpResponseForbidden
 from contact_form.forms import ContactForm
 
@@ -156,18 +156,19 @@ def contact_page(request):
                 from_email=form.cleaned_data['email'],
                 recipient_list=['maciej.abramczyk@gmail.com'],
             )
+            # email = EmailMessage(
+            #     subject='New Contact Form Message',
+            #     body=form.cleaned_data['message'],
+            #     from_email='webapp@g3.net.pl',
+            #     to=['maciej.abramczyk@gmail.com'],
+            #     reply_to=[form.cleaned_data['email']],
+            # )
+            # email.send()
             form = ContactForm()
             return JsonResponse({'success': True, 'message': _('Thank you! Your message has been sent!')})
         else:
             errors = {field: error.get_json_data() for field, error in form.errors.items()}
-
-            # print("Form Errors:", form.errors)
-            # translated_errors = {}
-            # for field, errors in form.errors.items():
-            #     translated_errors[field] = [_(str(error)) for error in errors]
-            # print("Translated Errors:", translated_errors)
             return JsonResponse({'success': False, 'message': _('Please correct the fields above before sending.'), 'errors': errors})
-
 
     context = {
         'contact_page': contact_page,

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'model_clone',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -154,6 +155,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Email Backend for local development
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# Email Backend for production
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.office365.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# DEFAULT_FROM_EMAIL = 'webapp@g3.net.pl'
+
 
 # TinyMCE
 
@@ -167,6 +177,12 @@ TINYMCE_DEFAULT_CONFIG = {
     'skin': 'tinymce-5-dark',
     'content_css': STATIC_URL + 'css/tinymce.css'
 }
+
+
+# django-clone
+
+# Append -copy, -copy-2 etc. to unique fields automatically
+CLONE_SUFFIX_APPEND_UNIQUE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

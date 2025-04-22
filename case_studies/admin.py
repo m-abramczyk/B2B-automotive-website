@@ -1,6 +1,7 @@
 from django.contrib import admin
 from nested_admin import NestedStackedInline, NestedModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
+from model_clone.admin import CloneModelAdmin
 
 from .models import CaseStudy, CaseStudyLabel, CaseStudyData, Section, SectionImage
 
@@ -67,7 +68,7 @@ class SectionInline(NestedStackedInline, TranslationStackedInline):
 # /////////////////////////////////////////////////////////////
 # Case Study Detail
 
-class CaseStudyAdmin(NestedModelAdmin, TranslationAdmin):
+class CaseStudyAdmin(CloneModelAdmin, NestedModelAdmin, TranslationAdmin):
     fieldsets = (
         (None, {
             'fields': ('is_published', 'index_cover_slider', 'year', 'menu_title', 'thumbnail', 'cover'),

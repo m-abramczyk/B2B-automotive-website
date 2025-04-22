@@ -1,7 +1,14 @@
 import os
 from django.urls import reverse
 from django.db import models
+
+from django.core.files import File
+import uuid
+from django.conf import settings
+from django.core.exceptions import ValidationError
+
 from tinymce.models import HTMLField
+from model_clone.models import CloneMixin
 
 from covers.models import CaseStudyCover
 from experts.models import Expert
@@ -12,10 +19,30 @@ def upload_to(instance, filename):
     return f'case-studies/{instance.slug}/{filename}'
 
 
+def get_placeholder_image(instance, filename):
+    """
+    Copies placeholder.jpg from static to media/case-studies/placeholders/
+    and returns the relative media path.
+    """
+    placeholder_path = os.path.join(settings.BASE_DIR, 'static/img/placeholder.jpg')
+    
+    if os.path.exists(placeholder_path):
+        with open(placeholder_path, 'rb') as f:
+            unique_id = str(uuid.uuid4())[:8]  # nique suffix for each image instance
+            file_name = f'placeholder_{unique_id}.jpg'
+            relative_path = os.path.join('case-studies', 'placeholders', file_name)
+            absolute_path = os.path.join(settings.MEDIA_ROOT, relative_path)            
+            os.makedirs(os.path.dirname(absolute_path), exist_ok=True)            
+            with open(absolute_path, 'wb') as out_file:
+                out_file.write(f.read())
+
+            return relative_path
+
+
 #//////////////////////////////////////////////////////////////
 # Case Study
 
-class CaseStudy(models.Model):
+class CaseStudy(CloneMixin, models.Model):
 
     is_published = models.BooleanField(
         ('Published'),
@@ -105,10 +132,36 @@ class CaseStudy(models.Model):
         help_text=('Page description for search results (optional)'),
     )
 
+    # Clone inlines
+    _clone_m2o_or_o2m_fields = [
+        'labels',
+        'data_items',
+        'sections',
+    ]
+    # Exclude fields from cloning
+    _clone_excluded_fields = [
+        'is_published',
+        'cover',
+        'thumbnail',
+    ]
+
     class Meta:
         verbose_name = ('Case Study')
         verbose_name_plural = ('Case Studies')
         ordering = ('-year',)
+
+    def save(self, *args, **kwargs):
+        if not self.thumbnail:
+            placeholder_relative_path = get_placeholder_image(self, 'placeholder.jpg')
+            self.thumbnail = placeholder_relative_path
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        import re
+        if re.search(r'-copy(-\d+)?$', self.slug):
+            raise ValidationError({
+                'slug': "After cloning, please adjust the slug — it still contains a temporary '-copy' suffix."
+            })
 
     def __str__(self):
         return (self.menu_title)
@@ -196,7 +249,7 @@ class CaseStudyData(models.Model):
 #//////////////////////////////////////////////////////////////
 # Section Inline
 
-class Section(models.Model):
+class Section(CloneMixin, models.Model):
     case_study = models.ForeignKey(
         CaseStudy,
         on_delete=models.CASCADE,
@@ -220,6 +273,11 @@ class Section(models.Model):
         null=False,
     )
 
+    # Clone nested inline
+    _clone_m2o_or_o2m_fields = [
+        'section_images',
+    ]
+
     class Meta:
         verbose_name = ('Section')
         verbose_name_plural = ('Sections')
@@ -232,7 +290,7 @@ class Section(models.Model):
 #//////////////////////////////////////////////////////////////
 # Section Image Inline
 
-class SectionImage(models.Model):
+class SectionImage(CloneMixin, models.Model):
     section = models.ForeignKey(
         Section,
         on_delete=models.CASCADE,
@@ -256,11 +314,22 @@ class SectionImage(models.Model):
         help_text=('Image order within the the block'),
     )
 
+    # Exclude image file from cloning
+    _clone_excluded_fields = [
+        'image',
+    ]
 
     class Meta:
         verbose_name = ('Image')
         verbose_name_plural = ('Images')
         ordering = ['order']
+
+    # assign placeholder if image missing
+    def save(self, *args, **kwargs):
+        if not self.image:
+            placeholder_relative_path = get_placeholder_image(self, 'placeholder.jpg')
+            self.image = placeholder_relative_path
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return os.path.basename(self.image.name)
