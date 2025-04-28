@@ -150,20 +150,29 @@ def contact_page(request):
             return JsonResponse({'success': False, 'message': _('Bot detected — message not sent.')})
         
         if form.is_valid():
-            send_mail(
-                subject='New Contact Form Message',
-                message=form.cleaned_data['message'],
-                from_email=form.cleaned_data['email'],
-                recipient_list=['maciej.abramczyk@gmail.com'],
+            name = form.cleaned_data.get('name')
+            surname = form.cleaned_data.get('surname')
+            email_body = (
+                f"Name: {name}\n"
+                f"Surname: {surname}\n"
+                f"Email: {form.cleaned_data.get('email')}\n"
+                f"Company: {form.cleaned_data.get('company')}\n\n"
+                f"Message:\n{form.cleaned_data.get('message')}\n"
             )
-            # email = EmailMessage(
-            #     subject='New Contact Form Message',
-            #     body=form.cleaned_data['message'],
-            #     from_email='webapp@g3.net.pl',
-            #     to=['maciej.abramczyk@gmail.com'],
-            #     reply_to=[form.cleaned_data['email']],
-            # )
-            # email.send()
+
+            if surname:
+                subject= f'{name} {surname}: New Contact Form Message'
+            else:
+                subject= f'{name}: New Contact Form Message'
+
+            email = EmailMessage(
+                subject=subject,
+                body=email_body,
+                from_email='webapp@g3.net.pl',
+                to=['webform@g3.net.pl'],
+                reply_to=[form.cleaned_data['email']],
+            )
+            email.send()
             form = ContactForm()
             return JsonResponse({'success': True, 'message': _('Thank you! Your message has been sent!')})
         else:
