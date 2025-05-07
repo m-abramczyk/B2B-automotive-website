@@ -52,13 +52,13 @@ class HomePage(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title. Max 60 characters'),
     )
     meta_description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Page description for search results (optional)'),
+        help_text=('Page description for search results (optional), max 255 characters'),
     )
 
     class Meta:
@@ -117,7 +117,7 @@ class Page(models.Model):
         ('URL Settings'),
         max_length=50,
         unique=True,
-        help_text=('URL is created automatically based on menu title. Dont touch unless title is long and not suitable for url'),
+        help_text=('URL is created automatically based on menu title. Dont touch unless title is long and not suitable for url. Max 50 characters'),
     )
     menu_title = models.CharField(
         max_length=60,
@@ -127,7 +127,7 @@ class Page(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Page title as displayed in footer (optional override of menu title)'),
+        help_text=('Page title as displayed in footer (optional override of menu title), max 60 characters'),
     )
     title = models.TextField(
         max_length=60,
@@ -152,10 +152,9 @@ class Page(models.Model):
     )
     thumbnail_caption = models.CharField(
         max_length=120,
-        default='Thumbnail caption for this page',
         blank=True,
         null=True,
-        help_text=('Thumbnail caption as displayed in Section Pages List. Can be left blank for Parent pages.'),
+        help_text=('Thumbnail caption as displayed in Section Pages List. Can be left blank for Parent pages. Max 120 characters'),
     )
 
     # Expert
@@ -178,6 +177,7 @@ class Page(models.Model):
         max_length=60,
         blank=True,
         null=True,
+        help_text=('Max 60 characters'),
     )
     button_1_url = models.CharField(
         ('Button 1 URL'),
@@ -191,6 +191,7 @@ class Page(models.Model):
         max_length=60,
         blank=True,
         null=True,
+        help_text=('Max 60 characters'),
     )
     button_2_url = models.CharField(
         ('Button 2 URL'),
@@ -205,13 +206,13 @@ class Page(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title. Max 60 characters'),
     )
     meta_description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Page description for search results (optional)'),
+        help_text=('Page description for search results (optional), max 255 characters'),
     )
 
     class Meta:
@@ -273,7 +274,7 @@ class Contact(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Page title as displayed in footer (optional override of menu title)'),
+        help_text=('Page title as displayed in footer (optional override of menu title), max 60 characters'),
     )
     title = models.TextField(
         max_length=60,
@@ -332,7 +333,7 @@ class Contact(models.Model):
         blank=True,
         null=True,
         default='Contact in a traditional way',
-        help_text=('Button scrolls to header section contact info'),
+        help_text=('Button scrolls to header section contact info. Max 60 characters'),
     )
 
     # Expert
@@ -349,13 +350,13 @@ class Contact(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title. Max 60 characters'),
     )
     meta_description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Page description for search results (optional)'),
+        help_text=('Page description for search results (optional), max 255 characters'),
     )
 
     class Meta:
@@ -383,7 +384,7 @@ class ExternalLink(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('First link is displayed in the header as a button'),
+        help_text=('First link is displayed in the header as a button. Max 60 characters'),
     )
     link_url = models.CharField(
         ('Link URL'),
@@ -438,7 +439,7 @@ class ContentBlock(models.Model):
         max_length=20,
         blank=True,
         null=True,
-        help_text=('For scroll navigation. ID is created automatically based on header. Keep unique'),
+        help_text=('For scroll navigation. ID is created automatically based on header. Keep unique, max 20 characters'),
     )
 
     # Block content
@@ -466,7 +467,7 @@ class ContentBlock(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks'),
+        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks. Max 60 characters'),
     )
     button_1_url = models.CharField(
         ('Button 1 URL'),
@@ -485,7 +486,7 @@ class ContentBlock(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks'),
+        help_text=('Buttons 1 and 2 are only displayed in Left and Right blocks. Max 60 characters'),
     )
     button_2_url = models.CharField(
         ('Button 2 URL'),
@@ -540,6 +541,7 @@ class ContentBlock(models.Model):
         max_length=240,
         blank=True,
         null=True,
+        help_text=('Max 240 characters'),
     )
 
     # Generic relation to support multiple models
@@ -583,6 +585,7 @@ class ContentBlockImage(models.Model):
         max_length=240,
         blank=True,
         null=True,
+        help_text=('Max 240 characters'),
     )
 
     class Meta:
@@ -618,7 +621,7 @@ class PrivacyPolicy(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Page title as displayed in footer (optional override of menu title)'),
+        help_text=('Page title as displayed in footer (optional override of menu title), max 60 characters'),
     )
     title = models.TextField(
         max_length=60,
@@ -636,13 +639,13 @@ class PrivacyPolicy(models.Model):
         max_length=500,
         blank=True,
         null=True,
-        help_text=('Cookies notification text'),
+        help_text=('Cookies notification text, max 500 characters'),
     )
     accept_button = models.CharField(
         max_length=20,
         blank=True,
         null=True,
-        help_text=('Cookies notification "Accept" button text'),
+        help_text=('Cookies notification "Accept" button text, max 20 characters'),
     )
 
     # Meta data
@@ -650,13 +653,13 @@ class PrivacyPolicy(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title. Max 60 characters'),
     )
     meta_description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Page description for search results (optional)'),
+        help_text=('Page description for search results (optional), max 255 characters'),
     )
 
     class Meta:
@@ -684,6 +687,7 @@ class PrivacyPolicyButton(models.Model):
         max_length=60,
         blank=True,
         null=True,
+        help_text=('Max 60 characters'),
     )
     button_url = models.CharField(
         ('Button URL'),
@@ -716,13 +720,13 @@ class PageNotFound(models.Model):
         max_length=255,
         blank=True,
         null=True,
-        help_text=('404 message text'),
+        help_text=('404 message text, max 255 characters'),
     )
     link_text = models.CharField(
-        max_length=255,
+        max_length=60,
         blank=True,
         null=True,
-        help_text=('404 link text'),
+        help_text=('404 link text, max 60 characters'),
     )
 
     class Meta:

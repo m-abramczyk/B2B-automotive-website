@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib import messages
 from nested_admin import NestedStackedInline, NestedModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 from model_clone.admin import CloneModelAdmin
@@ -101,6 +102,15 @@ class CaseStudyAdmin(CloneModelAdmin, NestedModelAdmin, TranslationAdmin):
         CaseStudyDataInline,
         SectionInline,
     ]
+
+    def save_model(self, request, obj, form, change):
+        if '-copy' in obj.slug:
+            self.message_user(
+                request,
+                "Reminder: after cloning, please adjust the slug — it still contains a temporary '-copy' suffix.",
+                level=messages.WARNING
+            )
+        super().save_model(request, obj, form, change)
 
 
 admin.site.register(CaseStudy, CaseStudyAdmin)

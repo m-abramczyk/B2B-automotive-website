@@ -27,6 +27,7 @@ class Clients(models.Model):
         blank=True, 
         null=True,
         max_length=120,
+        help_text=('Max 120 characters'),
     )
 
     # Button
@@ -35,7 +36,7 @@ class Clients(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Fill-in if appending Clients list to this block'),
+        help_text=('Fill-in if appending Clients list to this block, max 60 characters'),
     )
     button_clients_url = models.CharField(
         ('Clients button URL'),
@@ -101,6 +102,7 @@ class Founders(models.Model):
         blank=True, 
         null=True,
         max_length=120,
+        help_text=('Max 120 characters'),
     )
 
     class Meta:
@@ -123,12 +125,13 @@ class FounderInfo(models.Model):
     name = models.CharField(
         ('Name and surname'),
         max_length=60,
+        help_text=('Max 60 characters'),
     )
     role = HTMLField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Founder role. Format text with break-lines, max 60 characters'),
+        help_text=('Founder role. Format text with break-lines, max 255 characters'),
     )
     thumbnail = models.ImageField(
         upload_to=upload_to_founders,
@@ -160,6 +163,7 @@ class Specialists(models.Model):
         blank=True, 
         null=True,
         max_length=120,
+        help_text=('Max 120 characters'),
     )
 
     class Meta:
@@ -182,12 +186,13 @@ class SpecialistInfo(models.Model):
     name = models.CharField(
         ('Name and surname'),
         max_length=60,
+        help_text=('Max 60 characters'),
     )
     role = HTMLField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Specialist role. Format text with break-lines, max 60 characters'),
+        help_text=('Specialist role. Format text with break-lines, max 255 characters'),
     )
     thumbnail = models.ImageField(
         upload_to=upload_to_specialists,
@@ -257,11 +262,13 @@ class TimelineImage(models.Model):
         max_length=240,
         blank=True,
         null=True,
+        help_text=('Max 240 characters'),
     )
     long_caption = models.TextField(
         max_length=600,
         blank=True,
         null=True,
+        help_text=('Max 600 characters'),
     )
     year = models.CharField(
         max_length=30,

@@ -12,12 +12,13 @@ class Expert(models.Model):
     name = models.CharField(
         ('Name and surname'),
         max_length=60,
+        help_text=('Max 60 characters'),
     )
     role = models.TextField(
         max_length=120,
         blank=True,
         null=True,
-        help_text=('Expert role. Format text with break-lines, max 60 characters'),
+        help_text=('Expert role. Format text with break-lines, max 120 characters'),
     )
     thumbnail = models.ImageField(
         upload_to=upload_to,        
@@ -57,17 +58,17 @@ class Expert(models.Model):
 
     # Call to action
     header = models.TextField(
-        max_length=60,
+        max_length=80,
         blank=True,
         null=True,
-        help_text=('Call to action header. Format text with break-lines'),
+        help_text=('Call to action header. Format text with break-lines, max 80 characters'),
     )
     button_text = models.CharField(
         ('Button text'),
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Button text'),
+        help_text=('Button text, max 60 characters'),
     )
     button_url = models.CharField(
         ('Button URL'),

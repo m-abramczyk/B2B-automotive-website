@@ -18,7 +18,8 @@ class Label(models.Model):
     
     label_text = models.CharField(
         max_length=60,
-        unique=True
+        unique=True,
+        help_text=('Max 60 characters'),
     )
     label_url = models.CharField(
         max_length=60,

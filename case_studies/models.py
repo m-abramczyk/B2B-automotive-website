@@ -2,10 +2,8 @@ import os
 from django.urls import reverse
 from django.db import models
 
-from django.core.files import File
 import uuid
 from django.conf import settings
-from django.core.exceptions import ValidationError
 
 from tinymce.models import HTMLField
 from model_clone.models import CloneMixin
@@ -60,13 +58,13 @@ class CaseStudy(CloneMixin, models.Model):
         ('Title'),
         max_length=60,
         unique=True,
-        help_text=('Case Study title as displayed in page header and breadcrumbs, max 60 characters. Must be unique'),
+        help_text=('Case Study title as displayed in page header and breadcrumbs. Must be unique, max 60 characters'),
     )
     slug = models.SlugField(
         ('URL Settings'),
         max_length=50,
         unique=True,
-        help_text=('URL is created automatically based on title. Dont touch unless title is long and not suitable for url. Must be unique'),
+        help_text=('URL is created automatically based on title. Dont touch unless title is long and not suitable for url. Must be unique, max 50 characters'),
     )
 
     # Thumbnail
@@ -96,13 +94,13 @@ class CaseStudy(CloneMixin, models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Header of Key Data block'),
+        help_text=('Header of Key Data block, max 60 characters'),
     )
     labels_header = models.CharField(
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Header of labels group'),
+        help_text=('Header of labels group, max 60 characters'),
     )
     text = HTMLField(
         blank=True,
@@ -123,13 +121,13 @@ class CaseStudy(CloneMixin, models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title'),
+        help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title, max 60 characters'),
     )
     meta_description = models.TextField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Page description for search results (optional)'),
+        help_text=('Page description for search results (optional), max 255 characters'),
     )
 
     # Clone inlines
@@ -155,13 +153,6 @@ class CaseStudy(CloneMixin, models.Model):
             placeholder_relative_path = get_placeholder_image(self, 'placeholder.jpg')
             self.thumbnail = placeholder_relative_path
         super().save(*args, **kwargs)
-
-    def clean(self):
-        import re
-        if re.search(r'-copy(-\d+)?$', self.slug):
-            raise ValidationError({
-                'slug': "After cloning, please adjust the slug — it still contains a temporary '-copy' suffix."
-            })
 
     def __str__(self):
         return (self.menu_title)
@@ -223,13 +214,13 @@ class CaseStudyData(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        help_text=('( Year / Client / Team / Tools ) Displayed in the first column of Key Data table'),
+        help_text=('( Year / Client / Team / Tools ) Displayed in the first column of Key Data table, max 60 characters'),
     )
     data_content = models.CharField(
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Displayed in the second column of Key Data table'),
+        help_text=('Displayed in the second column of Key Data table, max 255 characters'),
     )
     order = models.PositiveIntegerField(
         default=0,
@@ -260,7 +251,7 @@ class Section(CloneMixin, models.Model):
         max_length=120,
         blank=True,
         null=True,
-        help_text=('Optional Header to display below section images. Format with break-lines. If both Header and Text fields are left empty, images will flow continuously to next section.'),
+        help_text=('Optional Header to display below section images. Format with break-lines. If both Header and Text fields are left empty, images will flow continuously to next section. Max 120 characters'),
     )
     text = HTMLField(
         blank=True,
@@ -305,7 +296,7 @@ class SectionImage(CloneMixin, models.Model):
         max_length=255,
         blank=True,
         null=True,
-        help_text=('Optional caption to display below an image (max 255 characters)'),
+        help_text=('Optional caption to display below an image, max 255 characters'),
     )
     order = models.PositiveIntegerField(
         default=0,
