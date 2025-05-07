@@ -16,7 +16,9 @@
                             {% if page.thumbnail %}
                                 <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
                             {% endif %}
-                            <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            {% if page.thumbnail_caption %}
+                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            {% endif %}
                         </a>
                     {% endfor %}
 
@@ -30,7 +32,9 @@
                             {% if page.thumbnail %}
                                 <img src="{{ page.thumbnail.url }}" alt="{{ page.menu_title }} thumbnail">
                             {% endif %}
-                            <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            {% if page.thumbnail_caption %}
+                                <p class="text-18 light-grey">{{ page.thumbnail_caption }}</p>
+                            {% endif %}
                         </a>
                     {% endfor %}
 
