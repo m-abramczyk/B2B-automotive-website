@@ -10,6 +10,9 @@ g3_env/
 # Environment variables
 *.env
 
+# Deployment Settings
+settings/docker.py
+
 # Django
 db.sqlite3
 media/

@@ -180,7 +180,6 @@ TINYMCE_DEFAULT_CONFIG = {
 
 
 # django-clone
-
 # Append -copy, -copy-2 etc. to unique fields automatically
 CLONE_SUFFIX_APPEND_UNIQUE = True
 
