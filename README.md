@@ -13,10 +13,10 @@ G3 is a custom-built B2B marketing website developed for a design firm in the au
 
 ## Features
 
-- Custom Django CMS with modular content blocks
+- Custom Django CMS with modular content blocks catering to flexible page layout
 - Multilingual support (EN, DE, PL) using django internationalization framework and `django-modeltranslation`
-- CMS page duplication and placeholder image logic
-- Custom frontend components (carousel, modals, parallax, image wiper)
+- CMS page duplication based on `django-clone` and supplementary placeholder image logic
+- Custom frontend components (carousels, modals, parallax, image comparison wipers)
 - Responsive design built from Figma using CSS `clamp()` and grid systems
 - Dockerized deployment on Ubuntu VPS
 - Image cleanup automation (via `django-cleanup`)
@@ -25,7 +25,7 @@ G3 is a custom-built B2B marketing website developed for a design firm in the au
 
 - **Backend**: Python, Django, Django CMS, django-modeltranslation
 - **Frontend**: HTML5, CSS3, JavaScript (ES6), no dependencies
-- **Admin UI**: django-nested-admin, TinyMCE
+- **Admin UI**: django-nested-admin, TinyMCE, django-clone
 - **DevOps**: Docker, Nginx, Gunicorn, Ubuntu VPS
 
 ## License
