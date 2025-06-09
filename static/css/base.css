@@ -49,7 +49,6 @@ font sizes */
     :root {
     --nav-padding: clamp(10px, 6.4444px + 1.4815vw, 12px);
     --grid-gap: clamp(14px, 3.3333px + 4.4444vw, 20px);
-    /* --grid-margin: clamp(12px, 1px + 4vw, 16px); */
     --grid-margin: clamp(16px, -6px + 8vw, 24px);
     --logo-height: clamp(20px, -7.5px + 10vw, 30px);
 
@@ -74,7 +73,6 @@ font sizes */
     :root {
     --nav-padding: clamp(12px, 7.3775px + 1.2327vw, 20px);
     --grid-gap: 20px;
-    /* --grid-margin: clamp(16px, 2.1325px + 3.698vw, 40px); */
     --grid-margin: clamp(24px, 14.755px + 2.4653vw, 40px);
     --logo-height: clamp(30px, 24.2219px + 1.5408vw, 40px);
 
