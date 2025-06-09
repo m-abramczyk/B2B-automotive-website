@@ -2628,6 +2628,7 @@ color classes */
     }
 
     #nav-mobile {
+        padding-inline: calc(var(--grid-margin) * 2/3); /* 16px */
         padding-block: calc(var(--grid-margin) * 6) calc(var(--grid-margin) * 2); /* 144px 48px */
     }
 
