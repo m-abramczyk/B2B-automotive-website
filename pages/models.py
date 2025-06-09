@@ -235,6 +235,10 @@ class Page(models.Model):
         if self.is_case_studies_index and Page.objects.exclude(pk=self.pk).filter(is_case_studies_index=True).exists():
             raise ValidationError("Only one page can be the Case Studies Index.")
         
+        # Prevent Case Study Index from being a section parent
+        if self.is_case_studies_index and (self.is_section_1_parent or self.is_section_2_parent):
+            raise ValidationError("Case Study Index cannot be a section parent.")
+        
         # Prevent section parents from having a parent
         if (self.is_section_1_parent or self.is_section_2_parent) and self.parent:
             raise ValidationError("Section parent pages cannot have a parent.")
