@@ -243,18 +243,20 @@ class Page(models.Model):
         if self.parent and self.has_section_pages_list:
             raise ValidationError("Subsection page cannot have a section pages list.")
 
-        
+    # Builds full slug recursively in parent/child/ format
     def get_full_slug(self):
         """Recursively build the full slug path."""
         if self.parent:
             return f"{self.parent.get_full_slug()}/{self.slug}"
         return self.slug
 
+    # Fetch current lang and build slug-based menu urls correctly
     def get_absolute_url(self):
         lang = get_language()
         with override(lang):
             return reverse('general_page', kwargs={'slug': self.get_full_slug()})
 
+    # Ensure validation runs on pages list save, not only form save
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)

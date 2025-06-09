@@ -49,7 +49,9 @@ font sizes */
     :root {
     --nav-padding: clamp(10px, 6.4444px + 1.4815vw, 12px);
     --grid-gap: clamp(14px, 3.3333px + 4.4444vw, 20px);
-    --grid-margin: clamp(16px, 1.7778px + 5.9259vw, 24px);
+    /* --grid-margin: clamp(12px, 1px + 4vw, 16px); */
+    --grid-margin: clamp(16px, -6px + 8vw, 24px);
+    --logo-height: clamp(20px, -7.5px + 10vw, 30px);
 
 
     --fs-16: clamp(12px, 8.4444px + 1.4815vw, 14px);               /* site map nav */
@@ -72,7 +74,9 @@ font sizes */
     :root {
     --nav-padding: clamp(12px, 7.3775px + 1.2327vw, 20px);
     --grid-gap: 20px;
+    /* --grid-margin: clamp(16px, 2.1325px + 3.698vw, 40px); */
     --grid-margin: clamp(24px, 14.755px + 2.4653vw, 40px);
+    --logo-height: clamp(30px, 24.2219px + 1.5408vw, 40px);
 
     --fs-16: 14px;                                                 /* site map nav */
     --fs-17: clamp(14px, 13.4222px + 0.1541vw, 15px);              /* labels text */
@@ -94,6 +98,7 @@ font sizes */
     --nav-padding: 20px;
     --grid-gap: 20px;
     --grid-margin: 40px;
+    --logo-height: 40px;
 
     --fs-16: 14px;                   /* site map nav */
     --fs-17: 15px;                   /* labels text */
@@ -115,6 +120,7 @@ font sizes */
     --nav-padding: 20px;
     --grid-gap: 20px;
     --grid-margin: clamp(40px, 20px + 1.5625vw, 50px);
+    --logo-height: clamp(40px, 20px + 1.5625vw, 50px);
 
     --fs-16: clamp(14px, 10px + 0.3125vw, 16px);                   /* site map nav */
     --fs-17: clamp(15px, 11px + 0.3125vw, 17px);                   /* labels text */
@@ -136,6 +142,7 @@ font sizes */
     --nav-padding: 20px;
     --grid-gap: 20px;
     --grid-margin: clamp(50px, 35px + 0.7813vw, 55px);
+    --logo-height: clamp(50px, 35px + 0.7813vw, 55px);
 
     --fs-16: clamp(16px, 13px + 0.1563vw, 17px);                  /* site map nav */
     --fs-17: clamp(17px, 14px + 0.1563vw, 18px);                  /* labels text */
@@ -368,7 +375,7 @@ nav*/
 nav {
     position: fixed;
     width: 100%;
-    height: calc(var(--grid-margin) * 2); /* 100px */
+    height: calc(var(--logo-height) * 2); /* 100px */
     align-items: center;  /* center vertically */
     transition: var(--transition-transform-300);
     z-index: 3;
@@ -395,7 +402,7 @@ nav.hidden {
     z-index: 1;
 }
 
-.logo > svg {display: block; height: calc(var(--grid-margin) * 1);} /* 50px */
+.logo > svg {display: block; height: var(--logo-height);} /* 50px */
 .logo svg > path:nth-last-child(2) {fill: var(--g3-blue);} /* bottom blue circle */
 .logo svg > path:last-child {transition: var(--transition-opacity-200);} /* top circle white */
 a:hover svg > path:last-child {opacity: 0;} /* circle animation */
@@ -2605,7 +2612,7 @@ color classes */
     grid*/
     
     .grid {
-        padding-inline: var(--grid-margin); /* 24px */
+        padding-inline: calc(var(--grid-margin) * 2/3); /* 16px */
         grid-template-columns: repeat(4, 1fr);
     }
 
@@ -2613,10 +2620,10 @@ color classes */
     nav */
 
     nav {
-        height: calc(var(--grid-margin) * 2.5); /* 60px */
+        height: calc(var(--logo-height) * 2); /* 60px */
     }
 
-    .logo > svg {height: calc(var(--grid-margin) * 1.25);} /* 30px */
+    .logo > svg {height: var(--logo-height);} /* 30px */
 
     #hamb {
         grid-column: 4;
@@ -2659,6 +2666,7 @@ color classes */
     }
 
     .breadcrumbs {
+        margin-inline: calc(var(--grid-margin) * 2/3); /* 16px */
         padding-top: calc(var(--grid-margin) * 3.33); /* 80px */
     }
 
