@@ -124,7 +124,7 @@ class CaseStudy(CloneMixin, models.Model):
         help_text=('Title displayed in browser tab and search results. This field overrides the default title generated from page title, max 60 characters'),
     )
     meta_description = models.TextField(
-        max_length=255,
+        max_length=500,
         blank=True,
         null=True,
         help_text=('Page description for search results (optional), max 255 characters'),
