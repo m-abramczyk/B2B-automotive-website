@@ -967,6 +967,7 @@ blocks left / right / full-width */
 
 .block-expert > h2 {
     grid-column: 1 / span 7;
+    padding-bottom: calc(var(--grid-gap) * 2); /* 40px */;
 }
 
 .block-expert > .button {

@@ -338,7 +338,7 @@ class Contact(models.Model):
         max_length=60,
         blank=True,
         null=True,
-        default='Contact in a traditional way',
+        default='',
         help_text=('Button scrolls to header section contact info. Max 60 characters'),
     )
 
