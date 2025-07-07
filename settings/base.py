@@ -170,8 +170,8 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 TINYMCE_DEFAULT_CONFIG = {
     "height": 300,
     "width": 625,
-    'toolbar': 'undo redo | bold | link | bullist numlist | removeformat',
-    'plugins': 'link, lists',
+    'toolbar': 'undo redo | bold | link | bullist numlist | removeformat | code',
+    'plugins': 'link, lists, code',
     'branding': False,
     'menubar': False,
     'skin': 'tinymce-5-dark',
